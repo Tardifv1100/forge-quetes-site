@@ -2,387 +2,1251 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forge &amp; Quêtes — Forge ta discipline</title>
-<meta name="description" content="Un jeu de rôle nordique où le personnage que tu forges, c'est toi. Quêtes, compétences, constellations et les Neuf Royaumes — forgés par tes actions réelles.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Forge &amp; Quêtes — Le personnage que tu forges, c'est toi</title>
+<meta name="description" content="Un vrai outil pour ton sport, tes lectures, tes méditations et tes habitudes, mis en scène comme un jeu de rôle nordique. On ne gagne pas des points en jouant : on gagne des niveaux en vivant mieux.">
 <!-- Aperçu de partage (Open Graph / Twitter) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Forge & Quêtes">
 <meta property="og:title" content="Le personnage que tu forges, c'est toi.">
-<meta property="og:description" content="Un jeu de rôle nordique de discipline personnelle. Chaque action réelle forge tes compétences, allume tes constellations et t'élève à travers les Neuf Royaumes.">
-<meta property="og:url" content="https://tardifv1100.github.io/forge-quetes-site/">
+<meta property="og:description" content="Ton sport, tes lectures, tes méditations, tes habitudes : suivis pour de vrai, lus semaine après semaine, et mis en scène comme un jeu de rôle nordique.">
+<meta property="og:url" content="https://forgequests.com/">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta property="og:image" content="https://forgequests.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Forge &amp; Quêtes — Le personnage que tu forges, c'est toi.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Le personnage que tu forges, c'est toi.">
-<meta name="twitter:description" content="Un jeu de rôle nordique de discipline personnelle. Chaque action réelle forge tes compétences, allume tes constellations et t'élève à travers les Neuf Royaumes.">
+<meta name="twitter:description" content="Ton sport, tes lectures, tes méditations, tes habitudes : suivis pour de vrai, lus semaine après semaine, et mis en scène comme un jeu de rôle nordique.">
+<meta name="twitter:image" content="https://forgequests.com/og-image.png">
+<link rel="canonical" href="https://forgequests.com/">
+<meta name="theme-color" content="#141414">
+<!-- Favicon : valknut inline, aucun fichier externe requis -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23141414'/%3E%3Cg fill='none' stroke='%23ff8c42' stroke-width='7'%3E%3Cpath d='M50 12 L28 52 L72 52 Z'/%3E%3Cpath d='M28 52 L17 72 L50 72'/%3E%3Cpath d='M72 52 L83 72 L50 72'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="https://forgequests.com/apple-touch-icon.png">
+<link rel="preload" as="image" href="/captures/profil.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Les fontes de l'app : Alegreya SC pour les titres, Alegreya pour la voix de Brokkr -->
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@500;700&family=Alegreya:ital,wght@1,400;1,500&family=Alegreya+Sans:wght@400;500;700;800&family=Noto+Sans+Runic&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Forge & Quêtes","alternateName":"Forge & Quests",
+ "operatingSystem":"iOS","applicationCategory":"LifestyleApplication","inLanguage":["fr","en"],
+ "url":"https://forgequests.com/","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}
+</script>
 <style>
   :root{
-    --bg:#141414; --bg2:#0e0e0e; --surface:#1c1a18; --border:#2a2624;
-    --orange:#ff8c42; --purple:#a060ff; --parchment:#c4b49a; --gold:#d4af37;
-    --text:#e8e2d8; --muted:#9a9186;
-    --novice:#6a6a6a; --apprenti:#c4b49a; --forgeron:#ff8c42; --maitre:#a060ff;
+    --bg:#141414; --bg-nuit:#0d0e14; --surface:#1b1917; --surface-2:#221e1b;
+    --filet:rgba(196,180,154,.12); --filet-fort:rgba(196,180,154,.24);
+    --braise:#ff8c42; --braise-fonce:#e2702c; --violet:#a060ff; --parchemin:#c4b49a; --or:#d4af37;
+    --texte:#ede6d9; --texte-doux:#a79e91; --texte-faible:#7e766c;
+    --novice:#8a8a8a; --apprenti:#c4b49a; --forgeron:#d4562a; --maitre:#a060ff;
+    --force:#b5603a; --intelligence:#7a9abf; --sagesse:#8a6fa8; --perseverance:#b87840; --endurance:#5a9068; --dexterite:#b09040;
+    --f-titre:'Alegreya SC',Georgia,serif; --f-voix:'Alegreya',Georgia,serif;
+    --f-corps:'Alegreya Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --f-rune:'Noto Sans Runic','Segoe UI Historic','Apple Symbols',sans-serif;
+    --page:1180px; --goutte:clamp(18px,4vw,40px);
+    --sortie:cubic-bezier(.22,1,.36,1);
+    --z-nav:50; --z-grain:60; --z-skip:70;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.65;overflow-x:hidden}
-  h1,h2,h3,.brand{font-family:'Cinzel',serif}
-  a{color:var(--orange);text-decoration:none}
-  section{padding:96px 24px;max-width:1060px;margin:0 auto}
-  .kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:14px}
-  h2{font-size:clamp(26px,4vw,38px);font-weight:700;margin-bottom:18px;color:#f2ece0}
-  .lead{color:var(--muted);font-size:17px;max-width:640px}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--texte);font-family:var(--f-corps);font-size:18px;line-height:1.6;
+      overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased}
+  /* Grain : casse l'aplat numérique, comme le papier d'un grimoire */
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:var(--z-grain);opacity:.05;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  img{display:block;max-width:100%;height:auto}
+  a{color:var(--braise);text-decoration:none}
+  h1,h2,h3{font-family:var(--f-titre);font-weight:700;text-wrap:balance;color:#f4eee3}
+  p,li{text-wrap:pretty}
+  :focus-visible{outline:2px solid var(--braise);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-9999px;top:0;z-index:var(--z-skip);background:var(--braise);color:#141414;
+      padding:12px 20px;font-weight:700;font-size:15px}
+  .skip:focus{left:12px;top:12px}
+
+  .cadre{max-width:var(--page);margin:0 auto;padding-inline:var(--goutte)}
+  section{position:relative;overflow-x:clip;padding-block:clamp(88px,11vw,148px) clamp(96px,12vw,164px)}
+  section[id],header[id]{scroll-margin-top:72px}
+
+  /* ─── Typographie de section ─── */
+  .kicker{display:flex;align-items:center;gap:12px;font-family:var(--f-titre);font-weight:700;font-size:15px;
+      letter-spacing:.2em;color:var(--braise);margin-bottom:20px;text-transform:lowercase}
+  .kicker::before{content:"";width:7px;height:7px;background:currentColor;transform:rotate(45deg);flex:none;
+      box-shadow:0 0 12px rgba(255,140,66,.6)}
+  h2{font-size:clamp(32px,4.4vw,52px);line-height:1.06;letter-spacing:-.005em;margin-bottom:22px;max-width:20ch}
+  h2.large{max-width:24ch}
+  .lead{color:var(--texte-doux);font-size:clamp(18px,1.6vw,20.5px);line-height:1.62;max-width:60ch}
+  .voix{font-family:var(--f-voix);font-style:italic;font-weight:400}
+
+  /* ─── Chanfrein : les boîtes posées sur la feuille, comme dans l'app ─── */
+  .chanfrein{--c:16px;--fond:var(--surface);position:relative;isolation:isolate;background:var(--filet-fort);
+      clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c))}
+  .chanfrein::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--fond);
+      clip-path:polygon(calc(var(--c) - .6px) 0,100% 0,100% calc(100% - var(--c) + .6px),calc(100% - var(--c) + .6px) 100%,0 100%,0 calc(var(--c) - .6px))}
+
+  /* ─── Boutons ─── */
+  .ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{--c:11px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;
+      font-family:var(--f-corps);font-weight:700;font-size:16.5px;letter-spacing:.01em;
+      clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c));
+      transition:transform .2s var(--sortie),filter .2s,background-color .2s}
+  .btn-braise{background:linear-gradient(180deg,#ffa060,var(--braise-fonce));color:#1a120c;
+      filter:drop-shadow(0 8px 26px rgba(255,120,50,.35))}
+  .btn-braise:hover{transform:translateY(-2px);filter:drop-shadow(0 12px 34px rgba(255,120,50,.5))}
+  .btn:active{transform:translateY(1px) scale(.985)}
+  .btn svg{width:18px;height:18px;flex:none}
+  /* Badge store : « Bientôt » tant que LIEN_APPSTORE est vide, lien réel ensuite */
+  .store{--c:11px;display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 22px 0 18px;
+      background:#0c0b0a;color:var(--texte);border:0;
+      clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c));
+      box-shadow:inset 0 0 0 1px var(--filet-fort);transition:box-shadow .2s,transform .2s var(--sortie)}
+  .store svg{width:22px;height:22px;flex:none;color:var(--parchemin)}
+  .store span{display:flex;flex-direction:column;line-height:1.15}
+  .store small{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--braise);font-weight:700}
+  .store b{font-size:17px;font-weight:700}
+  a.store:hover{box-shadow:inset 0 0 0 1px var(--braise);transform:translateY(-2px)}
+  .store[aria-disabled="true"]{cursor:default}
+  .note-cta{margin-top:18px;font-size:14.5px;color:var(--texte-faible);letter-spacing:.02em}
+  .note-cta b{color:var(--texte-doux);font-weight:500}
 
   /* ─── Nav ─── */
-  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-      padding:14px 26px;background:rgba(14,14,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.12em;color:#f2ece0}
-  .brand svg{flex:none}
-  .navlinks{display:flex;gap:26px;align-items:center;font-size:13.5px}
-  .navlinks a{color:var(--muted);font-weight:500;transition:color .2s}
-  .navlinks a:hover{color:var(--orange)}
-  #langBtn{background:none;border:1px solid var(--border);color:var(--parchment);font-family:'Inter',sans-serif;
-      font-size:12px;font-weight:600;letter-spacing:.08em;padding:6px 12px;border-radius:2px;cursor:pointer;transition:border-color .2s}
-  #langBtn:hover{border-color:var(--orange)}
-  @media(max-width:720px){.navlinks a{display:none}}
+  nav{position:fixed;top:0;left:0;right:0;z-index:var(--z-nav);transition:background-color .3s,border-color .3s,backdrop-filter .3s;
+      border-bottom:1px solid transparent}
+  nav.pleine{background:rgba(16,15,14,.84);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);
+      border-bottom-color:var(--filet)}
+  .nav-in{max-width:var(--page);margin:0 auto;padding:14px var(--goutte);display:flex;align-items:center;gap:20px}
+  .marque{display:flex;align-items:center;gap:11px;font-family:var(--f-titre);font-weight:700;font-size:18px;
+      letter-spacing:.12em;color:#f4eee3;text-transform:lowercase}
+  .liens{display:flex;gap:26px;align-items:center;margin-left:auto;font-size:15.5px}
+  .liens a{color:var(--texte-doux);font-weight:500;position:relative;padding:6px 0;transition:color .2s}
+  .liens a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--braise);
+      transform:scaleX(0);transform-origin:left;transition:transform .3s var(--sortie)}
+  .liens a:hover,.liens a.actif{color:#f4eee3}
+  .liens a.actif::after{transform:scaleX(1)}
+  .outils{display:flex;align-items:center;gap:10px}
+  #langBtn{background:none;border:1px solid var(--filet-fort);color:var(--parchemin);font:700 13px/1 var(--f-corps);
+      letter-spacing:.1em;padding:9px 12px;border-radius:3px;cursor:pointer;transition:border-color .2s,color .2s}
+  #langBtn:hover{border-color:var(--braise);color:#f4eee3}
+  .nav-cta{--c:8px;min-height:38px;padding:0 16px;font-size:14.5px}
+  .burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:38px;background:none;
+      border:1px solid var(--filet-fort);border-radius:3px;cursor:pointer;padding:0 9px;transition:border-color .2s}
+  .burger span{display:block;height:2px;width:100%;background:var(--parchemin);transition:transform .25s var(--sortie),opacity .2s}
+  nav.ouvert .burger{border-color:var(--braise)}
+  nav.ouvert .burger span{background:var(--braise)}
+  nav.ouvert .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  nav.ouvert .burger span:nth-child(2){opacity:0}
+  nav.ouvert .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:980px){
+    .liens{gap:20px;font-size:15px}
+  }
+  @media(max-width:480px){
+    .nav-in{gap:10px}
+    .marque{font-size:15.5px;letter-spacing:.06em;gap:9px}
+    .kicker{letter-spacing:.13em;font-size:14px}
+  }
+  @media(max-width:880px){
+    .burger{display:flex}
+    .nav-cta{display:none}
+    .liens{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;margin:0;
+        background:rgba(16,15,14,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--filet);
+        padding:6px 0 12px;font-size:17px;opacity:0;visibility:hidden;transform:translateY(-8px);
+        transition:opacity .24s ease,transform .24s var(--sortie),visibility .24s}
+    nav.ouvert{background:rgba(16,15,14,.97)}
+    nav.ouvert .liens{opacity:1;visibility:visible;transform:none}
+    .liens a{padding:15px var(--goutte);border-bottom:1px solid var(--filet)}
+    .liens a:last-child{border-bottom:none}
+    .liens a::after{display:none}
+    .outils{margin-left:auto}
+  }
+
+  /* ─── Téléphones : les vraies captures, dans un cadre ─── */
+  .tel{--w:300px;container-type:inline-size;position:relative;width:var(--w);flex:none;padding:calc(var(--w) * .034);
+      border-radius:calc(var(--w) * .16);
+      background:linear-gradient(155deg,#3b352f 0%,#16130f 28%,#0c0a09 64%,#2a241f 100%);
+      box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.07),inset 0 0 0 5px #0a0908,
+          0 50px 90px -34px rgba(0,0,0,.95),0 30px 120px -50px rgba(255,120,50,.4)}
+  .tel-ecran{position:relative;aspect-ratio:924/2000;border-radius:calc(var(--w) * .128);overflow:hidden;background:#12100f}
+  .tel-ecran::before{content:"9:41";position:absolute;top:0;left:0;right:0;height:5.2%;z-index:2;display:flex;align-items:center;
+      padding-left:10.5%;font:600 4.3cqw/1 -apple-system,'SF Pro Text',system-ui,sans-serif;color:#f4f4f4;letter-spacing:.01em;
+      background:#12100f url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 13' fill='%23f4f4f4'%3E%3Crect x='0' y='8' width='3' height='4' rx='1'/%3E%3Crect x='5' y='6' width='3' height='6' rx='1'/%3E%3Crect x='10' y='3.5' width='3' height='8.5' rx='1'/%3E%3Crect x='15' y='1' width='3' height='11' rx='1'/%3E%3Cpath d='M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zM32.6 6a6 6 0 0 1 7.8 0l-1.4 1.5a4 4 0 0 0-5 0zM35.2 8.8a2.3 2.3 0 0 1 2.6 0L36.5 10.3z'/%3E%3Crect x='47.5' y='1' width='18' height='10.5' rx='3' fill='none' stroke='%23f4f4f4' stroke-opacity='.45'/%3E%3Crect x='49.2' y='2.7' width='14.6' height='7.1' rx='1.6'/%3E%3Crect x='66.3' y='4.2' width='1.7' height='4' rx='.8' fill-opacity='.45'/%3E%3C/svg%3E") no-repeat right 8% center / 20% auto}
+  .tel-ecran::after{content:"";position:absolute;top:1.25%;left:50%;width:31%;height:3.1%;transform:translateX(-50%);
+      background:#000;border-radius:999px;z-index:3}
+  .tel-ecran img{position:absolute;top:5.2%;left:0;width:100%;height:auto}
 
   /* ─── Hero ─── */
-  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
-      text-align:center;padding:120px 24px 80px;max-width:none;
-      background:radial-gradient(ellipse 80% 55% at 50% 105%, rgba(255,140,66,.16), transparent 65%),
-                 radial-gradient(ellipse 60% 40% at 50% 115%, rgba(255,90,20,.12), transparent 60%), var(--bg)}
-  .hero h1{font-size:clamp(38px,7vw,72px);font-weight:900;line-height:1.12;color:#f5efe3;max-width:820px}
-  .hero h1 em{font-style:normal;color:var(--orange);text-shadow:0 0 34px rgba(255,140,66,.45)}
-  .hero .sub{margin-top:22px;font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:560px}
-  .cta-row{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
-  .btn{display:inline-block;min-width:225px;text-align:center;padding:15px 30px;font-weight:600;font-size:15px;border-radius:2px;
-      clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transition:transform .15s,box-shadow .2s}
-  .btn-primary{background:linear-gradient(180deg,#ff9c58,#e8712a);color:#141414;box-shadow:0 0 30px rgba(255,140,66,.35)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(255,140,66,.5)}
-  .btn-ghost{border:1px solid var(--border);color:var(--parchment);background:rgba(255,255,255,.02)}
-  .btn-ghost:hover{border-color:var(--parchment)}
-  .ember{position:absolute;bottom:-8px;border-radius:50%;background:var(--orange);opacity:0;pointer-events:none;
-      animation:rise linear infinite}
-  @keyframes rise{
-    0%{opacity:0;transform:translateY(0) scale(1)}
-    12%{opacity:.85}
-    100%{opacity:0;transform:translateY(-88vh) translateX(var(--dx,20px)) scale(.25)}
+  .hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;overflow:hidden;
+      padding:118px 0 72px;
+      background:
+        radial-gradient(ellipse 70% 60% at 72% 58%, rgba(255,120,50,.14), transparent 62%),
+        radial-gradient(ellipse 90% 45% at 30% 112%, rgba(255,110,40,.16), transparent 64%),
+        linear-gradient(180deg,#110f0e 0%, var(--bg) 60%)}
+  .hero-grille{width:100%;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(24px,4vw,64px);align-items:center}
+  .hero h1{font-size:clamp(44px,5.5vw,78px);line-height:1;letter-spacing:-.01em;margin-bottom:28px}
+  .hero h1 em{display:block;font-style:normal;color:var(--braise);text-shadow:0 0 38px rgba(255,140,66,.45)}
+  .hero .lead{margin-bottom:38px;font-size:clamp(18.5px,1.7vw,21px);max-width:54ch}
+  .scene{position:relative;height:min(700px,82vh);min-height:560px;display:flex;align-items:center;justify-content:center}
+  .anneau{position:absolute;width:min(620px,118%);aspect-ratio:1;left:50%;top:50%;translate:-50% -50%;opacity:.5;
+      animation:tourne 160s linear infinite;pointer-events:none}
+  .anneau text{font-family:var(--f-rune);font-size:21px;fill:#c56b35}
+  @keyframes tourne{to{rotate:360deg}}
+  .scene .tel{position:absolute}
+  .tel.avant{--w:clamp(236px,23vw,306px);z-index:2;translate:calc(12% + var(--px,0px)) calc(var(--py,0px));animation:flotte 7s ease-in-out infinite alternate}
+  .tel.arriere{--w:clamp(206px,20vw,266px);z-index:1;translate:calc(-44% + var(--px,0px) * -.5) calc(-7% + var(--py,0px) * -.5);rotate:-8deg;
+      filter:brightness(.62) saturate(.9)}
+  @keyframes flotte{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+  .ember{position:absolute;bottom:-8px;border-radius:50%;background:var(--braise);opacity:0;pointer-events:none;animation:monte linear infinite}
+  @keyframes monte{0%{opacity:0;transform:translateY(0) scale(1)}12%{opacity:.85}100%{opacity:0;transform:translateY(-88vh) translateX(var(--dx,20px)) scale(.25)}}
+  @media(max-width:900px){
+    .hero{padding-top:104px;min-height:auto}
+    .hero-grille{grid-template-columns:1fr}
+    .tel.avant{--w:min(62vw,262px);translate:calc(16% + var(--px,0px)) 0}
+    .scene{aspect-ratio:auto;padding:0;margin-top:34px;height:calc(min(62vw,262px) * 2.3 + 36px)}
+    .tel.arriere{--w:min(52vw,220px);translate:-46% -6%}
   }
-  .scrollhint{position:absolute;bottom:26px;color:var(--muted);font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
 
-  /* ─── Concept loop ─── */
-  .loop{display:flex;align-items:stretch;gap:0;margin:52px 0 40px;flex-wrap:wrap}
-  .loop-step{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);padding:26px 22px;position:relative;
-      clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
-  .loop-step + .loop-step{margin-left:14px}
-  .loop-step .n{font-family:'Cinzel',serif;font-size:13px;color:var(--orange);letter-spacing:.2em;margin-bottom:10px}
-  .loop-step h3{font-size:17px;margin-bottom:8px;color:#f2ece0}
-  .loop-step p{font-size:14px;color:var(--muted)}
-  @media(max-width:760px){.loop{flex-direction:column}.loop-step + .loop-step{margin-left:0;margin-top:14px}}
-  .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:34px}
-  .stat-chip{border:1px solid var(--border);background:rgba(255,255,255,.02);padding:14px 16px;display:flex;align-items:center;gap:11px;
-      clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
-  .stat-chip .rune{font-size:18px;color:var(--orange);font-weight:700;width:22px;text-align:center}
-  .stat-chip div b{display:block;font-size:14px;font-weight:600;color:#f2ece0}
-  .stat-chip div span{font-size:12px;color:var(--muted)}
-  .tiers{display:flex;margin-top:34px;border:1px solid var(--border);overflow:hidden}
-  .tier{flex:1;text-align:center;padding:13px 6px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:.14em;font-weight:700}
-  .tier small{display:block;font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0;font-size:11px;opacity:.75;margin-top:3px}
-  .t-novice{color:var(--novice);background:rgba(106,106,106,.08)}
+  /* ─── Le but : la vie, l'outil, le jeu ─── */
+  .registre{margin-top:clamp(48px,6vw,72px);display:grid;gap:12px}
+  .registre-tete,.ligne{display:grid;grid-template-columns:1fr 1.25fr 1.1fr;gap:0}
+  .registre-tete div{font-family:var(--f-titre);font-weight:700;font-size:14px;letter-spacing:.18em;color:var(--texte-faible);
+      padding:0 26px 10px;text-transform:lowercase}
+  .registre-tete div:nth-child(2){color:var(--parchemin)}
+  .registre-tete div:nth-child(3){color:var(--braise)}
+  .ligne{--c:14px}
+  .ligne > div{position:relative;padding:24px 26px;font-size:17px;line-height:1.5}
+  .ligne .vie{font-family:var(--f-voix);font-style:italic;font-size:19.5px;color:#f4eee3}
+  .ligne .outil{color:var(--texte-doux);border-left:1px solid var(--filet)}
+  .ligne .jeu{color:#f0dcc6;border-left:1px solid var(--filet);background:linear-gradient(90deg,rgba(255,140,66,.06),transparent 80%)}
+  .ligne .outil::before,.ligne .jeu::before{content:"";position:absolute;left:-6px;top:50%;width:11px;height:11px;margin-top:-5.5px;
+      background:var(--bg);border:1px solid var(--filet-fort);transform:rotate(45deg)}
+  .ligne .jeu::before{border-color:var(--braise);background:#2a1a10}
+  .ligne small{display:none;font-family:var(--f-titre);font-weight:700;font-style:normal;font-size:12.5px;letter-spacing:.18em;margin-bottom:6px;text-transform:lowercase}
+  .registre-pied{margin-top:26px;color:var(--texte-faible);font-size:16px}
+  .registre-pied b{color:var(--parchemin);font-weight:500}
+  @media(max-width:820px){
+    .registre-tete{display:none}
+    .ligne{grid-template-columns:1fr}
+    .ligne .outil,.ligne .jeu{border-left:none;border-top:1px solid var(--filet)}
+    .ligne .outil::before,.ligne .jeu::before{left:26px;top:-6px;margin-top:0}
+    .ligne small{display:block}
+    .ligne .outil small{color:var(--parchemin)}
+    .ligne .jeu small{color:var(--braise)}
+  }
+
+  /* ─── Zig-zag : capture + texte ─── */
+  .duo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(40px,7vw,104px);align-items:center}
+  .duo.inverse{grid-template-columns:minmax(0,1fr) auto}
+  .duo.inverse .col-tel{order:2}
+  .duo + .duo{margin-top:clamp(88px,10vw,140px)}
+  .col-tel{position:relative;display:flex;justify-content:center}
+  .col-tel::before{content:"";position:absolute;inset:8% -18%;background:radial-gradient(closest-side,rgba(255,120,50,.16),transparent);
+      filter:blur(8px);z-index:0}
+  .col-tel .tel{--w:clamp(250px,25vw,310px)}
+  @media(max-width:860px){
+    .duo,.duo.inverse{grid-template-columns:1fr}
+    .duo.inverse .col-tel{order:0}
+    .col-tel .tel{--w:min(70vw,290px)}
+  }
+  h3.sous-titre{font-size:clamp(24px,2.6vw,31px);line-height:1.15;margin-bottom:14px}
+  .bloc-texte p + h3.sous-titre{margin-top:40px}
+  .bloc-texte > p:not(.lead){color:var(--texte-doux);max-width:58ch}
+
+  .disciplines{list-style:none;margin-top:36px;display:grid;gap:4px}
+  .disciplines li{display:grid;grid-template-columns:4px 1fr;gap:20px;padding:16px 0}
+  .disciplines li::before{content:"";border-radius:4px;background:var(--c);box-shadow:0 0 16px -2px var(--c);opacity:.9}
+  .disciplines .stat{font-family:var(--f-titre);font-weight:700;font-size:13.5px;letter-spacing:.16em;color:var(--c);text-transform:lowercase;filter:brightness(1.35)}
+  .disciplines h3{font-family:var(--f-corps);font-size:21px;font-weight:700;letter-spacing:0;margin:2px 0 4px}
+  .disciplines p{color:var(--texte-doux);font-size:16.5px}
+  .sante{margin-top:26px;display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:10px;
+      background:rgba(255,255,255,.025);box-shadow:inset 0 0 0 1px var(--filet);color:var(--texte-doux);font-size:16px}
+  .sante svg{width:22px;height:22px;flex:none;color:#e0566a;margin-top:2px}
+
+  /* ─── La Forge : les trois actes + la braise ─── */
+  .actes{list-style:none;margin-top:38px;display:grid;gap:26px;counter-reset:acte}
+  .actes li{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start}
+  .actes .num{font-family:var(--f-titre);font-weight:700;font-size:15px;color:var(--braise);width:44px;height:44px;display:grid;place-items:center;
+      border:1px solid rgba(255,140,66,.4);border-radius:50%;background:rgba(255,140,66,.06)}
+  .actes h3{font-size:22px;margin-bottom:3px}
+  .actes p{color:var(--texte-doux);font-size:16.5px}
+
+  .braise-boite{margin-top:clamp(64px,8vw,104px);--c:22px}
+  .braise-grille{display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);
+      padding:clamp(28px,4.4vw,56px);align-items:center}
+  .braise-tete{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:6px}
+  .braise-tete h3{font-size:17px;letter-spacing:.18em;color:var(--parchemin);text-transform:lowercase}
+  .braise-tete span{font-size:13.5px;color:var(--texte-faible)}
+  .jauge{position:relative;max-width:340px;margin:0 auto}
+  .jauge svg{width:100%;height:auto;overflow:visible}
+  .jauge .piste{fill:none;stroke:#2b2724;stroke-width:15;stroke-linecap:round}
+  .jauge .valeur{fill:none;stroke:var(--ton,#c4a27a);stroke-width:15;stroke-linecap:round;stroke-dasharray:100 100;
+      transition:stroke-dashoffset .8s var(--sortie),stroke .5s;filter:drop-shadow(0 0 10px var(--ton-lueur,rgba(196,162,122,.35)))}
+  .jauge .repere{stroke:var(--texte-doux);stroke-width:2.2}
+  .jauge .repere-txt{fill:var(--texte-doux);font:500 14px var(--f-corps)}
+  .jauge-centre{position:absolute;left:0;right:0;top:34%;text-align:center}
+  .jauge-centre b{display:block;font:800 clamp(58px,7vw,78px)/1 var(--f-corps);font-variant-numeric:tabular-nums;color:var(--ton,#c4a27a);
+      transition:color .5s;text-shadow:0 0 30px var(--ton-lueur,rgba(196,162,122,.3))}
+  .jauge-centre span{display:block;margin-top:8px;font-family:var(--f-titre);font-weight:700;font-size:17px;letter-spacing:.22em;color:#e9e0d2;text-transform:lowercase}
+  .jauge-legende{text-align:center;color:var(--texte-faible);font-size:14.5px;margin-top:-6px}
+  .tons{display:flex;gap:6px;justify-content:center;margin-top:22px;padding:5px;border-radius:999px;background:#12100f;
+      box-shadow:inset 0 0 0 1px var(--filet);width:max-content;max-width:100%;margin-inline:auto}
+  .tons button{border:0;background:none;color:var(--texte-doux);font:700 14.5px var(--f-corps);letter-spacing:.04em;
+      padding:10px 16px;border-radius:999px;cursor:pointer;transition:background-color .25s,color .25s}
+  .tons button:hover{color:#f4eee3}
+  .tons button[aria-selected="true"]{background:rgba(255,140,66,.14);color:var(--braise);box-shadow:inset 0 0 0 1px rgba(255,140,66,.35)}
+  .facteurs{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+  .facteur b{display:block;font-family:var(--f-titre);font-weight:700;font-size:14.5px;letter-spacing:.16em;color:#ece3d4;text-transform:lowercase}
+  .facteur p{font-size:15px;color:var(--texte-faible);margin:2px 0 10px;line-height:1.45}
+  .barre{position:relative;height:6px;border-radius:6px;background:#2b2724}
+  .barre i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--ton,#c4a27a);width:var(--v,50%);
+      transition:width .8s var(--sortie),background-color .5s}
+  .barre::after{content:"";position:absolute;left:66.6%;top:-5px;bottom:-5px;width:2px;border-radius:2px;background:var(--parchemin);opacity:.7}
+  .facteurs-legende{grid-column:1/-1;font-size:13.5px;color:var(--texte-faible);display:flex;align-items:center;gap:8px}
+  .facteurs-legende::before{content:"";width:2px;height:14px;background:var(--parchemin);opacity:.7;border-radius:2px}
+  .mot-brokkr{grid-column:1/-1;margin-top:8px;padding-top:22px;border-top:1px solid var(--filet);font-size:clamp(20px,2vw,24px);
+      line-height:1.45;color:#efe6d6;min-height:3.2em;transition:opacity .25s}
+  @media(max-width:820px){.braise-grille{grid-template-columns:1fr}}
+  @media(max-width:460px){.facteurs{grid-template-columns:1fr}.tons button{padding:10px 12px;font-size:14px}}
+
+  /* ─── Brokkr ─── */
+  .brokkr-grille{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(36px,6vw,88px);align-items:start}
+  @media(max-width:900px){.brokkr-grille{grid-template-columns:1fr}}
+  .visages{--c:20px}
+  .visages-in{padding:clamp(22px,3.4vw,40px)}
+  .onglets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+  .onglets button{border:0;cursor:pointer;background:rgba(255,255,255,.03);color:var(--texte-doux);font:700 15px var(--f-corps);
+      padding:10px 15px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--filet);transition:background-color .2s,color .2s,box-shadow .2s}
+  .onglets button:hover{color:#f4eee3;box-shadow:inset 0 0 0 1px var(--filet-fort)}
+  .onglets button[aria-selected="true"]{background:rgba(255,140,66,.12);color:var(--braise);box-shadow:inset 0 0 0 1px rgba(255,140,66,.45)}
+  .visage{transition:opacity .22s ease,transform .22s var(--sortie)}
+  .visage.change{opacity:0;transform:translateY(6px)}
+  .visage-nom{font-size:clamp(26px,2.8vw,34px);line-height:1.1}
+  .visage-epi{font-size:19px;color:var(--parchemin);margin-top:2px}
+  .visage-desc{color:var(--texte-doux);margin-top:12px;font-size:17px;max-width:52ch}
+  .apercu{margin-top:30px;position:relative;padding:26px 28px 28px 30px;border-radius:12px;background:linear-gradient(135deg,rgba(255,140,66,.07),rgba(255,255,255,.015) 60%);
+      box-shadow:inset 0 0 0 1px rgba(255,140,66,.2)}
+  .apercu small{display:block;font-family:var(--f-titre);font-weight:700;font-size:13px;letter-spacing:.2em;color:var(--braise);margin-bottom:12px;text-transform:lowercase}
+  .apercu p{font-family:var(--f-voix);font-style:italic;font-size:clamp(21px,2.2vw,26px);line-height:1.42;color:#f3eadb;min-height:4.3em}
+  .apercu::before{content:"“";position:absolute;right:20px;top:-6px;font:italic 110px/1 var(--f-voix);color:rgba(255,140,66,.14)}
+  .gestes{margin-top:clamp(56px,7vw,88px)}
+  .gestes > p{font-family:var(--f-titre);font-weight:700;font-size:15px;letter-spacing:.18em;color:var(--parchemin);text-transform:lowercase;margin-bottom:22px}
+  .gestes ul{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,34px)}
+  .gestes li{padding-left:20px;border-left:2px solid rgba(255,140,66,.35)}
+  .gestes li small{display:block;font-size:13.5px;color:var(--texte-faible);letter-spacing:.04em;margin-bottom:8px}
+  .gestes li p{font-family:var(--f-voix);font-style:italic;font-size:19px;line-height:1.45;color:#e9dfcf}
+  @media(max-width:860px){.gestes ul{grid-template-columns:1fr}}
+
+  /* ─── Le jeu ─── */
+  .galerie{margin-top:clamp(56px,7vw,88px);display:flex;justify-content:center;align-items:flex-end;gap:clamp(20px,3.6vw,52px)}
+  .galerie figure{display:flex;flex-direction:column;align-items:center;gap:22px;max-width:320px}
+  .galerie .tel{--w:clamp(214px,21vw,272px)}
+  .galerie figure:nth-child(2) .tel{--w:clamp(236px,23.5vw,300px)}
+  .galerie figure:nth-child(2){margin-bottom:34px}
+  .galerie figcaption{text-align:center;color:var(--texte-doux);font-size:16px;max-width:30ch}
+  .galerie figcaption b{display:block;font-family:var(--f-titre);font-size:19px;color:#f4eee3;margin-bottom:4px;letter-spacing:.02em}
+  @media(max-width:860px){
+    .galerie{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px var(--goutte) 26px;
+        margin-inline:calc(var(--goutte) * -1);scrollbar-width:none}
+    .galerie::-webkit-scrollbar{display:none}
+    .galerie figure{scroll-snap-align:center;flex:none}
+    .galerie figure:nth-child(2){margin-bottom:0}
+    .galerie .tel,.galerie figure:nth-child(2) .tel{--w:min(66vw,262px)}
+  }
+
+  .competences{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+  .comp{--c:12px;padding:22px 18px 20px;text-align:left}
+  .comp .rune{font-family:var(--f-rune);font-size:30px;line-height:1;color:var(--s);text-shadow:0 0 18px var(--s);filter:brightness(1.25);display:block;margin-bottom:14px}
+  .comp b{display:block;font-size:17px;color:#f4eee3}
+  .comp span{font-size:14.5px;color:var(--texte-faible);line-height:1.4;display:block;margin-top:2px}
+  @media(max-width:980px){.competences{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:520px){.competences{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .titre-bande{font-family:var(--f-titre);font-weight:700;font-size:15px;letter-spacing:.18em;color:var(--parchemin);text-transform:lowercase;margin:clamp(72px,9vw,120px) 0 18px}
+  .tiers{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);border-radius:10px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--filet)}
+  .tier{padding:15px 8px;text-align:center;font-family:var(--f-titre);font-weight:700;font-size:16px;letter-spacing:.1em;text-transform:lowercase}
+  .tier small{display:block;font-family:var(--f-corps);font-weight:500;letter-spacing:0;font-size:13px;opacity:.75;margin-top:2px;font-variant-numeric:tabular-nums}
+  .t-novice{color:var(--novice);background:rgba(138,138,138,.07)}
   .t-apprenti{color:var(--apprenti);background:rgba(196,180,154,.07)}
-  .t-forgeron{color:var(--forgeron);background:rgba(255,140,66,.08)}
-  .t-maitre{color:var(--maitre);background:rgba(160,96,255,.09)}
+  .t-forgeron{color:#ec6a3a;background:rgba(212,86,42,.1)}
+  .t-maitre{color:#b584ff;background:rgba(160,96,255,.11)}
 
-  /* ─── Systems grid ─── */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin-top:48px}
-  .card{background:var(--surface);border:1px solid var(--border);padding:26px 24px;transition:border-color .25s,transform .2s;
-      clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
-  .card:hover{border-color:rgba(255,140,66,.45);transform:translateY(-3px)}
-  .card .ico{font-size:22px;margin-bottom:14px;color:var(--orange)}
-  .card h3{font-size:16.5px;margin-bottom:9px;color:#f2ece0}
-  .card p{font-size:14px;color:var(--muted)}
-  .card.violet .ico{color:var(--purple)}
-  .card.violet:hover{border-color:rgba(160,96,255,.45)}
-  .card.gold .ico{color:var(--gold)}
-  .card.gold:hover{border-color:rgba(212,175,55,.5)}
+  .codex{margin-top:clamp(72px,9vw,112px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(32px,5vw,72px)}
+  .codex article{display:grid;grid-template-columns:44px 1fr;gap:18px;padding:26px 0;border-top:1px solid var(--filet)}
+  .codex .ico{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;color:var(--i,var(--braise));
+      background:color-mix(in srgb,var(--i,var(--braise)) 10%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--i,var(--braise)) 35%,transparent)}
+  .codex .ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+  .codex h3{font-size:21px;margin-bottom:5px}
+  .codex p{color:var(--texte-doux);font-size:16.5px}
+  @media(max-width:760px){.codex{grid-template-columns:1fr}}
 
-  /* ─── Realms ─── */
-  .realms-wrap{background:linear-gradient(180deg,var(--bg) 0%, #0b0c14 18%, #0b0c14 82%, var(--bg) 100%);max-width:none;padding:0}
-  .realms-inner{max-width:1060px;margin:0 auto;padding:96px 24px}
-  .ladder{margin-top:48px;position:relative;padding-left:34px}
-  .ladder:before{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;
-      background:linear-gradient(180deg,var(--gold),var(--orange) 40%,#3a4a5c)}
-  .realm{position:relative;padding:16px 0 16px 18px;display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
-  .realm:before{content:"";position:absolute;left:-30px;top:26px;width:14px;height:14px;transform:rotate(45deg);
-      background:var(--c,#6a7a8a);box-shadow:0 0 12px var(--c,#6a7a8a)}
-  .realm h3{font-size:19px;letter-spacing:.06em;color:var(--c,#e8e2d8);min-width:150px}
-  .realm .lvl{font-size:12px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;min-width:80px}
-  .realm p{font-size:14px;color:var(--muted);flex:1;min-width:240px;font-style:italic}
+  /* ─── Les Neuf Royaumes ─── */
+  .nuit{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-nuit) 14%,var(--bg-nuit) 86%,var(--bg) 100%);position:relative;overflow:hidden}
+  .nuit::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+      background-image:radial-gradient(1px 1px at 12% 18%,#fff8 50%,transparent 51%),radial-gradient(1px 1px at 78% 12%,#fff6 50%,transparent 51%),
+        radial-gradient(1.4px 1.4px at 38% 32%,#ffe9c0aa 50%,transparent 51%),radial-gradient(1px 1px at 64% 44%,#fff5 50%,transparent 51%),
+        radial-gradient(1px 1px at 88% 62%,#fff6 50%,transparent 51%),radial-gradient(1.2px 1.2px at 22% 70%,#fff5 50%,transparent 51%),
+        radial-gradient(1px 1px at 52% 84%,#fff4 50%,transparent 51%),radial-gradient(1px 1px at 6% 48%,#fff5 50%,transparent 51%)}
+  .arbre{position:relative;margin-top:clamp(56px,7vw,88px);display:grid;gap:6px}
+  .arbre::before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:2px;translate:-50% 0;
+      background:linear-gradient(180deg,var(--or),var(--braise) 45%,#3a4a5c)}
+  .royaume{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0 72px;align-items:center;padding:10px 0}
+  .royaume::before{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;translate:-50% -50%;rotate:45deg;
+      background:var(--c);box-shadow:0 0 16px var(--c),0 0 0 5px var(--bg-nuit)}
+  .royaume .nom{text-align:right}
+  .royaume .nom h3{font-size:clamp(22px,2.4vw,28px);letter-spacing:.04em;color:var(--c)}
+  .royaume .nom span{font-size:13.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--texte-faible);font-variant-numeric:tabular-nums}
+  .royaume p{font-family:var(--f-voix);font-style:italic;font-size:18px;color:var(--texte-doux);max-width:40ch}
+  .royaume:nth-child(even) .nom{order:2;text-align:left}
+  .royaume:nth-child(even) p{text-align:right;justify-self:end}
+  @media(max-width:760px){
+    .arbre::before{left:9px;translate:0}
+    .royaume{grid-template-columns:1fr;padding:12px 0 12px 40px}
+    .royaume::before{left:10px;top:30px}
+    .royaume .nom,.royaume:nth-child(even) .nom{text-align:left;order:0}
+    .royaume:nth-child(even) p{text-align:left;justify-self:start}
+    .royaume .nom{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  }
 
-  /* ─── Philosophy ─── */
-  .principles{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
-  @media(max-width:720px){.principles{grid-template-columns:1fr}}
-  .principle{border-left:3px solid var(--orange);background:rgba(255,255,255,.02);padding:26px 26px}
-  .principle:nth-child(2){border-color:var(--purple)}
-  .principle:nth-child(3){border-color:var(--gold)}
-  .principle:nth-child(4){border-color:var(--parchment)}
-  .principle h3{font-size:17px;margin-bottom:10px;color:#f2ece0}
-  .principle p{font-size:14.5px;color:var(--muted)}
+  /* ─── Ensemble ─── */
+  .liste-2{list-style:none;margin-top:34px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 34px}
+  .liste-2 h3{font-size:20px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .liste-2 h3::before{content:"";width:6px;height:6px;rotate:45deg;background:var(--braise);flex:none}
+  .liste-2 p{color:var(--texte-doux);font-size:16.5px}
+  .garde{margin-top:34px;color:var(--texte-faible);font-size:15.5px;padding-top:20px;border-top:1px solid var(--filet)}
+  @media(max-width:560px){.liste-2{grid-template-columns:1fr}}
 
-  /* ─── Journey ─── */
-  .journey{border:1px solid var(--border);background:var(--surface);padding:44px 40px;margin-top:56px;
-      clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px)}
-  .journey p{color:var(--muted);font-size:15.5px;max-width:760px}
-  .journey p + p{margin-top:16px}
-  .journey .sig{margin-top:26px;font-family:'Cinzel',serif;color:var(--parchment);font-size:14px;letter-spacing:.14em}
+  /* ─── Règles ─── */
+  .regles{margin-top:clamp(52px,6vw,76px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .regle{--c:14px;padding:30px 28px 32px}
+  .regle i{display:block;font-family:var(--f-titre);font-style:normal;font-weight:700;font-size:15px;letter-spacing:.14em;color:var(--braise);margin-bottom:14px}
+  .regle h3{font-size:21.5px;line-height:1.2;margin-bottom:10px}
+  .regle p{color:var(--texte-doux);font-size:16px}
+  @media(max-width:980px){.regles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:620px){.regles{grid-template-columns:1fr}}
 
-  /* ─── Download / footer ─── */
-  .download{text-align:center}
-  .download h2{font-size:clamp(28px,4.5vw,44px)}
-  footer{border-top:1px solid var(--border);padding:34px 24px;text-align:center;color:var(--muted);font-size:13px}
-  footer .valknut{margin-bottom:12px}
+  /* ─── Forge Éternelle ─── */
+  .eternelle{--c:22px;--fond:linear-gradient(135deg,#1e1a16,#171514 55%,#1b1712)}
+  .eternelle-grille{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);padding:clamp(30px,5vw,64px)}
+  .eternelle h2{max-width:14ch}
+  .eternelle .lead{font-size:18px}
+  .avantages{list-style:none;display:grid;gap:13px;align-content:center}
+  .avantages li{display:grid;grid-template-columns:14px 1fr;gap:14px;color:#e2d8c8;font-size:16.5px;line-height:1.45}
+  .avantages li::before{content:"";width:7px;height:7px;margin-top:9px;rotate:45deg;background:var(--or);box-shadow:0 0 10px rgba(212,175,55,.5)}
+  .eternelle .petit{margin-top:22px;font-size:14.5px;color:var(--texte-faible)}
+  @media(max-width:860px){.eternelle-grille{grid-template-columns:1fr}}
+
+  /* ─── Genèse ─── */
+  .genese{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start}
+  .genese blockquote{font-family:var(--f-voix);font-style:italic;font-size:clamp(26px,3vw,38px);line-height:1.3;color:#f4eee3;position:sticky;top:120px}
+  .genese blockquote::before{content:"";display:block;width:48px;height:2px;background:var(--braise);margin-bottom:24px}
+  .genese .texte p{color:var(--texte-doux);font-size:18px}
+  .genese .texte p + p{margin-top:18px}
+  .signature{margin-top:28px;font-family:var(--f-titre);font-weight:700;color:var(--parchemin);font-size:16px;letter-spacing:.14em;text-transform:lowercase}
+  @media(max-width:860px){.genese{grid-template-columns:1fr}.genese blockquote{position:static}}
+
+  /* ─── Appel final ─── */
+  .final{text-align:center;overflow:hidden;
+      background:radial-gradient(ellipse 60% 70% at 50% 100%,rgba(255,110,40,.2),transparent 70%)}
+  .final h2{margin-inline:auto;font-size:clamp(36px,5.4vw,64px);max-width:20ch}
+  .final .lead{margin:0 auto 40px}
+  .final .ctas{justify-content:center}
+  .orne{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 26px;width:min(320px,70%)}
+  .orne::before,.orne::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,140,66,.6))}
+  .orne::after{background:linear-gradient(90deg,rgba(255,140,66,.6),transparent)}
+  .orne i{width:9px;height:9px;rotate:45deg;background:var(--braise);box-shadow:0 0 14px rgba(255,140,66,.7)}
+  #refBanner{max-width:540px;margin:0 auto 30px;padding:14px 22px;border-radius:12px;background:rgba(255,140,66,.07);
+      box-shadow:inset 0 0 0 1px rgba(255,140,66,.3);color:#ecd0ad;font-size:16px}
+
+  footer{border-top:1px solid var(--filet);padding:44px var(--goutte) 52px;text-align:center;color:var(--texte-faible);font-size:14.5px}
+  footer .marque{justify-content:center;margin-bottom:14px;font-size:16px}
+  .pied-liens{margin-top:18px;display:flex;gap:10px 26px;justify-content:center;flex-wrap:wrap}
+  .pied-liens a{color:var(--parchemin);text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(196,180,154,.35);transition:color .2s}
+  .pied-liens a:hover{color:var(--braise);text-decoration-color:var(--braise)}
+
+  /* ─── Révélation au scroll ─── */
+  .revele{opacity:0;transform:translateY(22px);transition:opacity .7s var(--sortie),transform .7s var(--sortie)}
+  .revele.vu{opacity:1;transform:none}
+
+  @media(max-width:480px){.tier{font-size:14px;letter-spacing:.04em}}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    .ember{display:none}
+    .revele{opacity:1;transform:none}
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="brand">
-    <svg width="22" height="22" viewBox="0 0 100 100"><g fill="none" stroke="#ff8c42" stroke-width="7"><path d="M50 8 L26 52 L74 52 Z"/><path d="M26 52 L14 74 L50 74"/><path d="M74 52 L86 74 L50 74"/></g></svg>
-    <span data-fr="FORGE &amp; QUÊTES" data-en="FORGE &amp; QUESTS">FORGE &amp; QUÊTES</span>
-  </div>
-  <div class="navlinks">
-    <a href="#concept" data-fr="Concept" data-en="Concept">Concept</a>
-    <a href="#systemes" data-fr="Systèmes" data-en="Systems">Systèmes</a>
-    <a href="#royaumes" data-fr="Les Neuf Royaumes" data-en="The Nine Realms">Les Neuf Royaumes</a>
-    <a href="#social" data-fr="Ensemble" data-en="Together">Ensemble</a>
-    <a href="#philosophie" data-fr="Philosophie" data-en="Philosophy">Philosophie</a>
-    <button id="langBtn">EN</button>
+<a class="skip" href="#but" data-fr="Aller au contenu" data-en="Skip to content">Aller au contenu</a>
+
+<nav id="nav" aria-label="Principale">
+  <div class="nav-in">
+    <a class="marque" href="#haut" aria-label="Forge &amp; Quêtes">
+      <svg width="24" height="24" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#ff8c42" stroke-width="7"><path d="M50 8 L26 52 L74 52 Z"/><path d="M26 52 L14 74 L50 74"/><path d="M74 52 L86 74 L50 74"/></g></svg>
+      <span data-fr="Forge &amp; Quêtes" data-en="Forge &amp; Quests">Forge &amp; Quêtes</span>
+    </a>
+    <div class="liens" id="liens">
+      <a href="#but" data-fr="Le but" data-en="The point">Le but</a>
+      <a href="#outil" data-fr="L'outil" data-en="The tool">L'outil</a>
+      <a href="#forge" data-fr="La Forge" data-en="The Forge">La Forge</a>
+      <a href="#brokkr">Brokkr</a>
+      <a href="#jeu" data-fr="Le jeu" data-en="The game">Le jeu</a>
+      <a href="#ensemble" data-fr="Ensemble" data-en="Together">Ensemble</a>
+    </div>
+    <div class="outils">
+      <button id="langBtn" type="button">EN</button>
+      <a class="btn btn-braise nav-cta js-dl" href="https://testflight.apple.com/join/tvz827Be" data-fr="Bêta iOS" data-en="iOS beta">Bêta iOS</a>
+      <button id="burger" class="burger" type="button" aria-expanded="false" aria-controls="liens" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
-<div class="hero" id="hero">
-  <h1><span data-fr="Le personnage que tu forges, " data-en="The character you forge ">Le personnage que tu forges, </span><em data-fr="c'est TOI." data-en="is YOU.">c'est TOI.</em></h1>
-  <p class="sub" data-fr="Forge &amp; Quêtes est un jeu de rôle nordique de discipline personnelle : tu fais évoluer ton propre personnage. Chaque action réelle — t'entraîner, lire, méditer, tenir parole — forge tes compétences, allume tes constellations et t'élève à travers les Neuf Royaumes suspendus à Yggdrasil, l'arbre-monde nordique."
-     data-en="Forge &amp; Quests is a Norse role-playing game of personal discipline: you level up your own character. Every real action — training, reading, meditating, keeping your word — forges your skills, lights your constellations and raises you through the Nine Realms hanging from Yggdrasil, the Norse world-tree.">
-     Forge &amp; Quêtes est un jeu de rôle nordique de discipline personnelle : tu fais évoluer ton propre personnage. Chaque action réelle — t'entraîner, lire, méditer, tenir parole — forge tes compétences, allume tes constellations et t'élève à travers les Neuf Royaumes suspendus à Yggdrasil, l'arbre-monde nordique.</p>
-  <div class="cta-row">
-    <a class="btn btn-primary" href="https://testflight.apple.com/join/tvz827Be" data-fr="Joindre la bêta" data-en="Join the beta">Joindre la bêta</a>
-    <a class="btn btn-ghost" href="#concept" data-fr="Découvrir le concept" data-en="Discover the concept">Découvrir le concept</a>
+<header class="hero" id="haut">
+  <div class="cadre hero-grille">
+    <div>
+      <div class="kicker" data-fr="Jeu de rôle de développement personnel" data-en="A role-playing game for real self-improvement">Jeu de rôle de développement personnel</div>
+      <h1><span data-fr="Le personnage que tu forges," data-en="The character you forge">Le personnage que tu forges,</span> <em data-fr="c'est toi." data-en="is you.">c'est toi.</em></h1>
+      <p class="lead" data-fr="Ton sport, tes lectures, tes méditations, tes habitudes : Forge &amp; Quêtes les suit pour de vrai, lit ta progression semaine après semaine — et en fait un jeu de rôle nordique, pour que revenir soit toujours plus tentant qu'abandonner."
+         data-en="Your training, your reading, your meditation, your habits: Forge &amp; Quests tracks them for real, reads your progress week after week — and turns it into a Norse role-playing game, so that coming back always beats giving up.">Ton sport, tes lectures, tes méditations, tes habitudes : Forge &amp; Quêtes les suit pour de vrai, lit ta progression semaine après semaine — et en fait un jeu de rôle nordique, pour que revenir soit toujours plus tentant qu'abandonner.</p>
+      <div class="ctas">
+        <a class="btn btn-braise js-dl js-beta" href="https://testflight.apple.com/join/tvz827Be">
+          <span data-fr="Joindre la bêta iOS" data-en="Join the iOS beta">Joindre la bêta iOS</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="store js-store" aria-disabled="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>
+          <span><small class="js-store-haut">Bientôt</small><b class="js-store-bas">sur l'App Store</b></span>
+        </a>
+      </div>
+      <p class="note-cta" data-fr="Gratuit · iPhone · Français et anglais · Sans publicité" data-en="Free · iPhone · French &amp; English · No ads">Gratuit · iPhone · Français et anglais · Sans publicité</p>
+    </div>
+
+    <div class="scene" id="scene">
+      <svg class="anneau" viewBox="0 0 600 600" aria-hidden="true">
+        <defs><path id="cercle" d="M300,300 m-250,0 a250,250 0 1,1 500,0 a250,250 0 1,1 -500,0"/></defs>
+        <circle cx="300" cy="300" r="276" fill="none" stroke="#c56b35" stroke-opacity=".35"/>
+        <circle cx="300" cy="300" r="226" fill="none" stroke="#c56b35" stroke-opacity=".22"/>
+        <text><textPath href="#cercle" textLength="1560" lengthAdjust="spacing">ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ</textPath></text>
+      </svg>
+      <figure class="tel arriere">
+        <div class="tel-ecran"><img src="/captures/accueil.webp" width="924" height="1896" loading="eager"
+          alt="Écran d'accueil : le royaume Jötunheim, le niveau 31, la voie Gothi et les six compétences en constellations."
+          data-fr-alt="Écran d'accueil : le royaume Jötunheim, le niveau 31, la voie Gothi et les six compétences en constellations."
+          data-en-alt="Home screen: the realm of Jotunheim, level 31, the Gothi stance and the six skills drawn as constellations."></div>
+      </figure>
+      <figure class="tel avant">
+        <div class="tel-ecran"><img src="/captures/profil.webp" width="924" height="1896" fetchpriority="high"
+          alt="Profil du joueur : la silhouette du guerrier, le niveau 31, les signes vitaux d'Apple Santé et le radar des six compétences."
+          data-fr-alt="Profil du joueur : la silhouette du guerrier, le niveau 31, les signes vitaux d'Apple Santé et le radar des six compétences."
+          data-en-alt="Player profile: the warrior's silhouette, level 31, vitals from Apple Health and the radar of the six skills."></div>
+      </figure>
+    </div>
   </div>
-  <div class="scrollhint" data-fr="La forge t'attend" data-en="The forge awaits">La forge t'attend</div>
-</div>
+</header>
 
-<section id="concept">
-  <div class="kicker" data-fr="Le concept" data-en="The concept">Le concept</div>
-  <h2 data-fr="Une boucle simple. Une vie qui change." data-en="A simple loop. A life that changes.">Une boucle simple. Une vie qui change.</h2>
-  <p class="lead" data-fr="Pas de points pour avoir ouvert l'app. Pas de récompense pour le temps qui passe. Tout part d'un geste réel, enregistré en quelques secondes."
-     data-en="No points for opening the app. No reward for time passing. Everything starts from a real action, logged in seconds.">
-     Pas de points pour avoir ouvert l'app. Pas de récompense pour le temps qui passe. Tout part d'un geste réel, enregistré en quelques secondes.</p>
+<main>
 
-  <div class="loop">
-    <div class="loop-step"><div class="n">I</div>
-      <h3 data-fr="Agis" data-en="Act">Agis</h3>
-      <p data-fr="Une séance, un chapitre, une méditation, une promesse tenue. Le monde réel d'abord." data-en="A workout, a chapter, a meditation, a promise kept. The real world comes first.">Une séance, un chapitre, une méditation, une promesse tenue. Le monde réel d'abord.</p></div>
-    <div class="loop-step"><div class="n">II</div>
-      <h3 data-fr="Forge" data-en="Forge">Forge</h3>
-      <p data-fr="L'action devient XP, points de compétence, ingrédients, butin. Le retour est immédiat et satisfaisant." data-en="The action becomes XP, skill points, ingredients, loot. The feedback is immediate and satisfying.">L'action devient XP, points de compétence, ingrédients, butin. Le retour est immédiat et satisfaisant.</p></div>
-    <div class="loop-step"><div class="n">III</div>
-      <h3 data-fr="Progresse" data-en="Progress">Progresse</h3>
-      <p data-fr="Tes six compétences montent en tiers, tes constellations s'allument, les royaumes s'ouvrent. Toujours une prochaine étoile." data-en="Your six skills climb through tiers, your constellations light up, the realms open. There is always a next star.">Tes six compétences montent en tiers, tes constellations s'allument, les royaumes s'ouvrent. Toujours une prochaine étoile.</p></div>
-  </div>
+<!-- ═══ Le but ═══ -->
+<section id="but">
+  <div class="cadre">
+    <div class="kicker" data-fr="Le vrai but" data-en="The real point">Le vrai but</div>
+    <h2 class="large" data-fr="On ne gagne pas des points en jouant. On gagne des niveaux en vivant mieux." data-en="You don't earn points by playing. You gain levels by living better.">On ne gagne pas des points en jouant. On gagne des niveaux en vivant mieux.</h2>
+    <p class="lead" data-fr="Ni une app de productivité déguisée en jeu, ni un jeu qui te distrait de ta vie. Un outil de progression réel, mis en scène : l'outil retient ce que tu fais vraiment, le jeu fait du prochain geste une envie."
+       data-en="Not a productivity app dressed up as a game, nor a game that distracts you from your life. A real progress tool, staged as an adventure: the tool keeps track of what you actually do, the game makes the next step something you want.">Ni une app de productivité déguisée en jeu, ni un jeu qui te distrait de ta vie. Un outil de progression réel, mis en scène : l'outil retient ce que tu fais vraiment, le jeu fait du prochain geste une envie.</p>
 
-  <h3 style="font-family:'Cinzel',serif;font-size:15px;letter-spacing:.2em;color:var(--parchment);margin-top:20px" data-fr="LES SIX COMPÉTENCES" data-en="THE SIX SKILLS">LES SIX COMPÉTENCES</h3>
-  <div class="stats-row">
-    <div class="stat-chip"><span class="rune">ᚢ</span><div><b data-fr="Force" data-en="Strength">Force</b><span data-fr="Résistance physique" data-en="Physical resistance">Résistance physique</span></div></div>
-    <div class="stat-chip"><span class="rune">ᚨ</span><div><b>Intelligence</b><span data-fr="Lecture, apprentissage" data-en="Reading, learning">Lecture, apprentissage</span></div></div>
-    <div class="stat-chip"><span class="rune">ᛗ</span><div><b data-fr="Sagesse" data-en="Wisdom">Sagesse</b><span data-fr="Présence, introspection" data-en="Presence, introspection">Présence, introspection</span></div></div>
-    <div class="stat-chip"><span class="rune">ᛏ</span><div><b data-fr="Persévérance" data-en="Perseverance">Persévérance</b><span data-fr="Discipline, inconfort choisi" data-en="Discipline, chosen discomfort">Discipline, inconfort choisi</span></div></div>
-    <div class="stat-chip"><span class="rune">ᛖ</span><div><b>Endurance</b><span data-fr="Cardio soutenu" data-en="Sustained cardio">Cardio soutenu</span></div></div>
-    <div class="stat-chip"><span class="rune">ᛞ</span><div><b data-fr="Dextérité" data-en="Dexterity">Dextérité</b><span data-fr="Tes passions, pratiquées" data-en="Your crafts, practiced">Tes passions, pratiquées</span></div></div>
-  </div>
-
-  <div class="tiers">
-    <div class="tier t-novice"><span>Novice</span><small>0–11</small></div>
-    <div class="tier t-apprenti"><span data-fr="Apprenti" data-en="Apprentice">Apprenti</span><small>12–35</small></div>
-    <div class="tier t-forgeron"><span data-fr="Forgeron" data-en="Blacksmith">Forgeron</span><small>36–99</small></div>
-    <div class="tier t-maitre"><span data-fr="Maître" data-en="Master">Maître</span><small>100+</small></div>
-  </div>
-</section>
-
-<section id="systemes">
-  <div class="kicker" data-fr="Les systèmes" data-en="The systems">Les systèmes</div>
-  <h2 data-fr="Tout un monde au service d'une habitude." data-en="An entire world in service of a habit.">Tout un monde au service d'une habitude.</h2>
-  <p class="lead" data-fr="Chaque système du jeu existe pour une seule raison : rendre le retour à l'effort plus désirable que son abandon."
-     data-en="Every system in the game exists for one reason: to make returning to the effort more desirable than abandoning it.">
-     Chaque système du jeu existe pour une seule raison : rendre le retour à l'effort plus désirable que son abandon.</p>
-
-  <div class="grid">
-    <div class="card"><div class="ico">⚔</div>
-      <h3 data-fr="Quêtes &amp; défis rares" data-en="Quests &amp; rare challenges">Quêtes &amp; défis rares</h3>
-      <p data-fr="Trois quêtes journalières calibrées sur ton niveau. Certains jours, l'une d'elles tombe en défi rare, épique ou légendaire — un butin à saisir." data-en="Three daily quests calibrated to your level. Some days, one of them drops as a rare, epic or legendary challenge — loot to seize.">Trois quêtes journalières calibrées sur ton niveau. Certains jours, l'une d'elles tombe en défi rare, épique ou légendaire — un butin à saisir.</p></div>
-    <div class="card"><div class="ico">🤝</div>
-      <h3 data-fr="Les engagements de Brokkr" data-en="Brokkr's commitments">Les engagements de Brokkr</h3>
-      <p data-fr="Le forgeron nain te propose des engagements ciblés sur tes faiblesses. Les tenir jour après jour élève leur rang — et parfois, Brokkr sourit." data-en="The dwarven smith offers commitments aimed at your weaknesses. Honoring them day after day raises their rank — and sometimes, Brokkr smiles.">Le forgeron nain te propose des engagements ciblés sur tes faiblesses. Les tenir jour après jour élève leur rang — et parfois, Brokkr sourit.</p></div>
-    <div class="card violet"><div class="ico">⚗</div>
-      <h3 data-fr="L'Apothicaire" data-en="The Apothecary">L'Apothicaire</h3>
-      <p data-fr="Tes quêtes font tomber des ingrédients. Brasse des potions, déchiffre des recettes secrètes sur parchemin, amplifie ta prochaine journée." data-en="Your quests drop ingredients. Brew potions, decipher secret recipes from scrolls, amplify your next day.">Tes quêtes font tomber des ingrédients. Brasse des potions, déchiffre des recettes secrètes sur parchemin, amplifie ta prochaine journée.</p></div>
-    <div class="card"><div class="ico">🛡</div>
-      <h3 data-fr="Postures" data-en="Stances">Postures</h3>
-      <p data-fr="Berserker, Gothi, Völva, Drengr, Einherjar, Vikingr — équipe une posture, oriente ta forge, et maîtrise-la sur quatre tiers." data-en="Berserker, Gothi, Völva, Drengr, Einherjar, Vikingr — equip a stance, orient your forge, and master it across four tiers.">Berserker, Gothi, Völva, Drengr, Einherjar, Vikingr — équipe une posture, oriente ta forge, et maîtrise-la sur quatre tiers.</p></div>
-    <div class="card violet"><div class="ico">✦</div>
-      <h3 data-fr="La voûte céleste" data-en="The celestial vault">La voûte céleste</h3>
-      <p data-fr="Chaque compétence est une constellation réelle — Hercule, la Lyre, le Corbeau… Tes progrès allument les étoiles, et les chemins entre elles dessinent Yggdrasil." data-en="Each skill is a real constellation — Hercules, Lyra, Corvus… Your progress lights the stars, and the paths between them draw Yggdrasil.">Chaque compétence est une constellation réelle — Hercule, la Lyre, le Corbeau… Tes progrès allument les étoiles, et les chemins entre elles dessinent Yggdrasil.</p></div>
-    <div class="card gold"><div class="ico">♛</div>
-      <h3 data-fr="Les Neuf Royaumes" data-en="The Nine Realms">Les Neuf Royaumes</h3>
-      <p data-fr="Ton ascension le long d'Yggdrasil, de Niflheim jusqu'aux portes d'or d'Asgard. Environ un an de vie réelle sépare la brume des dieux." data-en="Your ascent along Yggdrasil, from Niflheim to the golden gates of Asgard. About a year of real life separates the mist from the gods.">Ton ascension le long d'Yggdrasil, de Niflheim jusqu'aux portes d'or d'Asgard. Environ un an de vie réelle sépare la brume des dieux.</p></div>
-    <div class="card"><div class="ico">📜</div>
-      <h3 data-fr="Journal &amp; runes" data-en="Journal &amp; runes">Journal &amp; runes</h3>
-      <p data-fr="Écris, marque tes émotions sur la roue de Plutchik, scelle d'une rune. Ton bilan quotidien forge le verdict de ta journée." data-en="Write, mark your emotions on the Plutchik wheel, seal with a rune. Your daily check-in forges the verdict of your day.">Écris, marque tes émotions sur la roue de Plutchik, scelle d'une rune. Ton bilan quotidien forge le verdict de ta journée.</p></div>
-    <div class="card"><div class="ico">🏔</div>
-      <h3 data-fr="Sagas" data-en="Sagas">Sagas</h3>
-      <p data-fr="Musculation, course GPS, bibliothèque avec lecteur audio, méditation guidée — tes vraies activités, suivies dans l'app, synchronisées avec Strava et Apple Santé." data-en="Strength training, GPS runs, a library with an audio reader, guided meditation — your real activities, tracked in-app, synced with Strava and Apple Health.">Musculation, course GPS, bibliothèque avec lecteur audio, méditation guidée — tes vraies activités, suivies dans l'app, synchronisées avec Strava et Apple Santé.</p></div>
+    <div class="registre" role="table" aria-label="Un geste, trois lectures" data-fr-aria="Un geste, trois lectures" data-en-aria="One action, three readings">
+      <div class="registre-tete" role="row">
+        <div role="columnheader" data-fr="Dans ta vie" data-en="In your life">Dans ta vie</div>
+        <div role="columnheader" data-fr="Dans l'outil" data-en="In the tool">Dans l'outil</div>
+        <div role="columnheader" data-fr="Dans le jeu" data-en="In the game">Dans le jeu</div>
+      </div>
+      <div class="ligne chanfrein" role="row">
+        <div class="vie" role="cell" data-fr="Tu cours 6,4 km avant le travail." data-en="You run 6.4 km before work.">Tu cours 6,4 km avant le travail.</div>
+        <div class="outil" role="cell"><small data-fr="Dans l'outil" data-en="In the tool">Dans l'outil</small><span data-fr="La sortie est consignée — distance, allure — et rejoint ta trajectoire de cardio sur huit semaines." data-en="The run is logged — distance, pace — and joins your eight-week cardio trajectory.">La sortie est consignée — distance, allure — et rejoint ta trajectoire de cardio sur huit semaines.</span></div>
+        <div class="jeu" role="cell"><small data-fr="Dans le jeu" data-en="In the game">Dans le jeu</small><span data-fr="Endurance +1. Ta quête du jour tombe, une étoile de plus s'approche." data-en="Endurance +1. Today's quest falls, another star draws closer.">Endurance +1. Ta quête du jour tombe, une étoile de plus s'approche.</span></div>
+      </div>
+      <div class="ligne chanfrein" role="row">
+        <div class="vie" role="cell" data-fr="Tu lis vingt minutes, le soir." data-en="You read for twenty minutes at night.">Tu lis vingt minutes, le soir.</div>
+        <div class="outil" role="cell"><small data-fr="Dans l'outil" data-en="In the tool">Dans l'outil</small><span data-fr="Le lecteur intégré garde ta page, ton temps de lecture et tes notes." data-en="The built-in reader keeps your page, your reading time and your notes.">Le lecteur intégré garde ta page, ton temps de lecture et tes notes.</span></div>
+        <div class="jeu" role="cell"><small data-fr="Dans le jeu" data-en="In the game">Dans le jeu</small><span data-fr="Ton Intelligence monte. Brokkr remarque que le fil tient." data-en="Your Intelligence rises. Brokkr notices the thread holds.">Ton Intelligence monte. Brokkr remarque que le fil tient.</span></div>
+      </div>
+      <div class="ligne chanfrein" role="row">
+        <div class="vie" role="cell" data-fr="Tu tiens la promesse faite lundi." data-en="You keep the promise you made on Monday.">Tu tiens la promesse faite lundi.</div>
+        <div class="outil" role="cell"><small data-fr="Dans l'outil" data-en="In the tool">Dans l'outil</small><span data-fr="Elle compte dans ta Braise comme parole tenue : celle que tu t'es donnée, pas celle qu'on t'a imposée." data-en="It counts toward your Ember as word kept: the word you gave yourself, not one handed to you.">Elle compte dans ta Braise comme parole tenue : celle que tu t'es donnée, pas celle qu'on t'a imposée.</span></div>
+        <div class="jeu" role="cell"><small data-fr="Dans le jeu" data-en="In the game">Dans le jeu</small><span data-fr="L'engagement monte de rang. Parfois, Brokkr te sourit." data-en="The commitment gains rank. Sometimes, Brokkr smiles.">L'engagement monte de rang. Parfois, Brokkr te sourit.</span></div>
+      </div>
+    </div>
+    <p class="registre-pied" data-fr="<b>Rien ne se gagne en ouvrant l'app.</b> Tout part d'un geste réel, consigné en quelques secondes." data-en="<b>Nothing is earned by opening the app.</b> Everything starts with a real action, logged in seconds."><b>Rien ne se gagne en ouvrant l'app.</b> Tout part d'un geste réel, consigné en quelques secondes.</p>
   </div>
 </section>
 
-<div class="realms-wrap" id="royaumes">
-  <div class="realms-inner">
+<!-- ═══ L'outil ═══ -->
+<section id="outil">
+  <div class="cadre">
+    <div class="duo">
+      <div class="col-tel">
+        <figure class="tel"><div class="tel-ecran"><img src="/captures/disciplines.webp" width="924" height="1896" loading="lazy"
+          alt="Écran Disciplines : Méditation, Cardio, Musculation et Lecture, chacune avec son compte de séances."
+          data-fr-alt="Écran Disciplines : Méditation, Cardio, Musculation et Lecture, chacune avec son compte de séances."
+          data-en-alt="Disciplines screen: Meditation, Cardio, Strength training and Reading, each with its session count."></div></figure>
+      </div>
+      <div class="bloc-texte">
+        <div class="kicker" data-fr="L'outil" data-en="The tool">L'outil</div>
+        <h2 data-fr="Quatre disciplines, suivies pour de vrai." data-en="Four disciplines, tracked for real.">Quatre disciplines, suivies pour de vrai.</h2>
+        <p class="lead" data-fr="Chacune a son espace, ses chiffres, son histoire. Pas une case à cocher : un carnet de pratique." data-en="Each one has its own space, its numbers, its history. Not a checkbox: a practice log.">Chacune a son espace, ses chiffres, son histoire. Pas une case à cocher : un carnet de pratique.</p>
+        <ul class="disciplines">
+          <li style="--c:var(--sagesse)"><div><span class="stat" data-fr="Sagesse" data-en="Wisdom">Sagesse</span>
+            <h3 data-fr="Méditation" data-en="Meditation">Méditation</h3>
+            <p data-fr="Quatre pratiques guidées à la voix : pleine conscience, respiration 4-7-8, visualisation, repos profond (NSDR)." data-en="Four voice-guided practices: mindfulness, 4-7-8 breathing, visualization, deep rest (NSDR).">Quatre pratiques guidées à la voix : pleine conscience, respiration 4-7-8, visualisation, repos profond (NSDR).</p></div></li>
+          <li style="--c:var(--endurance)"><div><span class="stat">Endurance</span>
+            <h3>Cardio</h3>
+            <p data-fr="Tes sorties de course, de vélo, de nage : distance, allure, records." data-en="Your runs, rides and swims: distance, pace, records.">Tes sorties de course, de vélo, de nage : distance, allure, records.</p></div></li>
+          <li style="--c:var(--force)"><div><span class="stat" data-fr="Force" data-en="Strength">Force</span>
+            <h3 data-fr="Musculation" data-en="Strength training">Musculation</h3>
+            <p data-fr="Tes séances et tes séries, avec un minuteur de repos." data-en="Your sessions and your sets, with a rest timer.">Tes séances et tes séries, avec un minuteur de repos.</p></div></li>
+          <li style="--c:var(--intelligence)"><div><span class="stat">Intelligence</span>
+            <h3 data-fr="Lecture" data-en="Reading">Lecture</h3>
+            <p data-fr="Un lecteur EPUB et PDF intégré : lecture audio naturelle, même écran verrouillé, dictionnaire et notes." data-en="A built-in EPUB and PDF reader: natural read-aloud, even with the screen locked, plus a dictionary and notes.">Un lecteur EPUB et PDF intégré : lecture audio naturelle, même écran verrouillé, dictionnaire et notes.</p></div></li>
+        </ul>
+        <p class="sante"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.4 2.6h1.8c.8-1.5 2.3-2.6 4.4-2.6 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          <span data-fr="Consigne une séance en quelques secondes — ou laisse Apple Santé l'apporter toute seule avec la Forge Éternelle. Ce que tu fais dans l'app peut aussi y retourner." data-en="Log a session in seconds — or let Apple Health bring it in by itself with the Eternal Forge. What you do in the app can flow back there too.">Consigne une séance en quelques secondes — ou laisse Apple Santé l'apporter toute seule avec la Forge Éternelle. Ce que tu fais dans l'app peut aussi y retourner.</span></p>
+      </div>
+    </div>
+
+    <div class="duo inverse">
+      <div class="col-tel">
+        <figure class="tel"><div class="tel-ecran"><img src="/captures/habitudes.webp" width="924" height="1896" loading="lazy"
+          alt="Écran Habitudes : le foyer du jour à 2 sur 5, les habitudes du matin et du soir avec leur série et leur record."
+          data-fr-alt="Écran Habitudes : le foyer du jour à 2 sur 5, les habitudes du matin et du soir avec leur série et leur record."
+          data-en-alt="Habits screen: today's hearth at 2 of 5, morning and evening habits with their streak and record."></div></figure>
+      </div>
+      <div class="bloc-texte">
+        <h3 class="sous-titre" data-fr="Tes habitudes, au rythme de ta journée." data-en="Your habits, at the pace of your day.">Tes habitudes, au rythme de ta journée.</h3>
+        <p data-fr="Range-les par moment — matin, soir — et vois chacune avec sa série, son record et son total. Le foyer du jour te dit ce qu'il reste à tenir, sans jamais te faire la morale. À côté, tes objectifs, avec leur échéance."
+           data-en="Sort them by moment — morning, evening — and see each one with its streak, its record and its total. Today's hearth tells you what's left to hold, without ever lecturing you. Next to them, your goals, with their deadlines.">Range-les par moment — matin, soir — et vois chacune avec sa série, son record et son total. Le foyer du jour te dit ce qu'il reste à tenir, sans jamais te faire la morale. À côté, tes objectifs, avec leur échéance.</p>
+        <h3 class="sous-titre" data-fr="Et un journal pour le reste." data-en="And a journal for the rest.">Et un journal pour le reste.</h3>
+        <p data-fr="Écris ta journée, nomme ce que tu ressens sur la roue des émotions de Plutchik, scelle-la d'une rune. Ton journal reste sur ton téléphone : il n'est jamais envoyé en ligne."
+           data-en="Write your day, name what you feel on Plutchik's wheel of emotions, seal it with a rune. Your journal stays on your phone: it is never sent online.">Écris ta journée, nomme ce que tu ressens sur la roue des émotions de Plutchik, scelle-la d'une rune. Ton journal reste sur ton téléphone : il n'est jamais envoyé en ligne.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ La Forge ═══ -->
+<section id="forge">
+  <div class="cadre">
+    <div class="duo inverse">
+      <div class="col-tel">
+        <figure class="tel"><div class="tel-ecran"><img src="/captures/forge.webp" width="924" height="1896" loading="lazy"
+          alt="Écran Forge : la Braise de la semaine à 65, tiède, pour une normale de 70."
+          data-fr-alt="Écran Forge : la Braise de la semaine à 65, tiède, pour une normale de 70."
+          data-en-alt="Forge screen: this week's Ember at 65, cooling, against a normal of 70."></div></figure>
+      </div>
+      <div class="bloc-texte">
+        <div class="kicker" data-fr="La Forge" data-en="The Forge">La Forge</div>
+        <h2 data-fr="Ta semaine, mesurée à ta propre normale." data-en="Your week, measured against your own normal.">Ta semaine, mesurée à ta propre normale.</h2>
+        <p class="lead" data-fr="Pas à celle des autres. La Forge lit ce que tu as vraiment fait, te dit où tu en es et ce qu'il faut ajuster — et elle t'annonce toujours sur combien de semaines elle lit."
+           data-en="Not anyone else's. The Forge reads what you actually did, tells you where you stand and what to adjust — and it always tells you how many weeks it is reading.">Pas à celle des autres. La Forge lit ce que tu as vraiment fait, te dit où tu en es et ce qu'il faut ajuster — et elle t'annonce toujours sur combien de semaines elle lit.</p>
+        <ol class="actes">
+          <li><span class="num">I</span><div><h3 data-fr="La Braise" data-en="The Ember">La Braise</h3>
+            <p data-fr="Où tu en es, et la marche suivante. Quatre facteurs, comparés à ta normale au même jour de la semaine." data-en="Where you stand, and the next step. Four factors, compared with your normal on the same day of the week.">Où tu en es, et la marche suivante. Quatre facteurs, comparés à ta normale au même jour de la semaine.</p></div></li>
+          <li><span class="num">II</span><div><h3 data-fr="La Trajectoire" data-en="The Trajectory">La Trajectoire</h3>
+            <p data-fr="Comment tu bouges, discipline par discipline, sur huit semaines — et la leçon que Brokkr en tire." data-en="How you're moving, discipline by discipline, over eight weeks — and the lesson Brokkr draws from it.">Comment tu bouges, discipline par discipline, sur huit semaines — et la leçon que Brokkr en tire.</p></div></li>
+          <li><span class="num">III</span><div><h3 data-fr="La Mémoire" data-en="The Memory">La Mémoire</h3>
+            <p data-fr="Ce que tu as bâti, jour après jour : tes jalons, tes records, tes semaines marquantes." data-en="What you've built, day after day: your milestones, your records, your standout weeks.">Ce que tu as bâti, jour après jour : tes jalons, tes records, tes semaines marquantes.</p></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="braise-boite chanfrein">
+      <div class="braise-grille">
+        <div>
+          <div class="braise-tete"><h3 data-fr="La Braise" data-en="The Ember">La Braise</h3><span data-fr="Exemple — choisis une semaine" data-en="Example — pick a week">Exemple — choisis une semaine</span></div>
+          <div class="jauge" id="jauge">
+            <svg viewBox="0 0 220 196" aria-hidden="true">
+              <path class="piste" d="M47.8 172.2 A88 88 0 1 1 172.2 172.2" pathLength="100"/>
+              <path class="valeur" id="arc" d="M47.8 172.2 A88 88 0 1 1 172.2 172.2" pathLength="100" style="stroke-dashoffset:35"/>
+              <line class="repere" x1="173.1" y1="64.1" x2="190.9" y2="51.2"/>
+              <text class="repere-txt" x="194" y="42">70</text>
+            </svg>
+            <div class="jauge-centre" aria-live="polite"><b id="braiseNb">65</b><span id="braiseTon">Tiède</span></div>
+          </div>
+          <p class="jauge-legende" data-fr="70 = ton rythme habituel" data-en="70 = your usual rhythm">70 = ton rythme habituel</p>
+          <div class="tons" role="tablist" aria-label="Semaines d'exemple" data-fr-aria="Semaines d'exemple" data-en-aria="Example weeks" id="tons">
+            <button role="tab" type="button" data-ton="ardente" aria-selected="false">Ardente</button>
+            <button role="tab" type="button" data-ton="vive" aria-selected="false">Vive</button>
+            <button role="tab" type="button" data-ton="tiede" aria-selected="true">Tiède</button>
+            <button role="tab" type="button" data-ton="basse" aria-selected="false">Basse</button>
+          </div>
+        </div>
+        <div class="facteurs" id="facteurs">
+          <div class="facteur"><b data-fr="Constance" data-en="Constancy">Constance</b><p data-fr="Les jours où tu es venu forger." data-en="The days you came to the forge.">Les jours où tu es venu forger.</p><div class="barre"><i></i></div></div>
+          <div class="facteur"><b data-fr="Charge" data-en="Load">Charge</b><p data-fr="Tout ce que tu as accompli." data-en="Everything you accomplished.">Tout ce que tu as accompli.</p><div class="barre"><i></i></div></div>
+          <div class="facteur"><b data-fr="Étendue" data-en="Breadth">Étendue</b><p data-fr="Les compétences que tu as touchées." data-en="The skills you touched.">Les compétences que tu as touchées.</p><div class="barre"><i></i></div></div>
+          <div class="facteur"><b data-fr="Parole tenue" data-en="Word kept">Parole tenue</b><p data-fr="Les défis que tu t'es donnés toi-même." data-en="The challenges you set yourself.">Les défis que tu t'es donnés toi-même.</p><div class="barre"><i></i></div></div>
+          <p class="facteurs-legende" data-fr="le trait marque ta normale au même jour de la semaine" data-en="the mark shows your normal on the same day of the week">le trait marque ta normale au même jour de la semaine</p>
+          <p class="mot-brokkr voix" id="braiseMot">La braise tiédit. Un jour d'ouvrage suffit à la relancer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Brokkr ═══ -->
+<section id="brokkr">
+  <div class="cadre">
+    <div class="brokkr-grille">
+      <div>
+        <div class="kicker" data-fr="Ton mentor" data-en="Your mentor">Ton mentor</div>
+        <h2 data-fr="Brokkr lit ta forge. Tu choisis sa voix." data-en="Brokkr reads your forge. You choose his voice.">Brokkr lit ta forge. Tu choisis sa voix.</h2>
+        <p class="lead" data-fr="Le forgeron nain de la légende — celui qui forgea le marteau de Thor — te suit dès le premier jour. Il réagit à ton dernier geste, lit ta semaine, te propose des engagements sur ce que tu évites. Il sait les mêmes choses sous tous ses visages ; seule sa façon de te le dire change."
+           data-en="The dwarven smith of legend — the one who forged Thor's hammer — walks with you from day one. He reacts to your latest effort, reads your week, and offers commitments aimed at what you avoid. He knows the same things under every face; only the way he tells you changes.">Le forgeron nain de la légende — celui qui forgea le marteau de Thor — te suit dès le premier jour. Il réagit à ton dernier geste, lit ta semaine, te propose des engagements sur ce que tu évites. Il sait les mêmes choses sous tous ses visages ; seule sa façon de te le dire change.</p>
+      </div>
+      <div class="visages chanfrein">
+        <div class="visages-in">
+          <div class="onglets" role="tablist" id="onglets" aria-label="Les six visages de Brokkr" data-fr-aria="Les six visages de Brokkr" data-en-aria="Brokkr's six faces">
+            <button role="tab" type="button" id="v-0" aria-controls="visage" aria-selected="true">Le Mentor</button>
+            <button role="tab" type="button" id="v-1" aria-controls="visage" aria-selected="false" tabindex="-1">Le Maître d'armes</button>
+            <button role="tab" type="button" id="v-2" aria-controls="visage" aria-selected="false" tabindex="-1">Le Stratège</button>
+            <button role="tab" type="button" id="v-3" aria-controls="visage" aria-selected="false" tabindex="-1">Le Frère d'armes</button>
+            <button role="tab" type="button" id="v-4" aria-controls="visage" aria-selected="false" tabindex="-1">Le Skald</button>
+            <button role="tab" type="button" id="v-5" aria-controls="visage" aria-selected="false" tabindex="-1">Le Silencieux</button>
+          </div>
+          <div class="visage" id="visage" role="tabpanel" aria-labelledby="v-0">
+            <h3 class="visage-nom" id="vNom">Le Mentor</h3>
+            <p class="visage-epi voix" id="vEpi">Brokkr le Patient</p>
+            <p class="visage-desc" id="vDesc">Patient et curieux. Il explique le pourquoi et te pose de vraies questions.</p>
+            <div class="apercu">
+              <small data-fr="Si tu revenais après cinq jours" data-en="If you came back after five days">Si tu revenais après cinq jours</small>
+              <p id="vDit">Cinq jours loin de la forge. Qu'est-ce qui t'a tenu ailleurs ? Reprends par un geste court aujourd'hui, le reste suivra.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gestes">
+      <p data-fr="Il réagit à ce que tu viens de faire" data-en="He reacts to what you just did">Il réagit à ce que tu viens de faire</p>
+      <ul>
+        <li><small data-fr="Après ta plus longue sortie" data-en="After your longest run">Après ta plus longue sortie</small>
+          <p data-fr="« 10,2 km — ta plus longue sortie de ces huit semaines. Laisse le corps encaisser avant d'aller chercher plus loin. »" data-en="“10.2 km — your longest run in these eight weeks. Let the body absorb it before reaching further.”">« 10,2 km — ta plus longue sortie de ces huit semaines. Laisse le corps encaisser avant d'aller chercher plus loin. »</p></li>
+        <li><small data-fr="Après une séance écourtée" data-en="After a cut-short session">Après une séance écourtée</small>
+          <p data-fr="« Séance courte (6 séries). Mieux vaut une séance brève qu'une séance sautée. »" data-en="“A short session (6 sets). Better a brief session than a skipped one.”">« Séance courte (6 séries). Mieux vaut une séance brève qu'une séance sautée. »</p></li>
+        <li><small data-fr="Après un livre terminé" data-en="After finishing a book">Après un livre terminé</small>
+          <p data-fr="« Tu as refermé un livre. Un de plus sur l'étagère : note ce que tu en gardes avant que ça s'efface. »" data-en="“You closed a book. One more on the shelf: note what you keep from it before it fades.”">« Tu as refermé un livre. Un de plus sur l'étagère : note ce que tu en gardes avant que ça s'efface. »</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Le jeu ═══ -->
+<section id="jeu">
+  <div class="cadre">
+    <div class="kicker" data-fr="Le jeu" data-en="The game">Le jeu</div>
+    <h2 class="large" data-fr="Tout un monde pour rendre le prochain geste irrésistible." data-en="A whole world to make the next step irresistible.">Tout un monde pour rendre le prochain geste irrésistible.</h2>
+    <p class="lead" data-fr="Chaque système existe pour une seule raison : rendre le retour à l'effort plus désirable que son abandon."
+       data-en="Every system exists for one reason only: to make returning to the effort more desirable than abandoning it.">Chaque système existe pour une seule raison : rendre le retour à l'effort plus désirable que son abandon.</p>
+
+    <div class="galerie">
+      <figure>
+        <div class="tel"><div class="tel-ecran"><img src="/captures/accueil.webp" width="924" height="1896" loading="lazy"
+          alt="Accueil : le niveau, le royaume, la voie équipée et les constellations des compétences."
+          data-fr-alt="Accueil : le niveau, le royaume, la voie équipée et les constellations des compétences."
+          data-en-alt="Home: level, realm, equipped stance and the skills' constellations."></div></div>
+        <figcaption><b data-fr="Ton personnage" data-en="Your character">Ton personnage</b><span data-fr="Ton royaume, ton niveau, ta voie — et tes six compétences, dessinées en constellations." data-en="Your realm, your level, your stance — and your six skills, drawn as constellations.">Ton royaume, ton niveau, ta voie — et tes six compétences, dessinées en constellations.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="tel"><div class="tel-ecran"><img src="/captures/quetes.webp" width="924" height="1896" loading="lazy"
+          alt="Quêtes du jour : une carte « Sortie d'endurance », rang Maître, rareté rare, 55 XP."
+          data-fr-alt="Quêtes du jour : une carte « Sortie d'endurance », rang Maître, rareté rare, 55 XP."
+          data-en-alt="Today's quests: an “Endurance outing” card, Master rank, rare, 55 XP."></div></div>
+        <figcaption><b data-fr="Tes quêtes" data-en="Your quests">Tes quêtes</b><span data-fr="Chaque jour, des quêtes taillées à ton niveau. Parfois, l'une tombe rare, épique ou légendaire." data-en="Every day, quests cut to your level. Sometimes one drops rare, epic or legendary.">Chaque jour, des quêtes taillées à ton niveau. Parfois, l'une tombe rare, épique ou légendaire.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="tel"><div class="tel-ecran"><img src="/captures/postures.webp" width="924" height="1896" loading="lazy"
+          alt="Postures : la voie Gothi au rang III, puis Berserker, Völva, Drengr et Einherjar."
+          data-fr-alt="Postures : la voie Gothi au rang III, puis Berserker, Völva, Drengr et Einherjar."
+          data-en-alt="Stances: the Gothi path at rank III, then Berserker, Völva, Drengr and Einherjar."></div></div>
+        <figcaption><b data-fr="Ta voie" data-en="Your path">Ta voie</b><span data-fr="Sept postures à porter — Gothi, Berserker, Völva… — chacune maîtrisée sur quatre rangs." data-en="Seven stances to wear — Gothi, Berserker, Völva… — each one mastered across four ranks.">Sept postures à porter — Gothi, Berserker, Völva… — chacune maîtrisée sur quatre rangs.</span></figcaption>
+      </figure>
+    </div>
+
+    <p class="titre-bande" data-fr="Six compétences, quatre rangs" data-en="Six skills, four ranks">Six compétences, quatre rangs</p>
+    <div class="competences">
+      <div class="comp chanfrein" style="--s:var(--force)"><span class="rune" aria-hidden="true">ᚢ</span><b data-fr="Force" data-en="Strength">Force</b><span data-fr="Le corps qui résiste" data-en="A body that holds">Le corps qui résiste</span></div>
+      <div class="comp chanfrein" style="--s:var(--intelligence)"><span class="rune" aria-hidden="true">ᛗ</span><b>Intelligence</b><span data-fr="Apprendre, lire, comprendre" data-en="Learning, reading, understanding">Apprendre, lire, comprendre</span></div>
+      <div class="comp chanfrein" style="--s:var(--sagesse)"><span class="rune" aria-hidden="true">ᚨ</span><b data-fr="Sagesse" data-en="Wisdom">Sagesse</b><span data-fr="Présence, introspection, repos" data-en="Presence, introspection, rest">Présence, introspection, repos</span></div>
+      <div class="comp chanfrein" style="--s:var(--perseverance)"><span class="rune" aria-hidden="true">ᚦ</span><b data-fr="Persévérance" data-en="Perseverance">Persévérance</b><span data-fr="Choisir le difficile" data-en="Choosing the hard thing">Choisir le difficile</span></div>
+      <div class="comp chanfrein" style="--s:var(--endurance)"><span class="rune" aria-hidden="true">ᛖ</span><b>Endurance</b><span data-fr="Le souffle, le cardio" data-en="Breath, cardio">Le souffle, le cardio</span></div>
+      <div class="comp chanfrein" style="--s:var(--dexterite)"><span class="rune" aria-hidden="true">ᛒ</span><b data-fr="Dextérité" data-en="Dexterity">Dextérité</b><span data-fr="Tes passions, pratiquées" data-en="Your crafts, practiced">Tes passions, pratiquées</span></div>
+    </div>
+    <div class="tiers" aria-label="Les rangs d'une compétence" data-fr-aria="Les rangs d'une compétence" data-en-aria="A skill's ranks">
+      <div class="tier t-novice">Novice<small>0–11</small></div>
+      <div class="tier t-apprenti"><span data-fr="Apprenti" data-en="Apprentice">Apprenti</span><small>12–35</small></div>
+      <div class="tier t-forgeron"><span data-fr="Forgeron" data-en="Blacksmith">Forgeron</span><small>36–99</small></div>
+      <div class="tier t-maitre"><span data-fr="Maître" data-en="Master">Maître</span><small>100+</small></div>
+    </div>
+
+    <div class="codex">
+      <article><div class="ico"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M26 22 L74 78"/><path d="M74 22 L26 78"/><path d="M16 66 L32 82"/><path d="M84 66 L68 82"/></svg></div>
+        <div><h3 data-fr="Quêtes &amp; défis rares" data-en="Quests &amp; rare challenges">Quêtes &amp; défis rares</h3>
+        <p data-fr="Trois quêtes par jour, calibrées sur le niveau de chaque compétence, présentées comme une main de cartes. Une quête de l'âme, plus intérieure. Et, certains jours, un défi rare à saisir." data-en="Three quests a day, calibrated to each skill's level and dealt as a hand of cards. A soul quest, more inward. And, some days, a rare challenge to seize.">Trois quêtes par jour, calibrées sur le niveau de chaque compétence, présentées comme une main de cartes. Une quête de l'âme, plus intérieure. Et, certains jours, un défi rare à saisir.</p></div></article>
+      <article><div class="ico"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M18 26 H60 V50 H18 Z"/><path d="M60 32 H80 V44 H60"/><path d="M39 50 V84"/></svg></div>
+        <div><h3 data-fr="Les engagements de Brokkr" data-en="Brokkr's commitments">Les engagements de Brokkr</h3>
+        <p data-fr="Des défis que tu te donnes, choisis avec lui sur la compétence que tu laisses de côté. Tenus jour après jour, ils montent de rang ; honorés, ils attirent parfois sa faveur." data-en="Challenges you set yourself, chosen with him on the skill you leave aside. Kept day after day, they climb in rank; honored, they sometimes earn his favor.">Des défis que tu te donnes, choisis avec lui sur la compétence que tu laisses de côté. Tenus jour après jour, ils montent de rang ; honorés, ils attirent parfois sa faveur.</p></div></article>
+      <article style="--i:var(--violet)"><div class="ico"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12 C54 38 62 46 88 50 C62 54 54 62 50 88 C46 62 38 54 12 50 C38 46 46 38 50 12 Z"/></svg></div>
+        <div><h3 data-fr="La voûte céleste" data-en="The celestial vault">La voûte céleste</h3>
+        <p data-fr="Une constellation par compétence, neuf étoiles chacune. Tes progrès les allument ; les chemins entre elles dessinent Yggdrasil, et la neuvième étoile porte un titre légendaire." data-en="One constellation per skill, nine stars each. Your progress lights them; the paths between them draw Yggdrasil, and the ninth star carries a legendary title.">Une constellation par compétence, neuf étoiles chacune. Tes progrès les allument ; les chemins entre elles dessinent Yggdrasil, et la neuvième étoile porte un titre légendaire.</p></div></article>
+      <article style="--i:var(--violet)"><div class="ico"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M40 14 V40 L20 76 A7 7 0 0 0 27 86 H73 A7 7 0 0 0 80 76 L60 40 V14"/><path d="M34 14 H66"/><path d="M31 62 H69"/></svg></div>
+        <div><h3 data-fr="L'Apothicaire" data-en="The Apothecary">L'Apothicaire</h3>
+        <p data-fr="Tes quêtes font tomber des ingrédients. Perce les énigmes des parchemins à la table des runes, brasse des potions au grimoire, amplifie ta prochaine journée." data-en="Your quests drop ingredients. Crack the riddles of the scrolls at the rune table, brew potions from the grimoire, amplify your next day.">Tes quêtes font tomber des ingrédients. Perce les énigmes des parchemins à la table des runes, brasse des potions au grimoire, amplifie ta prochaine journée.</p></div></article>
+      <article style="--i:var(--or)"><div class="ico"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12 L83 25 V52 C83 70 69 83 50 90 C31 83 17 70 17 52 V25 Z"/></svg></div>
+        <div><h3 data-fr="Titres &amp; marché" data-en="Titles &amp; market">Titres &amp; marché</h3>
+        <p data-fr="Des titres à débloquer et à porter, un marché où l'or gagné en jouant s'échange contre des boosts et des reliques. Jamais d'argent réel pour acheter de la progression." data-en="Titles to unlock and wear, a market where gold earned in play buys boosts and relics. Never real money to buy progress.">Des titres à débloquer et à porter, un marché où l'or gagné en jouant s'échange contre des boosts et des reliques. Jamais d'argent réel pour acheter de la progression.</p></div></article>
+      <article style="--i:var(--or)"><div class="ico"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 88 V40"/><path d="M50 40 L24 20"/><path d="M50 40 L76 20"/><path d="M50 62 L30 46"/><path d="M50 62 L70 46"/><path d="M30 88 L50 74 L70 88"/></svg></div>
+        <div><h3 data-fr="Les Neuf Royaumes" data-en="The Nine Realms">Les Neuf Royaumes</h3>
+        <p data-fr="Ton ascension le long de l'arbre-monde, de la brume de Niflheim jusqu'aux portes d'or d'Asgard. Environ un an de vie réelle sépare les deux." data-en="Your ascent along the world-tree, from the mists of Niflheim to the golden gates of Asgard. About a year of real life lies between them.">Ton ascension le long de l'arbre-monde, de la brume de Niflheim jusqu'aux portes d'or d'Asgard. Environ un an de vie réelle sépare les deux.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Les Neuf Royaumes ═══ -->
+<section id="royaumes" class="nuit">
+  <div class="cadre">
     <div class="kicker" data-fr="L'ascension" data-en="The ascent">L'ascension</div>
     <h2 data-fr="Neuf mondes pendent à l'arbre." data-en="Nine worlds hang from the tree.">Neuf mondes pendent à l'arbre.</h2>
-    <p class="lead" data-fr="Ton niveau a une destination. Chaque royaume exige un niveau, des étoiles de constellation, et une épreuve — toujours un compte d'actions, jamais du temps écoulé."
-       data-en="Your level has a destination. Each realm demands a level, constellation stars, and a trial — always a count of actions, never elapsed time.">
-       Ton niveau a une destination. Chaque royaume exige un niveau, des étoiles de constellation, et une épreuve — toujours un compte d'actions, jamais du temps écoulé.</p>
+    <p class="lead" data-fr="Ton niveau a une destination. Chaque royaume exige un niveau, des étoiles de constellation et une épreuve — toujours un compte d'actions, jamais du temps écoulé. Un royaume atteint l'est pour toujours."
+       data-en="Your level has a destination. Each realm demands a level, constellation stars and a trial — always a count of actions, never elapsed time. A realm reached is reached for good.">Ton niveau a une destination. Chaque royaume exige un niveau, des étoiles de constellation et une épreuve — toujours un compte d'actions, jamais du temps écoulé. Un royaume atteint l'est pour toujours.</p>
 
-    <div class="ladder">
-      <div class="realm" style="--c:#d4af37"><h3>Asgard</h3><span class="lvl" data-fr="Niveau 50" data-en="Level 50">Niveau 50</span>
+    <div class="arbre">
+      <div class="royaume" style="--c:#d4af37"><div class="nom"><h3>Asgard</h3><span data-fr="Niveau 50" data-en="Level 50">Niveau 50</span></div>
         <p data-fr="« On n'y entre pas par la force d'un seul bras — l'arbre entier doit brûler de ta lumière. »" data-en="“None enter by the strength of one arm — the whole tree must burn with your light.”">« On n'y entre pas par la force d'un seul bras — l'arbre entier doit brûler de ta lumière. »</p></div>
-      <div class="realm" style="--c:#e8d8a8"><h3>Alfheim</h3><span class="lvl" data-fr="Niveau 44" data-en="Level 44">Niveau 44</span>
+      <div class="royaume" style="--c:#e8d8a8"><div class="nom"><h3>Alfheim</h3><span data-fr="Niveau 44" data-en="Level 44">Niveau 44</span></div>
         <p data-fr="« Ce que tu as forgé se voit maintenant de loin. »" data-en="“What you have forged can now be seen from far away.”">« Ce que tu as forgé se voit maintenant de loin. »</p></div>
-      <div class="realm" style="--c:#6a9a8a"><h3>Vanaheim</h3><span class="lvl" data-fr="Niveau 38" data-en="Level 38">Niveau 38</span>
+      <div class="royaume" style="--c:#6a9a8a"><div class="nom"><h3>Vanaheim</h3><span data-fr="Niveau 38" data-en="Level 38">Niveau 38</span></div>
         <p data-fr="« La force ne te suffit plus : tu cherches à comprendre. »" data-en="“Strength no longer suffices — you seek to understand.”">« La force ne te suffit plus : tu cherches à comprendre. »</p></div>
-      <div class="realm" style="--c:#5a4a6a"><h3>Helheim</h3><span class="lvl" data-fr="Niveau 32" data-en="Level 32">Niveau 32</span>
+      <div class="royaume" style="--c:#8a72a6"><div class="nom"><h3>Helheim</h3><span data-fr="Niveau 32" data-en="Level 32">Niveau 32</span></div>
         <p data-fr="« Personne ne t'y applaudira. C'est là que se décide qui continue. »" data-en="“No one will applaud you here. This is where it's decided who continues.”">« Personne ne t'y applaudira. C'est là que se décide qui continue. »</p></div>
-      <div class="realm" style="--c:#7d6a52"><h3>Jötunheim</h3><span class="lvl" data-fr="Niveau 27" data-en="Level 27">Niveau 27</span>
+      <div class="royaume" style="--c:#a08a6c"><div class="nom"><h3>Jötunheim</h3><span data-fr="Niveau 27" data-en="Level 27">Niveau 27</span></div>
         <p data-fr="« Tu as dépassé le confort. Ce qui te reste à franchir a une taille. »" data-en="“You have outgrown comfort. What remains before you has a size.”">« Tu as dépassé le confort. Ce qui te reste à franchir a une taille. »</p></div>
-      <div class="realm" style="--c:#a8763c"><h3>Nidavellir</h3><span class="lvl" data-fr="Niveau 22" data-en="Level 22">Niveau 22</span>
+      <div class="royaume" style="--c:#c08040"><div class="nom"><h3>Nidavellir</h3><span data-fr="Niveau 22" data-en="Level 22">Niveau 22</span></div>
         <p data-fr="« Ici on n'admire pas l'ouvrage : on apprend à le faire. »" data-en="“Here you don't admire the work — you learn to do it.”">« Ici on n'admire pas l'ouvrage : on apprend à le faire. »</p></div>
-      <div class="realm" style="--c:#c4b49a"><h3>Midgard</h3><span class="lvl" data-fr="Niveau 15" data-en="Level 15">Niveau 15</span>
+      <div class="royaume" style="--c:#c4b49a"><div class="nom"><h3>Midgard</h3><span data-fr="Niveau 15" data-en="Level 15">Niveau 15</span></div>
         <p data-fr="« Tu ne rêves plus ta vie, tu t'y présentes. »" data-en="“You no longer dream your life, you show up for it.”">« Tu ne rêves plus ta vie, tu t'y présentes. »</p></div>
-      <div class="realm" style="--c:#c44a1a"><h3>Muspelheim</h3><span class="lvl" data-fr="Niveau 10" data-en="Level 10">Niveau 10</span>
+      <div class="royaume" style="--c:#e0602a"><div class="nom"><h3>Muspelheim</h3><span data-fr="Niveau 10" data-en="Level 10">Niveau 10</span></div>
         <p data-fr="« Ta forge est allumée. Elle ne demande plus qu'à être nourrie. »" data-en="“Your forge is lit. Now it only asks to be fed.”">« Ta forge est allumée. Elle ne demande plus qu'à être nourrie. »</p></div>
-      <div class="realm" style="--c:#6a7a8a"><h3>Niflheim</h3><span class="lvl" data-fr="Niveau 1" data-en="Level 1">Niveau 1</span>
+      <div class="royaume" style="--c:#8494a6"><div class="nom"><h3>Niflheim</h3><span data-fr="Niveau 1" data-en="Level 1">Niveau 1</span></div>
         <p data-fr="« Tu es ici parce que tu as commencé — c'est déjà plus que la plupart. »" data-en="“You stand here because you began — which is already more than most.”">« Tu es ici parce que tu as commencé — c'est déjà plus que la plupart. »</p></div>
     </div>
   </div>
-</div>
+</section>
 
-<section id="social">
-  <div class="kicker" data-fr="Ensemble" data-en="Together">Ensemble</div>
-  <h2 data-fr="Tu forges seul. Tu ne t'élèves pas seul." data-en="You forge alone. You don't rise alone.">Tu forges seul. Tu ne t'élèves pas seul.</h2>
-  <p class="lead" data-fr="Le cœur du jeu reste ta propre ascension. Mais la route se marche mieux à plusieurs — sans jamais transformer les autres en chiffres à dépasser."
-     data-en="The heart of the game stays your own ascent. But the road walks better with others — without ever turning them into numbers to beat.">
-     Le cœur du jeu reste ta propre ascension. Mais la route se marche mieux à plusieurs — sans jamais transformer les autres en chiffres à dépasser.</p>
-
-  <div class="grid">
-    <div class="card"><div class="ico">🪓</div>
-      <h3 data-fr="Alliés &amp; pactes" data-en="Allies &amp; pacts">Alliés &amp; pactes</h3>
-      <p data-fr="Ajoute un allié par son code, puis scellez un pacte : un objectif commun tenu à deux, jour après jour." data-en="Add an ally by their code, then seal a pact: a shared goal held by two, day after day.">Ajoute un allié par son code, puis scellez un pacte : un objectif commun tenu à deux, jour après jour.</p></div>
-    <div class="card violet"><div class="ico">⚒</div>
-      <h3 data-fr="Guildes" data-en="Guilds">Guildes</h3>
-      <p data-fr="Rejoins une guilde, contribue à ses quêtes collectives et bats les records du groupe. Une salle commune, un feu, un chat." data-en="Join a guild, contribute to its collective quests and beat the group's records. A common hall, a fire, a chat.">Rejoins une guilde, contribue à ses quêtes collectives et bats les records du groupe. Une salle commune, un feu, un chat.</p></div>
-    <div class="card gold"><div class="ico">🏆</div>
-      <h3 data-fr="Classement mondial" data-en="World ranking">Classement mondial</h3>
-      <p data-fr="Compare ton ascension à celle des autres forgerons — et retire-t'en quand tu veux. Le classement est une fenêtre, pas une laisse." data-en="Measure your ascent against other blacksmiths — and step out whenever you want. The ranking is a window, not a leash.">Compare ton ascension à celle des autres forgerons — et retire-t'en quand tu veux. Le classement est une fenêtre, pas une laisse.</p></div>
-    <div class="card"><div class="ico">🔥</div>
-      <h3 data-fr="Le Rassemblement" data-en="The Gathering">Le Rassemblement</h3>
-      <p data-fr="Attise la braise du foyer d'un allié présent. Un geste simple, sans score : juste dire « je te vois »." data-en="Stoke the ember of a present ally's hearth. A simple gesture, no score: just saying “I see you.”">Attise la braise du foyer d'un allié présent. Un geste simple, sans score : juste dire « je te vois ».</p></div>
+<!-- ═══ Ensemble ═══ -->
+<section id="ensemble">
+  <div class="cadre">
+    <div class="duo inverse">
+      <div class="col-tel">
+        <figure class="tel"><div class="tel-ecran"><img src="/captures/rassemblement.webp" width="924" height="1896" loading="lazy"
+          alt="Écran Rassemblement : les chroniques des alliés, le classement mondial, les alliés et la guilde."
+          data-fr-alt="Écran Rassemblement : les chroniques des alliés, le classement mondial, les alliés et la guilde."
+          data-en-alt="Gathering screen: allies' chronicles, world leaderboard, allies and guild."></div></figure>
+      </div>
+      <div class="bloc-texte">
+        <div class="kicker" data-fr="Ensemble" data-en="Together">Ensemble</div>
+        <h2 data-fr="Tu forges seul. Tu ne t'élèves pas seul." data-en="You forge alone. You don't rise alone.">Tu forges seul. Tu ne t'élèves pas seul.</h2>
+        <p class="lead" data-fr="Le Rassemblement réunit les tiens autour du feu. Le cœur du jeu reste ta propre ascension ; les autres y sont des compagnons de route, jamais des chiffres à écraser."
+           data-en="The Gathering brings your people around the fire. The heart of the game stays your own ascent; others are companions on the road, never numbers to crush.">Le Rassemblement réunit les tiens autour du feu. Le cœur du jeu reste ta propre ascension ; les autres y sont des compagnons de route, jamais des chiffres à écraser.</p>
+        <ul class="liste-2">
+          <li><h3 data-fr="Alliés" data-en="Allies">Alliés</h3><p data-fr="Ajoute un allié par son code. Suis ses chroniques — un niveau atteint, un royaume franchi — et encourage-le d'un geste." data-en="Add an ally by their code. Follow their chronicles — a level reached, a realm crossed — and cheer them on with one gesture.">Ajoute un allié par son code. Suis ses chroniques — un niveau atteint, un royaume franchi — et encourage-le d'un geste.</p></li>
+          <li><h3 data-fr="Quêtes d'alliance" data-en="Alliance quests">Quêtes d'alliance</h3><p data-fr="Invite un allié à un pacte ou à un défi : vos quêtes communes vivent dans leur propre onglet." data-en="Invite an ally to a pact or a challenge: your shared quests live in their own tab.">Invite un allié à un pacte ou à un défi : vos quêtes communes vivent dans leur propre onglet.</p></li>
+          <li><h3 data-fr="Guilde" data-en="Guild">Guilde</h3><p data-fr="Une salle commune, un blason, des quêtes collectives dont le total devient le record à battre au tirage suivant." data-en="A common hall, a crest, collective quests whose total becomes the record to beat at the next draw.">Une salle commune, un blason, des quêtes collectives dont le total devient le record à battre au tirage suivant.</p></li>
+          <li><h3 data-fr="Classement mondial" data-en="World leaderboard">Classement mondial</h3><p data-fr="Vois où tu te tiens parmi les forgerons — ou retire-t'en d'un interrupteur, dans Confidentialité." data-en="See where you stand among the smiths — or step out with one switch, in Privacy.">Vois où tu te tiens parmi les forgerons — ou retire-t'en d'un interrupteur, dans Confidentialité.</p></li>
+        </ul>
+        <p class="garde" data-fr="Pas de messagerie ouverte : des gestes, pas un fil sans fin. Les noms publics sont filtrés, et tout joueur peut être signalé ou bloqué." data-en="No open messaging: gestures, not an endless feed. Public names are filtered, and any player can be reported or blocked.">Pas de messagerie ouverte : des gestes, pas un fil sans fin. Les noms publics sont filtrés, et tout joueur peut être signalé ou bloqué.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="philosophie">
-  <div class="kicker" data-fr="La philosophie" data-en="The philosophy">La philosophie</div>
-  <h2 data-fr="Les règles que la forge s'impose." data-en="The rules the forge imposes on itself.">Les règles que la forge s'impose.</h2>
-  <p class="lead" data-fr="Un jeu de discipline peut mentir de mille façons. Ces principes sont gravés dans chaque système pour qu'il ne mente jamais."
-     data-en="A discipline game can lie in a thousand ways. These principles are carved into every system so it never does.">
-     Un jeu de discipline peut mentir de mille façons. Ces principes sont gravés dans chaque système pour qu'il ne mente jamais.</p>
-
-  <div class="principles">
-    <div class="principle">
-      <h3 data-fr="Des actions, jamais du temps" data-en="Actions, never time">Des actions, jamais du temps</h3>
-      <p data-fr="Aucune épreuve ne compte les jours qui passent. Ouvrir l'app ne prouve rien ; seule l'action compte. Ce qui se mesure est ce qui a été fait." data-en="No trial counts passing days. Opening the app proves nothing; only the action counts. What is measured is what was done.">Aucune épreuve ne compte les jours qui passent. Ouvrir l'app ne prouve rien ; seule l'action compte. Ce qui se mesure est ce qui a été fait.</p></div>
-    <div class="principle">
-      <h3 data-fr="Reconnaissance, jamais puissance" data-en="Recognition, never power">Reconnaissance, jamais puissance</h3>
-      <p data-fr="Les royaumes, les titres, les engagements rares : du prestige, pas des bonus. Récompenser l'ancienneté par de la puissance, ce serait punir celui qui commence." data-en="Realms, titles, rare commitments: prestige, not bonuses. Rewarding seniority with power would punish the one who begins.">Les royaumes, les titres, les engagements rares : du prestige, pas des bonus. Récompenser l'ancienneté par de la puissance, ce serait punir celui qui commence.</p></div>
-    <div class="principle">
-      <h3 data-fr="Le dernier pas est celui qu'on évite" data-en="The last step is the one you avoid">Le dernier pas est celui qu'on évite</h3>
-      <p data-fr="Asgard exige 50 étoiles sur 54. Négliger une seule compétence ferme ses portes. L'ascension complète demande exactement ce que tu repousses." data-en="Asgard demands 50 stars of 54. Neglecting a single skill closes its gates. The full ascent demands exactly what you keep postponing.">Asgard exige 50 étoiles sur 54. Négliger une seule compétence ferme ses portes. L'ascension complète demande exactement ce que tu repousses.</p></div>
-    <div class="principle">
-      <h3 data-fr="On monte, on ne redescend jamais" data-en="You climb, you never fall back">On monte, on ne redescend jamais</h3>
-      <p data-fr="Un royaume atteint est atteint pour toujours. Une mauvaise semaine peut coûter de l'XP — jamais ton histoire. La forge se souvient de ce que tu as été capable de faire." data-en="A realm reached is reached forever. A bad week can cost XP — never your story. The forge remembers what you proved capable of.">Un royaume atteint est atteint pour toujours. Une mauvaise semaine peut coûter de l'XP — jamais ton histoire. La forge se souvient de ce que tu as été capable de faire.</p></div>
-  </div>
-
-  <div class="journey">
-    <div class="kicker" data-fr="La genèse" data-en="The journey">La genèse</div>
-    <h2 style="font-size:24px" data-fr="Forgée en la vivant." data-en="Forged by living it.">Forgée en la vivant.</h2>
-    <p data-fr="Forge &amp; Quêtes n'est pas sortie d'un plan produit. Elle est née d'une frustration simple : dans les RPG, monter un personnage est irrésistible — et dans la vraie vie, monter le sien ne l'est pas. Il manquait la boucle : agir, être récompensé, voir la progression."
-       data-en="Forge &amp; Quests didn't come from a product roadmap. It was born from a simple frustration: in RPGs, leveling a character is irresistible — and in real life, leveling yourself is not. The loop was missing: act, get rewarded, see the progression.">
-       Forge &amp; Quêtes n'est pas sortie d'un plan produit. Elle est née d'une frustration simple : dans les RPG, monter un personnage est irrésistible — et dans la vraie vie, monter le sien ne l'est pas. Il manquait la boucle : agir, être récompensé, voir la progression.</p>
-    <p data-fr="Chaque système a été forgé, essayé sur le terrain, puis reforgé — des dizaines de fois. L'échelle des Neuf Royaumes est calibrée sur des mois de données réelles d'utilisation, pas sur une feuille de calcul. Si un système ne rendait pas le retour à l'effort plus désirable, il était retiré."
-       data-en="Every system was forged, field-tested, then reforged — dozens of times. The Nine Realms' scale is calibrated on months of real usage data, not a spreadsheet. If a system didn't make returning to the effort more desirable, it was removed.">
-       Chaque système a été forgé, essayé sur le terrain, puis reforgé — des dizaines de fois. L'échelle des Neuf Royaumes est calibrée sur des mois de données réelles d'utilisation, pas sur une feuille de calcul. Si un système ne rendait pas le retour à l'effort plus désirable, il était retiré.</p>
-    <p data-fr="Le résultat n'est pas une app de productivité déguisée en jeu. C'est un jeu honnête dont la seule monnaie d'entrée est ta vie réelle."
-       data-en="The result is not a productivity app dressed up as a game. It's an honest game whose only currency of entry is your real life.">
-       Le résultat n'est pas une app de productivité déguisée en jeu. C'est un jeu honnête dont la seule monnaie d'entrée est ta vie réelle.</p>
-    <div class="sig" data-fr="— LE FORGERON DE LA FORGE" data-en="— THE SMITH OF THE FORGE">— LE FORGERON DE LA FORGE</div>
+<!-- ═══ Les règles ═══ -->
+<section id="regles">
+  <div class="cadre">
+    <div class="kicker" data-fr="Les règles de la forge" data-en="The forge's rules">Les règles de la forge</div>
+    <h2 class="large" data-fr="Un jeu de discipline peut mentir de mille façons. Celui-ci s'y refuse." data-en="A discipline game can lie in a thousand ways. This one refuses to.">Un jeu de discipline peut mentir de mille façons. Celui-ci s'y refuse.</h2>
+    <div class="regles">
+      <div class="regle chanfrein"><i>I</i><h3 data-fr="Des actions, jamais du temps" data-en="Actions, never time">Des actions, jamais du temps</h3>
+        <p data-fr="Aucune épreuve ne compte les jours qui passent. Ouvrir l'app ne prouve rien : ce qui se mesure, c'est ce qui a été fait." data-en="No trial counts the days going by. Opening the app proves nothing: what gets measured is what was done.">Aucune épreuve ne compte les jours qui passent. Ouvrir l'app ne prouve rien : ce qui se mesure, c'est ce qui a été fait.</p></div>
+      <div class="regle chanfrein"><i>II</i><h3 data-fr="Mesuré à toi, jamais aux autres" data-en="Measured against you, never others">Mesuré à toi, jamais aux autres</h3>
+        <p data-fr="Ta semaine se lit contre tes semaines, pas contre celles d'un inconnu plus rapide. Et aucune note ne te juge sur ce que tu ne peux pas renseigner." data-en="Your week is read against your weeks, not against a faster stranger's. And no score judges you on something you can't fill in.">Ta semaine se lit contre tes semaines, pas contre celles d'un inconnu plus rapide. Et aucune note ne te juge sur ce que tu ne peux pas renseigner.</p></div>
+      <div class="regle chanfrein"><i>III</i><h3 data-fr="Reconnaissance, jamais puissance" data-en="Recognition, never power">Reconnaissance, jamais puissance</h3>
+        <p data-fr="Royaumes, titres, raretés : du prestige, pas des bonus. Récompenser l'ancienneté par de la puissance, ce serait punir celui qui commence." data-en="Realms, titles, rarities: prestige, not bonuses. Rewarding seniority with power would punish the one who begins.">Royaumes, titres, raretés : du prestige, pas des bonus. Récompenser l'ancienneté par de la puissance, ce serait punir celui qui commence.</p></div>
+      <div class="regle chanfrein"><i>IV</i><h3 data-fr="Le dernier pas est celui qu'on évite" data-en="The last step is the one you avoid">Le dernier pas est celui qu'on évite</h3>
+        <p data-fr="Asgard exige 50 étoiles sur 54. Négliger une seule compétence en ferme les portes : l'ascension complète demande exactement ce que tu repousses." data-en="Asgard demands 50 stars out of 54. Neglect a single skill and its gates stay shut: the full ascent demands exactly what you keep postponing.">Asgard exige 50 étoiles sur 54. Négliger une seule compétence en ferme les portes : l'ascension complète demande exactement ce que tu repousses.</p></div>
+      <div class="regle chanfrein"><i>V</i><h3 data-fr="On monte, on ne redescend pas" data-en="You climb, you don't fall back">On monte, on ne redescend pas</h3>
+        <p data-fr="Un royaume atteint l'est pour toujours. Une semaine creuse se dit « le métal refroidit », jamais « tu as échoué »." data-en="A realm reached is reached for good. A hollow week reads “the metal is cooling”, never “you failed”.">Un royaume atteint l'est pour toujours. Une semaine creuse se dit « le métal refroidit », jamais « tu as échoué ».</p></div>
+      <div class="regle chanfrein"><i>VI</i><h3 data-fr="Tes données sont à toi" data-en="Your data is yours">Tes données sont à toi</h3>
+        <p data-fr="Ton journal ne quitte pas ton téléphone. Tes données de santé restent dans ta sauvegarde privée, jamais montrées aux autres. Aucune publicité, aucun pistage." data-en="Your journal never leaves your phone. Your health data stays in your private backup, never shown to others. No ads, no tracking.">Ton journal ne quitte pas ton téléphone. Tes données de santé restent dans ta sauvegarde privée, jamais montrées aux autres. Aucune publicité, aucun pistage.</p></div>
+    </div>
   </div>
 </section>
 
-<section id="download" class="download">
-  <div class="kicker" data-fr="Commence aujourd'hui" data-en="Begin today">Commence aujourd'hui</div>
-  <h2 data-fr="Ta forge est froide. Allume-la." data-en="Your forge is cold. Light it.">Ta forge est froide. Allume-la.</h2>
-  <p class="lead" style="margin:0 auto 36px" data-fr="En bêta ouverte sur iOS via TestFlight. Gratuit. En français et en anglais."
-     data-en="In open beta on iOS via TestFlight. Free. In French and English.">
-     En bêta ouverte sur iOS via TestFlight. Gratuit. En français et en anglais.</p>
-  <div class="cta-row" style="margin-top:0">
-    <a class="btn btn-primary" href="https://testflight.apple.com/join/tvz827Be" data-fr="Joindre la bêta" data-en="Join the beta">Joindre la bêta</a>
+<!-- ═══ Forge Éternelle ═══ -->
+<section id="eternelle" style="padding-top:0">
+  <div class="cadre">
+    <div class="eternelle chanfrein">
+      <div class="eternelle-grille">
+        <div>
+          <div class="kicker" style="color:var(--or)" data-fr="Forge Éternelle" data-en="Eternal Forge">Forge Éternelle</div>
+          <h2 data-fr="Le cœur est gratuit. Entier." data-en="The core is free. All of it.">Le cœur est gratuit. Entier.</h2>
+          <p class="lead" data-fr="Tes disciplines, tes quêtes, la Forge, Brokkr, le journal, tes alliés : tout se joue sans payer. La Forge Éternelle est là pour qui veut soutenir la forge — et y gagner du confort et du prestige."
+             data-en="Your disciplines, your quests, the Forge, Brokkr, the journal, your allies: all of it plays without paying. The Eternal Forge is there for those who want to support the forge — and gain comfort and prestige in return.">Tes disciplines, tes quêtes, la Forge, Brokkr, le journal, tes alliés : tout se joue sans payer. La Forge Éternelle est là pour qui veut soutenir la forge — et y gagner du confort et du prestige.</p>
+          <p class="petit" data-fr="Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store." data-en="Monthly or yearly, renews automatically, cancel anytime from your App Store account.">Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store.</p>
+        </div>
+        <ul class="avantages">
+          <li data-fr="Tes séances comptent toutes seules, synchronisées avec Apple Santé" data-en="Your workouts count on their own, synced with Apple Health">Tes séances comptent toutes seules, synchronisées avec Apple Santé</li>
+          <li data-fr="Le Serment d'Urd chaque mois : tes séries protégées 48 h" data-en="Urd's Oath every month: your streaks shielded for 48 h">Le Serment d'Urd chaque mois : tes séries protégées 48 h</li>
+          <li data-fr="Thèmes de couleur et mode clair" data-en="Color themes and light mode">Thèmes de couleur et mode clair</li>
+          <li data-fr="Une recharge de quête gratuite chaque jour" data-en="One free quest refresh every day">Une recharge de quête gratuite chaque jour</li>
+          <li data-fr="Un sac d'apothicaire jusqu'à six fioles" data-en="An apothecary bag of up to six vials">Un sac d'apothicaire jusqu'à six fioles</li>
+          <li data-fr="Les paliers de prestige Mythique et Divin" data-en="The Mythic and Divine prestige tiers">Les paliers de prestige Mythique et Divin</li>
+          <li data-fr="Un écusson au classement et un titre réservé" data-en="A leaderboard badge and a reserved title">Un écusson au classement et un titre réservé</li>
+          <li data-fr="La Refonte : recommencer à zéro sans rien perdre" data-en="The Reforging: start over without losing anything">La Refonte : recommencer à zéro sans rien perdre</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- ═══ Genèse ═══ -->
+<section id="genese" style="padding-top:0">
+  <div class="cadre genese">
+    <div>
+      <div class="kicker" data-fr="La genèse" data-en="The origin">La genèse</div>
+      <blockquote data-fr="Dans les jeux de rôle, monter un personnage est irrésistible. Dans la vraie vie, monter le sien ne l'est pas." data-en="In role-playing games, leveling up a character is irresistible. In real life, leveling up yourself is not.">Dans les jeux de rôle, monter un personnage est irrésistible. Dans la vraie vie, monter le sien ne l'est pas.</blockquote>
+    </div>
+    <div class="texte">
+      <p data-fr="Forge &amp; Quêtes n'est pas sortie d'un plan produit. Elle est née de cette frustration-là : il manquait la boucle. Agir, être récompensé, voir le chemin parcouru."
+         data-en="Forge &amp; Quests didn't come out of a product roadmap. It was born from that frustration: the loop was missing. Act, get rewarded, see how far you've come.">Forge &amp; Quêtes n'est pas sortie d'un plan produit. Elle est née de cette frustration-là : il manquait la boucle. Agir, être récompensé, voir le chemin parcouru.</p>
+      <p data-fr="Chaque système a été forgé, essayé sur le terrain, puis reforgé — des dizaines de fois. L'échelle des Neuf Royaumes est calibrée sur des mois d'utilisation réelle, pas sur une feuille de calcul. Un système qui ne rendait pas le retour à l'effort plus désirable était retiré."
+         data-en="Every system was forged, field-tested, then reforged — dozens of times. The Nine Realms' scale is calibrated on months of real use, not on a spreadsheet. A system that didn't make returning to the effort more desirable was removed.">Chaque système a été forgé, essayé sur le terrain, puis reforgé — des dizaines de fois. L'échelle des Neuf Royaumes est calibrée sur des mois d'utilisation réelle, pas sur une feuille de calcul. Un système qui ne rendait pas le retour à l'effort plus désirable était retiré.</p>
+      <p data-fr="Ce qui en sort est un outil honnête sous l'habit d'un jeu : sa seule monnaie d'entrée, c'est ta vie réelle."
+         data-en="What came out is an honest tool dressed as a game: its only currency of entry is your real life.">Ce qui en sort est un outil honnête sous l'habit d'un jeu : sa seule monnaie d'entrée, c'est ta vie réelle.</p>
+      <div class="signature" data-fr="— Le forgeron de la forge" data-en="— The smith of the forge">— Le forgeron de la forge</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Appel final ═══ -->
+<section id="commencer" class="final">
+  <div class="cadre">
+    <div class="orne" aria-hidden="true"><i></i></div>
+    <h2 data-fr="Ta forge est froide. Allume-la." data-en="Your forge is cold. Light it.">Ta forge est froide. Allume-la.</h2>
+    <p class="lead js-final-lead" data-fr="Bientôt sur l'App Store. En attendant, la bêta iOS est ouverte : gratuite, en français et en anglais."
+       data-en="Coming soon to the App Store. Until then, the iOS beta is open: free, in French and English.">Bientôt sur l'App Store. En attendant, la bêta iOS est ouverte : gratuite, en français et en anglais.</p>
+    <p id="refBanner" hidden></p>
+    <div class="ctas">
+      <a class="btn btn-braise js-dl js-beta" href="https://testflight.apple.com/join/tvz827Be">
+        <span data-fr="Joindre la bêta iOS" data-en="Join the iOS beta">Joindre la bêta iOS</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="store js-store" aria-disabled="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>
+        <span><small class="js-store-haut">Bientôt</small><b class="js-store-bas">sur l'App Store</b></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <footer>
-  <div class="valknut"><svg width="26" height="26" viewBox="0 0 100 100"><g fill="none" stroke="#c4b49a" stroke-width="6" opacity=".7"><path d="M50 8 L26 52 L74 52 Z"/><path d="M26 52 L14 74 L50 74"/><path d="M74 52 L86 74 L50 74"/></g></svg></div>
-  <div>© 2026 Forge &amp; Quêtes</div>
-  <div style="margin-top:6px;opacity:.7" data-fr="Forgée au Québec. Version 1.8.31." data-en="Forged in Québec. Version 1.8.31.">Forgée au Québec. Version 1.8.31.</div>
+  <div class="marque">
+    <svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#c4b49a" stroke-width="6" opacity=".8"><path d="M50 8 L26 52 L74 52 Z"/><path d="M26 52 L14 74 L50 74"/><path d="M74 52 L86 74 L50 74"/></g></svg>
+    <span data-fr="Forge &amp; Quêtes" data-en="Forge &amp; Quests">Forge &amp; Quêtes</span>
+  </div>
+  <div>© 2026 Forge &amp; Quêtes · <span data-fr="Forgée au Québec." data-en="Forged in Québec.">Forgée au Québec.</span></div>
+  <div class="pied-liens">
+    <a href="https://legal.forgequests.com/privacy-policy.html" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a>
+    <a href="https://legal.forgequests.com/conditions.html" data-fr="Conditions d'utilisation" data-en="Terms of use">Conditions d'utilisation</a>
+    <a href="https://legal.forgequests.com/" data-fr="Mentions légales" data-en="Legal notice">Mentions légales</a>
+    <a href="mailto:contact@forgequests.com" data-fr="Nous écrire" data-en="Contact us">Nous écrire</a>
+  </div>
 </footer>
 
 <script>
-  // ─── i18n ───
-  const els = document.querySelectorAll('[data-fr]');
-  function setLang(lang){
-    els.forEach(el => { el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.fr; });
-    document.documentElement.lang = lang;
-    document.getElementById('langBtn').textContent = lang === 'en' ? 'FR' : 'EN';
-    try { localStorage.setItem('fq_lang', lang); } catch(e) {}
-    document.title = lang === 'en' ? 'Forge & Quests — Forge your discipline' : 'Forge & Quêtes — Forge ta discipline';
-  }
-  let lang;
-  try { lang = localStorage.getItem('fq_lang'); } catch(e) {}
-  if (!lang) lang = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
-  setLang(lang);
-  document.getElementById('langBtn').addEventListener('click', () => setLang(lang = (lang === 'fr' ? 'en' : 'fr')));
+  // ─── Liens de téléchargement : source de vérité unique ───
+  // Le jour J : renseigner LIEN_APPSTORE. Le badge « Bientôt » devient un vrai lien,
+  // les boutons de bêta s'effacent, et les cartes de partage redirigent vers le store.
+  const LIEN_APPSTORE = null;   // ← URL App Store à la sortie
+  const LIEN_BETA     = 'https://testflight.apple.com/join/tvz827Be';
+  const LIEN_ANDROID  = null;   // ← URL Play Store quand l'app y sera publiée
+  const LIEN_IOS = LIEN_APPSTORE || LIEN_BETA;
 
-  // ─── Braises du hero ───
-  const hero = document.getElementById('hero');
-  for (let i = 0; i < 26; i++) {
-    const e = document.createElement('div');
-    e.className = 'ember';
-    const s = 2 + Math.random() * 4;
-    e.style.width = e.style.height = s + 'px';
-    e.style.left = (5 + Math.random() * 90) + '%';
-    e.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
-    e.style.animationDuration = (5 + Math.random() * 7) + 's';
-    e.style.animationDelay = (Math.random() * 8) + 's';
-    e.style.boxShadow = '0 0 ' + (s * 2.5) + 'px rgba(255,140,66,.8)';
-    hero.appendChild(e);
+  function lienTelechargement(){
+    const ua = navigator.userAgent || '';
+    if (/iPad|iPhone|iPod/i.test(ua) || (/Macintosh/i.test(ua) && 'ontouchend' in document)) return LIEN_IOS;
+    if (/Android/i.test(ua)) return LIEN_ANDROID || LIEN_IOS;
+    return null;   // desktop : pas de redirection, on reste sur la page
+  }
+
+  // ─── Contenu dynamique bilingue (textes tirés tels quels de l'app) ───
+  const VISAGES = [
+    { fr:['Le Mentor','Brokkr le Patient','Patient et curieux. Il explique le pourquoi et te pose de vraies questions.',"Cinq jours loin de la forge. Qu'est-ce qui t'a tenu ailleurs ? Reprends par un geste court aujourd'hui, le reste suivra."],
+      en:['The Mentor','Brokkr the Patient','Patient and curious. He explains the why and asks you real questions.','Five days away from the forge. What kept you elsewhere? Start again with one short gesture today; the rest will follow.'] },
+    { fr:["Le Maître d'armes",'Brokkr le Dur','Exigeant, bref, sans consolation. Il sait aussi quand ranger le fouet.',"Cinq jours. Je ne demande pas pourquoi. Aujourd'hui, une seule chose, petite. Le fouet attendra demain."],
+      en:['The Drillmaster','Brokkr the Hard','Demanding, terse, no consolation. He also knows when to put the whip away.',"Five days. I won't ask why. Today, one thing. A small one. The whip can wait until tomorrow."] },
+    { fr:['Le Stratège',"Brokkr l'Arpenteur",'Des chiffres, des causes, des corrections. Pas une image de trop.',"Dernière activité : il y a 5 jours. Reprise : une action courte aujourd'hui, charge normale dès demain."],
+      en:['The Strategist','Brokkr the Surveyor','Numbers, causes, corrections. Not one image too many.','Last activity: 5 days ago. Restart: one short action today, normal load from tomorrow.'] },
+    { fr:["Le Frère d'armes",'Brokkr le Compagnon','Il fête tes victoires à pleine voix et te chambre quand tu flânes.',"Te revoilà ! Cinq jours, je commençais à parler tout seul à l'enclume. Allez, on reprend en douceur."],
+      en:['The Shield-Brother','Brokkr the Companion','He cheers your wins out loud and ribs you when you dawdle.',"Look who's back! Five days — I was starting to talk to the anvil. Come on, we ease back in."] },
+    { fr:['Le Skald','Brokkr le Conteur','Il chante ta progression comme une saga nordique.',"Cinq soleils sur la forge muette. Mais les sagas ne chantent pas les silences : elles chantent les retours. Le tien commence aujourd'hui."],
+      en:['The Skald','Brokkr the Storyteller','He sings your progress like a Norse saga.','Five suns over a silent forge. But sagas do not sing of silences: they sing of returns. Yours begins today.'] },
+    { fr:['Le Silencieux','Brokkr le Taciturne',"Peu de mots. Seulement l'essentiel.",'Cinq jours. Reviens doucement.'],
+      en:['The Silent One','Brokkr the Taciturn','Few words. Only what matters.','Five days. Come back gently.'] },
+  ];
+  // Paliers de la braise (utils/braise.js) : ardente ≥ 88, vive ≥ 70, tiède ≥ 45.
+  // Facteurs en rapport à la normale (1 = normale ; la barre plafonne à 1,5).
+  const TONS = {
+    ardente:{ nb:92, c:'#ff8c42', l:'rgba(255,140,66,.5)', f:[1.3,1.42,1.12,1.3],
+      fr:['Ardente','La braise est ardente. Tu es au-dessus de toi-même cette semaine — tiens, mais ne force pas : le métal se travaille chaud, il ne se travaille pas brûlé.'],
+      en:['Blazing','The ember burns hot. You are above yourself this week — hold it, but do not force: metal is worked hot, not burnt.'] },
+    vive:{ nb:76, c:'#eaa062', l:'rgba(234,160,98,.4)', f:[1.06,.96,1.02,1.12],
+      fr:['Vive','La braise est vive. Tu tiens ton rythme, et c’est là l’essentiel : la régularité forge, pas l’intensité.'],
+      en:['Lively','The ember burns steady. You are holding your rhythm, and that is what matters: regularity forges, not intensity.'] },
+    tiede:{ nb:65, c:'#c9a57a', l:'rgba(201,165,122,.32)', f:[.86,.8,.9,.72],
+      fr:['Tiède','La braise tiédit. Un jour d’ouvrage suffit à la relancer.'],
+      en:['Cooling','The ember is cooling. One day of work is enough to revive it.'] },
+    basse:{ nb:38, c:'#8f7e6c', l:'rgba(143,126,108,.28)', f:[.5,.44,.6,.36],
+      fr:['Basse','La braise est basse cette semaine. Le métal refroidit parfois ; c’est l’heure de le rallumer, par un seul geste.'],
+      en:['Low','The ember is low this week. Metal cools sometimes; it is the hour to relight it, with a single gesture.'] },
+  };
+  const STORE = {
+    bientot:{ fr:['Bientôt',"sur l'App Store"], en:['Coming soon','to the App Store'] },
+    dispo:  { fr:['Télécharger',"dans l'App Store"], en:['Download','on the App Store'] },
+  };
+
+  const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lang, visageActif = 0, tonActif = 'tiede';
+
+  // ─── Badge store / bêta ───
+  function majLiens(){
+    document.querySelectorAll('.js-dl').forEach(a => { a.href = lienTelechargement() || LIEN_IOS; });
+    const etat = LIEN_APPSTORE ? STORE.dispo : STORE.bientot;
+    document.querySelectorAll('.js-store').forEach(el => {
+      el.querySelector('.js-store-haut').textContent = etat[lang][0];
+      el.querySelector('.js-store-bas').textContent = etat[lang][1];
+      if (LIEN_APPSTORE) { el.href = LIEN_APPSTORE; el.removeAttribute('aria-disabled'); }
+    });
+    if (!LIEN_APPSTORE) return;
+    document.querySelectorAll('.js-beta').forEach(el => { el.hidden = true; el.style.display = 'none'; });
+    document.querySelector('.nav-cta').textContent = lang === 'en' ? 'Download' : 'Télécharger';
+    document.querySelector('.js-final-lead').textContent = lang === 'en'
+      ? 'On the App Store. Free, in French and English.'
+      : "Sur l'App Store. Gratuite, en français et en anglais.";
+  }
+
+  // ─── Brokkr : les six visages ───
+  const onglets = [...document.querySelectorAll('#onglets [role=tab]')];
+  const panneauVisage = document.getElementById('visage');
+  function remplirVisage(i){
+    const [nom, epi, desc, dit] = VISAGES[i][lang];
+    document.getElementById('vNom').textContent = nom;
+    document.getElementById('vEpi').textContent = epi;
+    document.getElementById('vDesc').textContent = desc;
+    document.getElementById('vDit').textContent = dit;
+    onglets.forEach((b, j) => b.textContent = VISAGES[j][lang][0]);
+  }
+  function choisirVisage(i, focus){
+    if (i === visageActif && !focus) return;
+    visageActif = i;
+    onglets.forEach((b, j) => { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); b.tabIndex = j === i ? 0 : -1; });
+    panneauVisage.setAttribute('aria-labelledby', 'v-' + i);
+    if (focus) onglets[i].focus();
+    if (reduit) { remplirVisage(i); return; }
+    panneauVisage.classList.add('change');
+    setTimeout(() => { remplirVisage(i); panneauVisage.classList.remove('change'); }, 180);
+  }
+  onglets.forEach((b, i) => {
+    b.addEventListener('click', () => choisirVisage(i));
+    b.addEventListener('keydown', e => {
+      const n = onglets.length;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); choisirVisage((visageActif + 1) % n, true); }
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); choisirVisage((visageActif - 1 + n) % n, true); }
+      if (e.key === 'Home') { e.preventDefault(); choisirVisage(0, true); }
+      if (e.key === 'End')  { e.preventDefault(); choisirVisage(n - 1, true); }
+    });
+  });
+
+  // ─── La Braise : jauge d'exemple ───
+  const jauge = document.getElementById('jauge');
+  const nbEl = document.getElementById('braiseNb');
+  const boutonsTon = [...document.querySelectorAll('#tons [role=tab]')];
+  const barres = [...document.querySelectorAll('#facteurs .barre i')];
+  let nbAffiche = 65, animNb = 0;
+  function compter(vers){
+    cancelAnimationFrame(animNb);
+    if (reduit) { nbAffiche = vers; nbEl.textContent = vers; return; }
+    const depart = nbAffiche, t0 = performance.now(), duree = 700;
+    const pas = t => {
+      const p = Math.min((t - t0) / duree, 1), e = 1 - Math.pow(1 - p, 3);
+      nbAffiche = Math.round(depart + (vers - depart) * e);
+      nbEl.textContent = nbAffiche;
+      if (p < 1) animNb = requestAnimationFrame(pas);
+    };
+    animNb = requestAnimationFrame(pas);
+  }
+  function choisirTon(cle){
+    tonActif = cle;
+    const t = TONS[cle];
+    jauge.style.setProperty('--ton', t.c); jauge.style.setProperty('--ton-lueur', t.l);
+    document.getElementById('facteurs').style.setProperty('--ton', t.c);
+    document.getElementById('arc').style.strokeDashoffset = 100 - t.nb;
+    compter(t.nb);
+    barres.forEach((b, i) => b.style.setProperty('--v', Math.min(t.f[i] / 1.5, 1) * 100 + '%'));
+    boutonsTon.forEach(b => { const sel = b.dataset.ton === cle; b.setAttribute('aria-selected', sel ? 'true' : 'false'); b.tabIndex = sel ? 0 : -1; });
+    ecrireTon();
+  }
+  function ecrireTon(){
+    const t = TONS[tonActif];
+    document.getElementById('braiseTon').textContent = t[lang][0];
+    document.getElementById('braiseMot').textContent = t[lang][1];
+    boutonsTon.forEach(b => b.textContent = TONS[b.dataset.ton][lang][0]);
+  }
+  boutonsTon.forEach((b, i) => {
+    b.addEventListener('click', () => choisirTon(b.dataset.ton));
+    b.addEventListener('keydown', e => {
+      const n = boutonsTon.length; let j = null;
+      if (e.key === 'ArrowRight') j = (i + 1) % n;
+      if (e.key === 'ArrowLeft')  j = (i - 1 + n) % n;
+      if (j !== null) { e.preventDefault(); boutonsTon[j].focus(); choisirTon(boutonsTon[j].dataset.ton); }
+    });
+  });
+
+  // ─── i18n ───
+  const traduits = document.querySelectorAll('[data-fr]');
+  function setLang(lg){
+    lang = lg;
+    traduits.forEach(el => { el.innerHTML = lg === 'en' ? el.dataset.en : el.dataset.fr; });
+    document.querySelectorAll('[data-fr-alt]').forEach(el => { el.alt = lg === 'en' ? el.dataset.enAlt : el.dataset.frAlt; });
+    document.querySelectorAll('[data-fr-aria]').forEach(el => el.setAttribute('aria-label', lg === 'en' ? el.dataset.enAria : el.dataset.frAria));
+    document.documentElement.lang = lg;
+    const btn = document.getElementById('langBtn');
+    btn.textContent = lg === 'en' ? 'FR' : 'EN';
+    btn.setAttribute('aria-label', lg === 'en' ? 'Passer en français' : 'Switch to English');
+    document.title = lg === 'en' ? 'Forge & Quests — The character you forge is you' : "Forge & Quêtes — Le personnage que tu forges, c'est toi";
+    try { localStorage.setItem('fq_lang', lg); } catch(e) {}
+    remplirVisage(visageActif); ecrireTon(); majLiens();
+    if (window.__majRef) window.__majRef(lg);
+  }
+
+  // ─── Parrainage : /f/CODE ou ?f=CODE gravé sur les cartes de partage ───
+  // Sur mobile, une carte scannée mène droit au store (intention claire) ; sur
+  // desktop on reste sur la page avec le bandeau « invité par un forgeron ».
+  (function(){
+    let code = null;
+    const viaChemin = location.pathname.match(/\/f\/([A-Za-z0-9]{4,12})/);
+    if (viaChemin) code = viaChemin[1];
+    else { try { code = new URLSearchParams(location.search).get('f'); } catch(e) {} }
+    if (!code) return;
+    code = code.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12);
+    if (!code) return;
+    try { localStorage.setItem('fq_ref', code); } catch(e) {}
+    const el = document.getElementById('refBanner');
+    if (el) {
+      window.__majRef = function(lg){
+        el.hidden = false;
+        el.innerHTML = lg === 'en'
+          ? 'A smith invited you — code <b>' + code + '</b>. Join their realm.'
+          : 'Un forgeron t’a invité — code <b>' + code + '</b>. Rejoins son royaume.';
+      };
+    }
+    const dl = lienTelechargement();
+    if (dl) location.replace(dl);   // mobile → store approprié
+  })();
+
+  try { lang = localStorage.getItem('fq_lang'); } catch(e) {}
+  if (lang !== 'fr' && lang !== 'en') lang = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+  setLang(lang);
+  choisirTon('tiede');
+  document.getElementById('langBtn').addEventListener('click', () => setLang(lang === 'fr' ? 'en' : 'fr'));
+
+  // ─── Nav : fond au défilement, menu mobile, section active ───
+  const nav = document.getElementById('nav');
+  const burger = document.getElementById('burger');
+  const liens = document.getElementById('liens');
+  const majNav = () => nav.classList.toggle('pleine', window.scrollY > 24);
+  majNav(); window.addEventListener('scroll', majNav, { passive:true });
+  function fermerMenu(){ nav.classList.remove('ouvert'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click', () => {
+    const ouvert = nav.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+  liens.addEventListener('click', e => { if (e.target.closest('a')) fermerMenu(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') fermerMenu(); });
+  window.matchMedia('(min-width:881px)').addEventListener('change', fermerMenu);
+  if ('IntersectionObserver' in window) {
+    const parId = {};
+    liens.querySelectorAll('a').forEach(a => parId[a.getAttribute('href').slice(1)] = a);
+    const suivi = new IntersectionObserver(entrees => {
+      entrees.forEach(en => {
+        if (!en.isIntersecting) return;
+        liens.querySelectorAll('a').forEach(a => a.classList.remove('actif'));
+        const cible = parId[en.target.id === 'royaumes' ? 'jeu' : en.target.id];
+        if (cible) cible.classList.add('actif');
+      });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    document.querySelectorAll('#haut, main section[id]').forEach(s => suivi.observe(s));
+  }
+
+  // ─── Révélation au scroll (posée par JS : sans JS, tout reste visible) ───
+  if (!reduit && 'IntersectionObserver' in window) {
+    const cibles = document.querySelectorAll('.ligne,.disciplines li,.actes li,.braise-boite,.visages,.gestes li,.galerie figure,.comp,.tiers,.codex article,.royaume,.liste-2 li,.regle,.eternelle,.genese .texte p,.col-tel');
+    cibles.forEach(el => el.classList.add('revele'));
+    const obs = new IntersectionObserver(entrees => {
+      entrees.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        const freres = [...el.parentElement.children].filter(c => c.classList.contains('revele'));
+        el.style.transitionDelay = Math.min(freres.indexOf(el), 6) * 70 + 'ms';
+        el.classList.add('vu');
+        obs.unobserve(el);
+      });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+    cibles.forEach(el => obs.observe(el));
+  }
+
+  // ─── Hero : braises et léger parallaxe des téléphones ───
+  const hero = document.getElementById('haut');
+  if (!reduit) {
+    for (let i = 0; i < 24; i++) {
+      const e = document.createElement('div');
+      e.className = 'ember';
+      const s = 2 + Math.random() * 4;
+      e.style.width = e.style.height = s + 'px';
+      e.style.left = (4 + Math.random() * 92) + '%';
+      e.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
+      e.style.animationDuration = (6 + Math.random() * 7) + 's';
+      e.style.animationDelay = (Math.random() * 8) + 's';
+      e.style.boxShadow = '0 0 ' + (s * 2.5) + 'px rgba(255,140,66,.8)';
+      hero.appendChild(e);
+    }
+    if (window.matchMedia('(pointer:fine)').matches) {
+      const scene = document.getElementById('scene');
+      let raf = 0;
+      hero.addEventListener('pointermove', ev => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const r = hero.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width - .5, y = (ev.clientY - r.top) / r.height - .5;
+          scene.style.setProperty('--px', (x * 18).toFixed(1) + 'px');
+          scene.style.setProperty('--py', (y * 14).toFixed(1) + 'px');
+        });
+      });
+    }
   }
 </script>
 </body>
