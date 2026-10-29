@@ -258,6 +258,31 @@
   .constellation.vu line{stroke-dashoffset:0}
   .constellation.vu circle.lit{opacity:1;filter:drop-shadow(0 0 6px #9be8b4)}
 
+  /* L'éventail des runes (ui/EventailRunes) : les six runes en arc au-dessus du +, en cascade
+     depuis lui ; la compétence choisie s'allume, ses gestes se posent au-dessus du disque. */
+  .eventail{width:min(380px,88vw);display:flex;flex-direction:column;align-items:center}
+  .eventail svg{width:100%;height:auto;-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent);mask-image:linear-gradient(to bottom,#000 72%,transparent)}
+  .ev-tete{text-align:center;margin-bottom:6px;opacity:0;transform:translateY(8px);transition:opacity .5s var(--entree) 1.05s,transform .5s var(--entree) 1.05s}
+  .ev-point{font-family:var(--f-titre);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#8cc79c}
+  .ev-gestes{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
+  .ev-gestes span{padding:8px 15px;border-radius:999px;border:1px solid rgba(106,168,122,.5);background:rgba(106,168,122,.12);font-size:14.5px;font-weight:500;color:#e6efe7}
+  .ev-gestes span:last-child{border-color:var(--filet-fort);background:transparent;color:var(--texte-doux)}
+  .ev-disque{stroke:rgba(255,140,66,.32);stroke-width:1}
+  .ev-rune{transform-box:fill-box;transform-origin:center;opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25);
+      transition:transform .62s var(--entree) calc(150ms + var(--i) * 58ms),opacity .45s ease calc(150ms + var(--i) * 58ms)}
+  .ev-rune circle{fill:#171412;stroke:var(--c);stroke-width:1.5;transition:fill .5s ease 1s,filter .5s ease 1s}
+  .ev-rune text{font-family:var(--f-rune);font-size:20px;fill:var(--c);text-anchor:middle}
+  .vu .ev-rune{opacity:.42;transform:none}
+  .vu .ev-rune.choisie{opacity:1}
+  .vu .ev-rune.choisie circle{fill:#1f2b22;filter:drop-shadow(0 0 7px var(--c))}
+  .ev-secteur{fill:none;stroke:rgba(255,255,255,.1);stroke-width:4;stroke-linecap:round;transition:stroke .5s ease 1.3s}
+  .vu .ev-secteur.lit{stroke:var(--c)}
+  .ev-plus{fill:#1f1a16;stroke:var(--braise);stroke-width:1.5}
+  .ev-croix{stroke:var(--braise);stroke-width:2.4;stroke-linecap:round}
+  .ev-compte{font-family:var(--f-titre);font-weight:700;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--texte-faible);margin-top:6px}
+  .vu .ev-tete{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){ .ev-rune{transform:none;transition:opacity .4s} .ev-tete{transform:none} }
+
   /* ─── La Traversée ─── */
   .traversee{padding-bottom:0}
   .etapes{list-style:none;display:grid;gap:0;margin-top:34px}
@@ -278,6 +303,13 @@
   .gardien div{position:absolute;inset:auto 0 0 0;padding:14px 16px;background:linear-gradient(to top,rgba(10,10,10,.92),transparent)}
   .gardien b{font-family:var(--f-titre);font-size:20px;color:#f4eee3;display:block;line-height:1.1}
   .gardien span{font-size:13.5px;color:var(--texte-doux)}
+  @media (max-width:640px){
+    .gardiens{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;
+        margin-inline:calc(-1 * var(--goutte));padding:0 var(--goutte) 4px;scroll-padding-inline:var(--goutte)}
+    .gardiens::-webkit-scrollbar{display:none}
+    .gardien{flex:0 0 84%;scroll-snap-align:start;aspect-ratio:3/2}
+    .gardien b{font-size:22px}
+  }
 
   /* Les Neuf Mondes : une scène, neuf portes */
   .mondes{margin-top:clamp(80px,10vw,130px);position:relative}
@@ -388,6 +420,35 @@
   .pied-liens{display:flex;flex-wrap:wrap;gap:6px 18px}
   .pied-liens a{color:var(--texte-doux)}
   .pied-liens a:hover{color:var(--texte)}
+
+  /* ─── Téléphone : les images à leur format ─── */
+  @media (max-width:640px){
+    .heros{display:block;min-height:0}
+    .heros::before{display:none}
+    .heros-img{position:relative;inset:auto;z-index:0;aspect-ratio:4/3}
+    .heros-img img{object-position:50% 58%;transform:none}
+    .heros-img img.on{animation:none}
+    .heros-img::after{content:"";position:absolute;inset:0;
+        background:linear-gradient(to bottom,color-mix(in srgb,var(--brume) 75%,transparent) 0%,transparent 30%),
+                   linear-gradient(to top,var(--bg) 0%,rgba(20,20,20,.55) 22%,transparent 50%);transition:background .8s}
+    .heros-texte{position:relative;z-index:1;margin-top:-34px;padding-top:0}
+    .heros .lead{color:#cfc5b6;text-shadow:none}
+
+    .guerrier-fond{inset:0 0 auto 0;height:134vw;opacity:.28}
+    .guerrier-fond img{object-position:50% 30%}
+    .guerrier-fond::after{background:linear-gradient(to bottom,var(--bg),transparent 18%,transparent 55%,var(--bg))}
+
+    .mondes-scene{height:auto;aspect-ratio:16/9}
+    .mondes-scene::after{background:linear-gradient(to bottom,var(--bg),transparent 24%,transparent 62%,var(--bg))}
+    .mondes-texte{position:relative;inset:auto;padding-bottom:0;margin-top:-12px}
+
+    .final{display:block;min-height:0;padding-top:0}
+    .final::before{display:none}
+    .final-img{position:relative;inset:auto;z-index:0;aspect-ratio:4/3}
+    .final-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,var(--bg),transparent 30%,transparent 50%,var(--bg))}
+    .final .cadre{position:relative;z-index:1;margin-top:-40px}
+    .final h2{text-shadow:none}
+  }
 </style>
 </head>
 <body>
@@ -402,7 +463,7 @@
     <ul id="liens">
       <li><a href="#accueil" data-fr="Le monde" data-en="The world">Le monde</a></li>
       <li><a href="#guerrier" data-fr="Le guerrier" data-en="The warrior">Le guerrier</a></li>
-      <li><a href="#voute" data-fr="La voûte" data-en="The vault">La voûte</a></li>
+      <li><a href="#voute" data-fr="Forger" data-en="Forge">Forger</a></li>
       <li><a href="#traversee" data-fr="La Traversée" data-en="The Crossing">La Traversée</a></li>
       <li><a href="#brokkr">Brokkr</a></li>
       <li><a href="#ensemble" data-fr="Ensemble" data-en="Together">Ensemble</a></li>
@@ -477,13 +538,13 @@
          data-en="Your realm, edge to edge, under the light of your hour and your season: sixteen faces of the same fjord. Beneath it, what matters today — and nothing else.">Ton royaume, bord à bord, sous la lumière de ton heure et de ta saison : seize visages du même fjord. En dessous, ce qui compte aujourd'hui — et rien d'autre.</p>
       <ul class="vocab">
         <li class="rv"><i>I</i><div><h3 data-fr="Le monde" data-en="The world">Le monde</h3>
-          <p data-fr="Ton royaume, ton niveau, ton or, ton XP. Touche l'image : le prochain monde se dévoile." data-en="Your realm, your level, your gold, your XP. Touch the image: the next world reveals itself.">Ton royaume, ton niveau, ton or, ton XP. Touche l'image : le prochain monde se dévoile.</p></div></li>
+          <p data-fr="Ton royaume, ton niveau, ton or, ton XP. Touche l'image : ton guerrier t'y attend." data-en="Your realm, your level, your gold, your XP. Touch the image: your warrior awaits.">Ton royaume, ton niveau, ton or, ton XP. Touche l'image : ton guerrier t'y attend.</p></div></li>
         <li class="rv"><i>II</i><div><h3 data-fr="Le mot de Brokkr" data-en="Brokkr's word">Le mot de Brokkr</h3>
           <p data-fr="Ton forgeron-mentor parle de ce que tu as fait hier, et à l'heure qu'il est : le soir, il ne pousse plus." data-en="Your blacksmith-mentor talks about what you did yesterday, and at the hour it is: in the evening, he stops pushing.">Ton forgeron-mentor parle de ce que tu as fait hier, et à l'heure qu'il est : le soir, il ne pousse plus.</p></div></li>
         <li class="rv"><i>III</i><div><h3 data-fr="Ta prochaine action" data-en="Your next action">Ta prochaine action</h3>
           <p data-fr="Une seule, choisie dans tes propres données, avec sa raison en clair. Les autres suivent d'un balayage." data-en="Just one, chosen from your own data, with its reason in plain words. The others follow with a swipe.">Une seule, choisie dans tes propres données, avec sa raison en clair. Les autres suivent d'un balayage.</p></div></li>
         <li class="rv"><i>IV</i><div><h3 data-fr="Les quêtes du jour" data-en="Today's quests">Les quêtes du jour</h3>
-          <p data-fr="Calibrées sur ton niveau dans chaque compétence — et, parfois, un défi rare qui ne revient pas." data-en="Calibrated to your level in each skill — and, sometimes, a rare challenge that won't come back.">Calibrées sur ton niveau dans chaque compétence — et, parfois, un défi rare qui ne revient pas.</p></div></li>
+          <p data-fr="Deux, choisies pour toi et calibrées sur ton niveau dans chaque compétence — et, parfois, un défi rare qui ne revient pas." data-en="Two, chosen for you and calibrated to your level in each skill — and, sometimes, a rare challenge that won't come back.">Deux, choisies pour toi et calibrées sur ton niveau dans chaque compétence — et, parfois, un défi rare qui ne revient pas.</p></div></li>
       </ul>
       <div class="geste rv" id="geste" role="group" aria-roledescription="carrousel" aria-label="Exemples de prochaines actions" data-fr-aria="Exemples de prochaines actions" data-en-aria="Examples of next actions">
         <div class="geste-icone" id="gIcone" aria-hidden="true">ᚢ</div>
@@ -549,22 +610,29 @@
 <section id="voute" class="voute">
   <div class="cadre scene">
     <div class="scene-tel rv">
-      <figure class="tel">
-        <div class="tel-ecran" style="--fond:radial-gradient(ellipse at 50% 30%,#1a2a2a,#0d0f15 70%)">
-          <img src="/captures/voute.webp" loading="lazy" onerror="this.remove()"
-               alt="La voûte céleste : la constellation de l'Endurance, quatre étoiles allumées sur neuf"
-               data-fr-alt="La voûte céleste : la constellation de l'Endurance, quatre étoiles allumées sur neuf"
-               data-en-alt="The celestial vault: the Endurance constellation, four stars lit out of nine">
-          <div class="tel-ile"></div>
-          <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
+      <figure class="eventail" id="eventail" aria-hidden="true">
+        <div class="ev-tete">
+          <span class="ev-point" data-fr="+1 point d'Endurance" data-en="+1 Endurance point">+1 point d'Endurance</span>
+          <div class="ev-gestes"><span data-fr="Course" data-en="Run">Course</span><span data-fr="Marche" data-en="Walk">Marche</span><span data-fr="Autre…" data-en="Other…">Autre…</span></div>
         </div>
+        <svg viewBox="0 0 360 250">
+          <defs><radialGradient id="evDisque" cx="50%" cy="85%" r="70%"><stop offset="0" stop-color="#3a2618"/><stop offset=".55" stop-color="#1e1814"/><stop offset="1" stop-color="#151311"/></radialGradient></defs>
+          <circle class="ev-disque" cx="180" cy="214" r="167" fill="url(#evDisque)"/>
+          <g transform="translate(53.2 196.2)"><g class="ev-rune" style="--c:#c06a40;--i:0;--dx:127px;--dy:18px"><circle r="21"/><text dy="7">ᚢ</text></g></g><g transform="translate(83.1 130.4)"><g class="ev-rune" style="--c:#7a9abf;--i:1;--dx:97px;--dy:84px"><circle r="21"/><text dy="7">ᛗ</text></g></g><g transform="translate(143.9 91.2)"><g class="ev-rune" style="--c:#9a80bd;--i:2;--dx:36px;--dy:123px"><circle r="21"/><text dy="7">ᚨ</text></g></g><g transform="translate(216.1 91.2)"><g class="ev-rune choisie" style="--c:#6aa87a;--i:3;--dx:-36px;--dy:123px"><circle r="21"/><text dy="7">ᛖ</text></g></g><g transform="translate(276.9 130.4)"><g class="ev-rune" style="--c:#c88a4c;--i:4;--dx:-97px;--dy:84px"><circle r="21"/><text dy="7">ᚦ</text></g></g><g transform="translate(306.8 196.2)"><g class="ev-rune" style="--c:#c4a248;--i:5;--dx:-127px;--dy:18px"><circle r="21"/><text dy="7">ᛒ</text></g></g>
+          <path class="ev-secteur lit" style="--c:#c06a40" d="M151.8 195.0A34 34 0 0 1 177.6 180.1"/><path class="ev-secteur" style="--c:#7a9abf" d="M182.4 180.1A34 34 0 0 1 208.2 195.0"/><path class="ev-secteur" style="--c:#9a80bd" d="M210.6 199.1A34 34 0 0 1 210.6 228.9"/><path class="ev-secteur lit" style="--c:#6aa87a" d="M208.2 233.0A34 34 0 0 1 182.4 247.9"/><path class="ev-secteur" style="--c:#c88a4c" d="M177.6 247.9A34 34 0 0 1 151.8 233.0"/><path class="ev-secteur" style="--c:#c4a248" d="M149.4 228.9A34 34 0 0 1 149.4 199.1"/>
+          <circle class="ev-plus" cx="180" cy="214" r="25"/>
+          <path class="ev-croix" d="M171 214h18M180 205v18"/>
+        </svg>
+        <figcaption class="ev-compte" data-fr="2 / 6 forgées aujourd'hui" data-en="2 / 6 forged today">2 / 6 forgées aujourd'hui</figcaption>
       </figure>
     </div>
     <div>
-      <div class="kicker rv" style="color:#8fb6d8" data-fr="La voûte" data-en="The vault">La voûte</div>
-      <h2 class="rv" data-fr="Le + n'ouvre pas un formulaire. Il ouvre le ciel." data-en="The + doesn't open a form. It opens the sky.">Le + n'ouvre pas un formulaire. Il ouvre le ciel.</h2>
-      <p class="lead rv" data-fr="Six constellations, une par compétence, neuf étoiles chacune. Tu as fait quelque chose de vrai ? Forge-le : l'étoile s'allume, et tu restes sous ta constellation pour la regarder briller."
-         data-en="Six constellations, one per skill, nine stars each. Did something real? Forge it: the star lights up, and you stay under your constellation to watch it shine.">Six constellations, une par compétence, neuf étoiles chacune. Tu as fait quelque chose de vrai ? Forge-le : l'étoile s'allume, et tu restes sous ta constellation pour la regarder briller.</p>
+      <div class="kicker rv" style="color:#8fb6d8" data-fr="La forge rapide" data-en="Quick forge">La forge rapide</div>
+      <h2 class="rv" data-fr="Le + n'ouvre pas un formulaire. Il ouvre un éventail de runes." data-en="The + doesn't open a form. It opens a fan of runes.">Le + n'ouvre pas un formulaire. Il ouvre un éventail de runes.</h2>
+      <p class="lead rv" data-fr="Tu as fait quelque chose de vrai ? Appuie sur le + et glisse jusqu'à sa compétence : tes deux gestes les plus pratiqués t'attendent, un toucher et le point est forgé. Autour du +, l'anneau du jour s'allume d'un arc par compétence nourrie — un compte, jamais une série : chaque matin il repart éteint, sans rien te reprendre."
+         data-en="Did something real? Press the + and slide to its skill: your two most practised moves are waiting, one tap and the point is forged. Around the +, the ring of the day lights an arc for each skill you fed — a count, never a streak: every morning it starts dark again, taking nothing from you.">Tu as fait quelque chose de vrai ? Appuie sur le + et glisse jusqu'à sa compétence : tes deux gestes les plus pratiqués t'attendent, un toucher et le point est forgé. Autour du +, l'anneau du jour s'allume d'un arc par compétence nourrie — un compte, jamais une série : chaque matin il repart éteint, sans rien te reprendre.</p>
+      <p class="lead rv" data-fr="Et sur la page de ton guerrier, la voûte : six constellations de neuf étoiles, qui s'allument au fil de tes points."
+         data-en="And on your warrior's page, the vault: six constellations of nine stars, lighting up point by point.">Et sur la page de ton guerrier, la voûte : six constellations de neuf étoiles, qui s'allument au fil de tes points.</p>
       <svg class="constellation rv" id="constellation" viewBox="0 0 340 170" aria-hidden="true">
         <line x1="40" y1="120" x2="96" y2="70"/><line x1="96" y1="70" x2="150" y2="96"/><line x1="150" y1="96" x2="206" y2="40"/>
         <line x1="206" y1="40" x2="262" y2="62"/><line x1="262" y1="62" x2="300" y2="128"/><line x1="150" y1="96" x2="176" y2="150"/>
@@ -628,6 +696,8 @@
       <div class="gardiens">
         <div class="gardien rv"><img src="/traversee/nidhogg.webp" alt="" loading="lazy"><div><b>Níðhöggr</b><span data-fr="ronge les racines · Niflheim" data-en="gnaws at the roots · Niflheim">ronge les racines · Niflheim</span></div></div>
         <div class="gardien rv" style="--i:1"><img src="/traversee/surtr.webp" alt="" loading="lazy"><div><b>Surtr</b><span data-fr="garde le feu · Muspelheim" data-en="guards the fire · Muspelheim">garde le feu · Muspelheim</span></div></div>
+        <div class="gardien rv" style="--i:2"><img src="/traversee/jormungandr.webp" alt="" loading="lazy" style="object-position:50% 30%"><div><b>Jörmungandr</b><span data-fr="promet « demain » · Midgard" data-en="promises “tomorrow” · Midgard">promet « demain » · Midgard</span></div></div>
+        <div class="gardien rv" style="--i:3"><img src="/traversee/eitri.webp" alt="" loading="lazy"><div><b data-fr="Eitri corrompu" data-en="Eitri the Corrupted">Eitri corrompu</b><span data-fr="refond tout · Nidavellir" data-en="reforges everything · Nidavellir">refond tout · Nidavellir</span></div></div>
       </div>
     </div>
   </div>
@@ -749,18 +819,21 @@
     <div class="eternelle rv">
       <div>
         <div class="kicker" data-fr="Forge Éternelle" data-en="Eternal Forge">Forge Éternelle</div>
-        <h2 data-fr="Le cœur est gratuit. Entier." data-en="The core is free. All of it.">Le cœur est gratuit. Entier.</h2>
-        <p class="lead" data-fr="Ton monde, ton guerrier, la voûte, la Traversée, les disciplines, Brokkr, tes alliés : tout se joue sans payer. La Forge Éternelle est là pour qui veut soutenir la forge — et y gagner du confort et du prestige."
-           data-en="Your world, your warrior, the vault, the Crossing, the disciplines, Brokkr, your allies: all of it plays for free. The Eternal Forge is there for those who want to support the forge — and gain comfort and prestige.">Ton monde, ton guerrier, la voûte, la Traversée, les disciplines, Brokkr, tes alliés : tout se joue sans payer. La Forge Éternelle est là pour qui veut soutenir la forge — et y gagner du confort et du prestige.</p>
+        <h2 data-fr="Le premier monde est gratuit. Entier." data-en="The first world is free. All of it.">Le premier monde est gratuit. Entier.</h2>
+        <p class="lead" data-fr="Ton monde, ton guerrier, la voûte, les disciplines, Brokkr, tes alliés, et la traversée entière de Niflheim, gardien compris : tout cela se joue sans payer. La Forge Éternelle ouvre la suite de la Traversée — et y ajoute du confort et du prestige, jamais de puissance : ni or ni bonus d'XP. Un monde atteint reste à toi, même si l'abonnement prend fin."
+           data-en="Your world, your warrior, the vault, the disciplines, Brokkr, your allies, and the entire crossing of Niflheim, guardian included: all of it plays for free. The Eternal Forge opens the rest of the Crossing — and adds comfort and prestige, never power: no gold, no XP boost. A world you've reached stays yours, even if the subscription ends.">Ton monde, ton guerrier, la voûte, les disciplines, Brokkr, tes alliés, et la traversée entière de Niflheim, gardien compris : tout cela se joue sans payer. La Forge Éternelle ouvre la suite de la Traversée — et y ajoute du confort et du prestige, jamais de puissance : ni or ni bonus d'XP. Un monde atteint reste à toi, même si l'abonnement prend fin.</p>
         <p class="petit" data-fr="Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store." data-en="Monthly or yearly, auto-renewing, cancel any time from your App Store account.">Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store.</p>
       </div>
       <ul class="avantages">
+        <li data-fr="La Traversée au-delà de Niflheim, monde après monde jusqu'à Asgard" data-en="The Crossing beyond Niflheim, world after world up to Asgard">La Traversée au-delà de Niflheim, monde après monde jusqu'à Asgard</li>
         <li data-fr="Tes séances comptent toutes seules, synchronisées avec Apple Santé" data-en="Your workouts count on their own, synced with Apple Health">Tes séances comptent toutes seules, synchronisées avec Apple Santé</li>
-        <li data-fr="La Larme des Nornes chaque mois : chaque point de compétence compte double 24 h" data-en="The Norns' Tear every month: every skill point counts double for 24 h">La Larme des Nornes chaque mois : chaque point de compétence compte double 24 h</li>
-        <li data-fr="Une recharge de quête gratuite chaque jour" data-en="One free quest reroll every day">Une recharge de quête gratuite chaque jour</li>
-        <li data-fr="Un sac d'apothicaire jusqu'à six fioles" data-en="An apothecary bag of up to six vials">Un sac d'apothicaire jusqu'à six fioles</li>
+        <li data-fr="Les six personnages de Brokkr, du Mentor au Silencieux" data-en="Brokkr's six characters, from the Mentor to the Silent One">Les six personnages de Brokkr, du Mentor au Silencieux</li>
+        <li data-fr="Thèmes de couleur et mode clair" data-en="Color themes and light mode">Thèmes de couleur et mode clair</li>
+        <li data-fr="L'accueil figé sur ton moment et ta saison" data-en="Your home screen set to your moment and season">L'accueil figé sur ton moment et ta saison</li>
+        <li data-fr="Une recharge de quête gratuite chaque jour" data-en="One free quest refresh every day">Une recharge de quête gratuite chaque jour</li>
         <li data-fr="Les paliers de prestige Mythique et Divin" data-en="The Mythic and Divine prestige tiers">Les paliers de prestige Mythique et Divin</li>
         <li data-fr="Un écusson au classement et un titre réservé" data-en="A crest on the leaderboard and a reserved title">Un écusson au classement et un titre réservé</li>
+        <li data-fr="La Refonte : recommencer à zéro sans rien perdre" data-en="The Reforging: start over without losing anything">La Refonte : recommencer à zéro sans rien perdre</li>
       </ul>
     </div>
   </div>
@@ -964,8 +1037,8 @@
   const MONDES = [
     { id:'niflheim',   c:'#8494a6', n:1,  traverse:true,  fr:['Niflheim','la brume',"Tu es ici parce que tu as commencé — c'est déjà plus que la plupart."], en:['Niflheim','the mist','You stand here because you began — which is already more than most.'] },
     { id:'muspelheim', c:'#e0602a', n:10, traverse:true,  fr:['Muspelheim',"le feu s'allume","Ta forge est allumée. Elle ne demande plus qu'à être nourrie."], en:['Muspelheim','the fire is lit','Your forge is lit. Now it only asks to be fed.'] },
-    { id:'midgard',    c:'#c4b49a', n:15, fr:['Midgard','ton monde',"Tu ne rêves plus ta vie, tu t'y présentes."], en:['Midgard','your world','You no longer dream your life, you show up for it.'] },
-    { id:'nidavellir', c:'#c08040', n:22, fr:['Nidavellir','la forge naine',"Ici on n'admire pas l'ouvrage : on apprend à le faire."], en:['Nidavellir','the dwarven forge',"Here you don't admire the work — you learn to do it."] },
+    { id:'midgard',    c:'#c4b49a', n:15, traverse:true, fr:['Midgard','ton monde',"Tu ne rêves plus ta vie, tu t'y présentes."], en:['Midgard','your world','You no longer dream your life, you show up for it.'] },
+    { id:'nidavellir', c:'#c08040', n:22, traverse:true, fr:['Nidavellir','la forge naine',"Ici on n'admire pas l'ouvrage : on apprend à le faire."], en:['Nidavellir','the dwarven forge',"Here you don't admire the work — you learn to do it."] },
     { id:'jotunheim',  c:'#a08a6c', n:27, fr:['Jötunheim','les géants','Tu as dépassé le confort. Ce qui te reste à franchir a une taille.'], en:['Jötunheim','the giants','You have outgrown comfort. What remains before you has a size.'] },
     { id:'helheim',    c:'#8a72a6', n:32, fr:['Helheim','la traversée',"Personne ne t'y applaudira. C'est là que se décide qui continue."], en:['Helheim','the crossing',"No one will applaud you here. This is where it's decided who continues."] },
     { id:'vanaheim',   c:'#6a9a8a', n:38, fr:['Vanaheim','la sagesse','La force ne te suffit plus : tu cherches à comprendre.'], en:['Vanaheim','wisdom','Strength no longer suffices — you seek to understand.'] },
