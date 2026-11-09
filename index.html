@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Forge &amp; Quêtes — Le personnage que tu forges, c'est toi</title>
-<meta name="description" content="Un jeu de rôle nordique dont la seule monnaie est ta vie. Chaque effort réel — sport, lecture, méditation, ce que tu repousses — fait monter ton guerrier, allume ton ciel et t'ouvre les Neuf Mondes.">
+<meta name="description" content="Forge &amp; Quêtes est un jeu de rôle nordique pour iOS qui transforme tes efforts réels — sport, lecture, méditation, tâches repoussées — en progression : ton guerrier gagne des niveaux et tu traverses les Neuf Mondes.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Forge & Quêtes">
 <meta property="og:title" content="Le personnage que tu forges, c'est toi.">
-<meta property="og:description" content="Chaque effort réel fait monter ton guerrier, allume ton ciel et t'ouvre les Neuf Mondes. Un jeu de rôle nordique dont la seule monnaie est ta vie.">
+<meta property="og:description" content="Tes efforts réels font progresser ton guerrier et t'ouvrent les Neuf Mondes. Un jeu de rôle nordique pour iOS, où l'on progresse en vivant.">
 <meta property="og:url" content="https://forgequests.com/">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:locale:alternate" content="en_CA">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="Forge &amp; Quêtes — Le personnage que tu forges, c'est toi.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Le personnage que tu forges, c'est toi.">
-<meta name="twitter:description" content="Chaque effort réel fait monter ton guerrier, allume ton ciel et t'ouvre les Neuf Mondes.">
+<meta name="twitter:description" content="Tes efforts réels font progresser ton guerrier et t'ouvrent les Neuf Mondes.">
 <meta name="twitter:image" content="https://forgequests.com/og-image.png">
 <link rel="canonical" href="https://forgequests.com/">
 <meta name="theme-color" content="#141414">
@@ -235,9 +235,6 @@
   .comp p{font-size:15px;color:var(--texte-doux);line-height:1.45}
   .comp::after{content:attr(data-rune);position:absolute;right:-6px;bottom:-26px;font-family:var(--f-rune);font-size:110px;color:var(--c);opacity:.07;line-height:1}
   @media (max-width:640px){ .competences{grid-template-columns:repeat(2,1fr)} }
-  .tiers{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-family:var(--f-titre);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
-  .tiers span{display:flex;align-items:center;gap:8px}
-  .tiers span::before{content:"";width:6px;height:6px;transform:rotate(45deg);background:currentColor}
   .revele{margin-top:34px;padding:22px 24px;border-radius:var(--rayon);border:1px solid var(--filet);background:linear-gradient(135deg,rgba(255,140,66,.07),transparent 60%)}
   .revele h3{font-size:20px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
   .revele p{color:var(--texte-doux);font-size:16.5px}
@@ -258,30 +255,6 @@
   .constellation.vu line{stroke-dashoffset:0}
   .constellation.vu circle.lit{opacity:1;filter:drop-shadow(0 0 6px #9be8b4)}
 
-  /* L'éventail des runes (ui/EventailRunes) : les six runes en arc au-dessus du +, en cascade
-     depuis lui ; la compétence choisie s'allume, ses gestes se posent au-dessus du disque. */
-  .eventail{width:min(380px,88vw);display:flex;flex-direction:column;align-items:center}
-  .eventail svg{width:100%;height:auto;-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent);mask-image:linear-gradient(to bottom,#000 72%,transparent)}
-  .ev-tete{text-align:center;margin-bottom:6px;opacity:0;transform:translateY(8px);transition:opacity .5s var(--entree) 1.05s,transform .5s var(--entree) 1.05s}
-  .ev-point{font-family:var(--f-titre);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#8cc79c}
-  .ev-gestes{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
-  .ev-gestes span{padding:8px 15px;border-radius:999px;border:1px solid rgba(106,168,122,.5);background:rgba(106,168,122,.12);font-size:14.5px;font-weight:500;color:#e6efe7}
-  .ev-gestes span:last-child{border-color:var(--filet-fort);background:transparent;color:var(--texte-doux)}
-  .ev-disque{stroke:rgba(255,140,66,.32);stroke-width:1}
-  .ev-rune{transform-box:fill-box;transform-origin:center;opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25);
-      transition:transform .62s var(--entree) calc(150ms + var(--i) * 58ms),opacity .45s ease calc(150ms + var(--i) * 58ms)}
-  .ev-rune circle{fill:#171412;stroke:var(--c);stroke-width:1.5;transition:fill .5s ease 1s,filter .5s ease 1s}
-  .ev-rune text{font-family:var(--f-rune);font-size:20px;fill:var(--c);text-anchor:middle}
-  .vu .ev-rune{opacity:.42;transform:none}
-  .vu .ev-rune.choisie{opacity:1}
-  .vu .ev-rune.choisie circle{fill:#1f2b22;filter:drop-shadow(0 0 7px var(--c))}
-  .ev-secteur{fill:none;stroke:rgba(255,255,255,.1);stroke-width:4;stroke-linecap:round;transition:stroke .5s ease 1.3s}
-  .vu .ev-secteur.lit{stroke:var(--c)}
-  .ev-plus{fill:#1f1a16;stroke:var(--braise);stroke-width:1.5}
-  .ev-croix{stroke:var(--braise);stroke-width:2.4;stroke-linecap:round}
-  .ev-compte{font-family:var(--f-titre);font-weight:700;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--texte-faible);margin-top:6px}
-  .vu .ev-tete{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){ .ev-rune{transform:none;transition:opacity .4s} .ev-tete{transform:none} }
 
   /* ─── La Traversée ─── */
   .traversee{padding-bottom:0}
@@ -486,8 +459,8 @@
   <div class="cadre heros-texte">
     <div class="kicker entre" style="--i:0" data-fr="Jeu de rôle nordique · iOS" data-en="Norse role-playing game · iOS">Jeu de rôle nordique · iOS</div>
     <h1 class="entre" style="--i:1"><span data-fr="Le personnage que tu forges," data-en="The character you forge">Le personnage que tu forges,</span> <em data-fr="c'est toi." data-en="is you.">c'est toi.</em></h1>
-    <p class="lead entre" style="--i:2" data-fr="Une séance, un chapitre, dix minutes de silence : chaque effort réel fait monter ton guerrier, allume ton ciel et t'ouvre les Neuf Mondes. Un jeu de rôle dont la seule monnaie est ta vie."
-       data-en="A workout, a chapter, ten minutes of silence: every real effort levels up your warrior, lights up your sky and opens the Nine Worlds to you. A role-playing game whose only currency is your life.">Une séance, un chapitre, dix minutes de silence : chaque effort réel fait monter ton guerrier, allume ton ciel et t'ouvre les Neuf Mondes. Un jeu de rôle dont la seule monnaie est ta vie.</p>
+    <p class="lead entre" style="--i:2" data-fr="Une séance d'entraînement, un chapitre lu, dix minutes de méditation : chaque effort réel fait progresser ton guerrier et t'ouvre la route des Neuf Mondes. Dans ce jeu de rôle, rien ne se gagne sans agir dans la vraie vie."
+       data-en="A workout, a chapter read, ten minutes of meditation: every real effort makes your warrior progress and opens the road through the Nine Worlds. In this role-playing game, nothing is earned without acting in real life.">Une séance d'entraînement, un chapitre lu, dix minutes de méditation : chaque effort réel fait progresser ton guerrier et t'ouvre la route des Neuf Mondes. Dans ce jeu de rôle, rien ne se gagne sans agir dans la vraie vie.</p>
     <div class="ctas entre" style="--i:3">
       <a class="btn btn-braise js-dl js-beta" href="https://testflight.apple.com/join/tvz827Be">
         <span data-fr="Joindre la bêta iOS" data-en="Join the iOS beta">Joindre la bêta iOS</span>
@@ -520,31 +493,42 @@
 <section id="accueil">
   <div class="cadre scene">
     <div class="scene-tel rv">
-      <figure class="tel">
-        <div class="tel-ecran" style="--fond:url(/monde/ete/aube.webp)">
-          <img src="/captures/accueil-fr.webp" data-capture-en="/captures/accueil-en.webp" loading="lazy" onerror="this.remove()"
-               alt="L'accueil de l'app : le monde au lever du soleil, le niveau, le mot de Brokkr, la prochaine action et les quêtes du jour"
-               data-fr-alt="L'accueil de l'app : le monde au lever du soleil, le niveau, le mot de Brokkr, la prochaine action et les quêtes du jour"
-               data-en-alt="The app's home: the world in daylight, the level, Brokkr's word, the next action and today's quests">
-          <div class="tel-ile"></div>
-          <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
-        </div>
-      </figure>
+      <div class="duo">
+        <figure class="tel">
+          <div class="tel-ecran" style="--fond:url(/monde/automne/aube.webp)">
+            <img src="/captures/accueil-aube.webp" loading="lazy" onerror="this.remove()"
+                 alt="L'accueil à l'aube : le monde sous la lumière du matin, le mot de Brokkr, la prochaine action et les quêtes du jour"
+                 data-fr-alt="L'accueil à l'aube : le monde sous la lumière du matin, le mot de Brokkr, la prochaine action et les quêtes du jour"
+                 data-en-alt="Home at dawn: the world in morning light, Brokkr's word, the next action and today's quests">
+            <div class="tel-ile"></div>
+            <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
+          </div>
+        </figure>
+        <figure class="tel">
+          <div class="tel-ecran" style="--fond:url(/monde/automne/jour.webp)">
+            <img src="/captures/accueil-jour.webp" data-capture-en="/captures/accueil-jour-en.webp" loading="lazy" onerror="this.remove()"
+                 alt="Le même accueil en plein jour : la scène change de lumière au fil de la journée"
+                 data-fr-alt="Le même accueil en plein jour : la scène change de lumière au fil de la journée"
+                 data-en-alt="The same home in daylight: the scene changes light as the day goes on">
+            <div class="tel-ile"></div>
+            <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
+          </div>
+        </figure>
+      </div>
     </div>
     <div>
       <div class="kicker rv" data-fr="L'accueil" data-en="Home">L'accueil</div>
-      <h2 class="rv" data-fr="Un monde à toi, qui s'éveille avec toi." data-en="A world of your own, that wakes with you.">Un monde à toi, qui s'éveille avec toi.</h2>
-      <p class="lead rv" data-fr="Ton royaume, bord à bord, sous la lumière de ton heure et de ta saison : seize visages du même fjord. En dessous, ce qui compte aujourd'hui — et rien d'autre."
-         data-en="Your realm, edge to edge, under the light of your hour and your season: sixteen faces of the same fjord. Beneath it, what matters today — and nothing else.">Ton royaume, bord à bord, sous la lumière de ton heure et de ta saison : seize visages du même fjord. En dessous, ce qui compte aujourd'hui — et rien d'autre.</p>
+      <h2 class="rv" data-fr="Ton monde, à l'heure et à la saison où tu l'ouvres." data-en="Your world, in the light of the hour and season you open it.">Ton monde, à l'heure et à la saison où tu l'ouvres.</h2>
+      <p class="lead rv" data-fr="L'accueil s'ouvre sur ton monde, peint sous la lumière du moment — aube, jour, crépuscule ou nuit — au fil des quatre saisons. Juste en dessous, l'essentiel de ta journée, sans rien de superflu." data-en="Home opens on your world, painted in the light of the moment — dawn, day, dusk or night — through all four seasons. Just below, the essentials of your day, and nothing more.">L'accueil s'ouvre sur ton monde, peint sous la lumière du moment — aube, jour, crépuscule ou nuit — au fil des quatre saisons. Juste en dessous, l'essentiel de ta journée, sans rien de superflu.</p>
       <ul class="vocab">
         <li class="rv"><i>I</i><div><h3 data-fr="Le monde" data-en="The world">Le monde</h3>
-          <p data-fr="Ton royaume, ton niveau, ton or, ton XP. Touche l'image : ton guerrier t'y attend." data-en="Your realm, your level, your gold, your XP. Touch the image: your warrior awaits.">Ton royaume, ton niveau, ton or, ton XP. Touche l'image : ton guerrier t'y attend.</p></div></li>
+          <p data-fr="Ton niveau, ton titre et ton or. Touche l'image pour voir ton XP totale, ou ton niveau pour ouvrir la page de ton guerrier." data-en="Your level, your title and your gold. Tap the image to see your total XP, or your level to open your warrior's page.">Ton niveau, ton titre et ton or. Touche l'image pour voir ton XP totale, ou ton niveau pour ouvrir la page de ton guerrier.</p></div></li>
         <li class="rv"><i>II</i><div><h3 data-fr="Le mot de Brokkr" data-en="Brokkr's word">Le mot de Brokkr</h3>
-          <p data-fr="Ton forgeron-mentor parle de ce que tu as fait hier, et à l'heure qu'il est : le soir, il ne pousse plus." data-en="Your blacksmith-mentor talks about what you did yesterday, and at the hour it is: in the evening, he stops pushing.">Ton forgeron-mentor parle de ce que tu as fait hier, et à l'heure qu'il est : le soir, il ne pousse plus.</p></div></li>
+          <p data-fr="Ton mentor commente ce que tu as réellement fait, en tenant compte de l'heure : le soir, il ne te pousse plus." data-en="Your mentor comments on what you've actually done, and keeps the time of day in mind: in the evening, he stops pushing.">Ton mentor commente ce que tu as réellement fait, en tenant compte de l'heure : le soir, il ne te pousse plus.</p></div></li>
         <li class="rv"><i>III</i><div><h3 data-fr="Ta prochaine action" data-en="Your next action">Ta prochaine action</h3>
-          <p data-fr="Une seule, choisie dans tes propres données, avec sa raison en clair. Les autres suivent d'un balayage." data-en="Just one, chosen from your own data, with its reason in plain words. The others follow with a swipe.">Une seule, choisie dans tes propres données, avec sa raison en clair. Les autres suivent d'un balayage.</p></div></li>
+          <p data-fr="Une suggestion tirée de tes propres données, avec sa raison en clair. D'autres idées suivent d'un simple balayage." data-en="One suggestion drawn from your own data, with its reason spelled out. More ideas follow with a swipe.">Une suggestion tirée de tes propres données, avec sa raison en clair. D'autres idées suivent d'un simple balayage.</p></div></li>
         <li class="rv"><i>IV</i><div><h3 data-fr="Les quêtes du jour" data-en="Today's quests">Les quêtes du jour</h3>
-          <p data-fr="Deux, choisies pour toi et calibrées sur ton niveau dans chaque compétence — et, parfois, un défi rare qui ne revient pas." data-en="Two, chosen for you and calibrated to your level in each skill — and, sometimes, a rare challenge that won't come back.">Deux, choisies pour toi et calibrées sur ton niveau dans chaque compétence — et, parfois, un défi rare qui ne revient pas.</p></div></li>
+          <p data-fr="Deux quêtes par jour, dosées selon ta progression dans chaque compétence. De temps à autre s'y glisse un défi rare, ou une quête annexe tirée de la vie de tous les jours." data-en="Two quests a day, sized to your progress in each skill. Now and then a rare challenge slips in, or a side quest drawn from everyday life.">Deux quêtes par jour, dosées selon ta progression dans chaque compétence. De temps à autre s'y glisse un défi rare, ou une quête annexe tirée de la vie de tous les jours.</p></div></li>
       </ul>
       <div class="geste rv" id="geste" role="group" aria-roledescription="carrousel" aria-label="Exemples de prochaines actions" data-fr-aria="Exemples de prochaines actions" data-en-aria="Examples of next actions">
         <div class="geste-icone" id="gIcone" aria-hidden="true">ᚢ</div>
@@ -563,44 +547,56 @@
   <div class="guerrier-fond" aria-hidden="true"><img id="guerrierFond" alt="" loading="lazy"></div>
   <div class="cadre scene inverse">
     <div class="scene-tel rv">
-      <figure class="tel">
-        <div class="tel-ecran" style="--fond:url(/guerrier/nuit.webp)">
-          <img src="/captures/guerrier.webp" loading="lazy" onerror="this.remove()"
-               alt="La page du guerrier : le médaillon du niveau, le nom, le titre et les six compétences en constellations"
-               data-fr-alt="La page du guerrier : le médaillon du niveau, le nom, le titre et les six compétences en constellations"
-               data-en-alt="The warrior page: the level medallion, the name, the title and the six skills as constellations">
-          <div class="tel-ile"></div>
-          <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
-        </div>
-      </figure>
+      <div class="duo">
+        <figure class="tel">
+          <div class="tel-ecran" style="--fond:url(/guerrier/nuit.webp)">
+            <img src="/captures/guerrier.webp" loading="lazy" onerror="this.remove()"
+                 alt="La page du guerrier : le niveau, le nom, le titre et les six compétences, chacune avec ses points vers la prochaine étoile"
+                 data-fr-alt="La page du guerrier : le niveau, le nom, le titre et les six compétences, chacune avec ses points vers la prochaine étoile"
+                 data-en-alt="The warrior page: level, name, title and the six skills, each with its points toward the next star">
+            <div class="tel-ile"></div>
+            <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
+          </div>
+        </figure>
+        <figure class="tel">
+          <div class="tel-ecran" style="--fond:url(/guerrier/nuit.webp)">
+            <img src="/captures/fiche.webp" loading="lazy" onerror="this.remove()"
+                 alt="La fiche : fréquence cardiaque au repos, pas du jour, VO₂ max, âge, poids, taille et le portrait des six compétences"
+                 data-fr-alt="La fiche : fréquence cardiaque au repos, pas du jour, VO₂ max, âge, poids, taille et le portrait des six compétences"
+                 data-en-alt="The profile: resting heart rate, today's steps, VO₂ max, age, weight, height and the portrait of the six skills">
+            <div class="tel-ile"></div>
+            <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
+          </div>
+        </figure>
+      </div>
     </div>
     <div>
       <div class="kicker rv" data-fr="Le guerrier" data-en="The warrior">Le guerrier</div>
       <h2 class="rv" data-fr="Six compétences. Une seule vie." data-en="Six skills. One life.">Six compétences. Une seule vie.</h2>
-      <p class="lead rv" data-fr="Ton guerrier n'a pas de points à dépenser : il a ce que tu as fait. Chaque geste réel ajoute un point à sa compétence, et chacune monte de Novice à Maître."
-         data-en="Your warrior has no points to spend: it has what you've done. Every real action adds a point to its skill, and each one climbs from Novice to Master.">Ton guerrier n'a pas de points à dépenser : il a ce que tu as fait. Chaque geste réel ajoute un point à sa compétence, et chacune monte de Novice à Maître.</p>
+      <p class="lead rv" data-fr="Ton guerrier n'a pas de points à répartir : il reflète ce que tu as fait. Chaque action réelle ajoute un point à la compétence concernée, et chaque palier franchi allume une nouvelle étoile dans sa constellation." data-en="Your warrior has no points to allocate: it reflects what you've done. Each real action adds a point to the matching skill, and each threshold you reach lights a new star in its constellation.">Ton guerrier n'a pas de points à répartir : il reflète ce que tu as fait. Chaque action réelle ajoute un point à la compétence concernée, et chaque palier franchi allume une nouvelle étoile dans sa constellation.</p>
       <div class="competences">
         <div class="comp rv" style="--c:#c06a40;--i:0" data-rune="ᚢ"><div class="comp-rune" aria-hidden="true">ᚢ</div><h3 data-fr="Force" data-en="Strength">Force</h3><small>Uruz</small>
-          <p data-fr="Une séance de force, même courte." data-en="A strength session, even a short one.">Une séance de force, même courte.</p></div>
+          <p data-fr="Une séance de musculation, même courte." data-en="A strength session, even a short one.">Une séance de musculation, même courte.</p></div>
         <div class="comp rv" style="--c:#6aa87a;--i:1" data-rune="ᛖ"><div class="comp-rune" aria-hidden="true">ᛖ</div><h3>Endurance</h3><small>Ehwaz</small>
-          <p data-fr="Une sortie à ton rythme : marche, course, vélo." data-en="An outing at your pace: walk, run, ride.">Une sortie à ton rythme : marche, course, vélo.</p></div>
+          <p data-fr="Une sortie à ton rythme : marche, course ou vélo." data-en="An outing at your own pace: walking, running or cycling.">Une sortie à ton rythme : marche, course ou vélo.</p></div>
         <div class="comp rv" style="--c:#7a9abf;--i:2" data-rune="ᛗ"><div class="comp-rune" aria-hidden="true">ᛗ</div><h3>Intelligence</h3><small>Mannaz</small>
-          <p data-fr="Des pages lues, une chose apprise." data-en="Pages read, one thing learned.">Des pages lues, une chose apprise.</p></div>
+          <p data-fr="Lire, étudier, apprendre quelque chose de nouveau." data-en="Reading, studying, learning something new.">Lire, étudier, apprendre quelque chose de nouveau.</p></div>
         <div class="comp rv" style="--c:#9a80bd;--i:3" data-rune="ᚨ"><div class="comp-rune" aria-hidden="true">ᚨ</div><h3 data-fr="Sagesse" data-en="Wisdom">Sagesse</h3><small>Ansuz</small>
-          <p data-fr="De la méditation, du silence sans écran." data-en="Meditation, silence with no screen.">De la méditation, du silence sans écran.</p></div>
+          <p data-fr="Méditer, ou s'accorder un moment de calme sans écran." data-en="Meditating, or taking a quiet moment away from screens.">Méditer, ou s'accorder un moment de calme sans écran.</p></div>
         <div class="comp rv" style="--c:#c88a4c;--i:4" data-rune="ᚦ"><div class="comp-rune" aria-hidden="true">ᚦ</div><h3 data-fr="Persévérance" data-en="Perseverance">Persévérance</h3><small>Thurisaz</small>
-          <p data-fr="La tâche que tu repousses, enfin faite." data-en="The task you keep putting off, finally done.">La tâche que tu repousses, enfin faite.</p></div>
+          <p data-fr="Venir à bout de la tâche que tu repoussais." data-en="Finally getting through the task you kept putting off.">Venir à bout de la tâche que tu repoussais.</p></div>
         <div class="comp rv" style="--c:#c4a248;--i:5" data-rune="ᛒ"><div class="comp-rune" aria-hidden="true">ᛒ</div><h3 data-fr="Dextérité" data-en="Dexterity">Dextérité</h3><small>Berkano</small>
-          <p data-fr="Ton art, un travail de tes mains." data-en="Your craft, the work of your hands.">Ton art, un travail de tes mains.</p></div>
-      </div>
-      <div class="tiers rv" aria-label="Paliers">
-        <span style="color:#8a8a8a">Novice</span><span style="color:#c4b49a" data-fr="Apprenti" data-en="Apprentice">Apprenti</span><span style="color:#d4562a" data-fr="Forgeron" data-en="Blacksmith">Forgeron</span><span style="color:#a060ff" data-fr="Maître" data-en="Master">Maître</span>
+          <p data-fr="Pratiquer ton art ou un travail manuel." data-en="Practising your craft or working with your hands.">Pratiquer ton art ou un travail manuel.</p></div>
       </div>
       <div class="revele rv">
         <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff8c42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 4.5 4 8.5a4 4 0 0 1-8 0c0-1.5.6-2.6 1.5-3.5C9.8 9 11 9 11 7c0-2 1-4 1-5Z"/><path d="M8 21h8"/></svg>
-          <span data-fr="Le guerrier révèle" data-en="The warrior reveals">Le guerrier révèle</span></h3>
-        <p data-fr="L'accueil ne fait pas la fête à ta place. Ce que tu gagnes y attend, discret. C'est en ouvrant ton guerrier que les gains tombent compétence par compétence, que l'anneau runique s'embrase et que ton niveau change sous tes yeux."
-           data-en="Home doesn't celebrate for you. What you earn waits there, quietly. It's when you open your warrior that the gains fall skill by skill, the runic ring catches fire and your level changes before your eyes.">L'accueil ne fait pas la fête à ta place. Ce que tu gagnes y attend, discret. C'est en ouvrant ton guerrier que les gains tombent compétence par compétence, que l'anneau runique s'embrase et que ton niveau change sous tes yeux.</p>
+          <span data-fr="Tes gains t'attendent" data-en="Your gains are waiting">Tes gains t'attendent</span></h3>
+        <p data-fr="L'accueil reste sobre : ce que tu gagnes y est simplement signalé. C'est en ouvrant la page de ton guerrier que les points tombent, compétence par compétence, que l'anneau runique s'embrase et que ton niveau augmente sous tes yeux." data-en="Home stays understated: what you earn is simply flagged there. It's when you open your warrior's page that the points land, skill by skill, the runic ring catches fire and your level rises before your eyes.">L'accueil reste sobre : ce que tu gagnes y est simplement signalé. C'est en ouvrant la page de ton guerrier que les points tombent, compétence par compétence, que l'anneau runique s'embrase et que ton niveau augmente sous tes yeux.</p>
+      </div>
+      <div class="revele rv">
+        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e05a6a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.7 0L12 6.7l-1.1-1.1a5.4 5.4 0 0 0-7.7 7.7L12 22l8.8-8.7a5.4 5.4 0 0 0 0-7.7Z"/><path d="M3.5 12h4l2-3 3 6 2-3h6"/></svg>
+          <span data-fr="La fiche : ta vraie vie" data-en="The profile: your real life">La fiche : ta vraie vie</span></h3>
+        <p data-fr="D'un glissement, la page voisine passe du jeu à la réalité : fréquence cardiaque au repos, pas du jour et VO₂ max lus dans Apple Santé si tu l'autorises, puis le portrait de tes six compétences et le bilan de ce que tu as accompli. Ces données restent privées." data-en="One swipe takes the next page from the game to reality: resting heart rate, today's steps and VO₂ max, read from Apple Health if you allow it, then a portrait of your six skills and a record of what you've achieved. This data stays private.">D'un glissement, la page voisine passe du jeu à la réalité : fréquence cardiaque au repos, pas du jour et VO₂ max lus dans Apple Santé si tu l'autorises, puis le portrait de tes six compétences et le bilan de ce que tu as accompli. Ces données restent privées.</p>
       </div>
     </div>
   </div>
@@ -610,29 +606,22 @@
 <section id="voute" class="voute">
   <div class="cadre scene">
     <div class="scene-tel rv">
-      <figure class="eventail" id="eventail" aria-hidden="true">
-        <div class="ev-tete">
-          <span class="ev-point" data-fr="+1 point d'Endurance" data-en="+1 Endurance point">+1 point d'Endurance</span>
-          <div class="ev-gestes"><span data-fr="Course" data-en="Run">Course</span><span data-fr="Marche" data-en="Walk">Marche</span><span data-fr="Autre…" data-en="Other…">Autre…</span></div>
-        </div>
-        <svg viewBox="0 0 360 250">
-          <defs><radialGradient id="evDisque" cx="50%" cy="85%" r="70%"><stop offset="0" stop-color="#3a2618"/><stop offset=".55" stop-color="#1e1814"/><stop offset="1" stop-color="#151311"/></radialGradient></defs>
-          <circle class="ev-disque" cx="180" cy="214" r="167" fill="url(#evDisque)"/>
-          <g transform="translate(53.2 196.2)"><g class="ev-rune" style="--c:#c06a40;--i:0;--dx:127px;--dy:18px"><circle r="21"/><text dy="7">ᚢ</text></g></g><g transform="translate(83.1 130.4)"><g class="ev-rune" style="--c:#7a9abf;--i:1;--dx:97px;--dy:84px"><circle r="21"/><text dy="7">ᛗ</text></g></g><g transform="translate(143.9 91.2)"><g class="ev-rune" style="--c:#9a80bd;--i:2;--dx:36px;--dy:123px"><circle r="21"/><text dy="7">ᚨ</text></g></g><g transform="translate(216.1 91.2)"><g class="ev-rune choisie" style="--c:#6aa87a;--i:3;--dx:-36px;--dy:123px"><circle r="21"/><text dy="7">ᛖ</text></g></g><g transform="translate(276.9 130.4)"><g class="ev-rune" style="--c:#c88a4c;--i:4;--dx:-97px;--dy:84px"><circle r="21"/><text dy="7">ᚦ</text></g></g><g transform="translate(306.8 196.2)"><g class="ev-rune" style="--c:#c4a248;--i:5;--dx:-127px;--dy:18px"><circle r="21"/><text dy="7">ᛒ</text></g></g>
-          <path class="ev-secteur lit" style="--c:#c06a40" d="M151.8 195.0A34 34 0 0 1 177.6 180.1"/><path class="ev-secteur" style="--c:#7a9abf" d="M182.4 180.1A34 34 0 0 1 208.2 195.0"/><path class="ev-secteur" style="--c:#9a80bd" d="M210.6 199.1A34 34 0 0 1 210.6 228.9"/><path class="ev-secteur lit" style="--c:#6aa87a" d="M208.2 233.0A34 34 0 0 1 182.4 247.9"/><path class="ev-secteur" style="--c:#c88a4c" d="M177.6 247.9A34 34 0 0 1 151.8 233.0"/><path class="ev-secteur" style="--c:#c4a248" d="M149.4 228.9A34 34 0 0 1 149.4 199.1"/>
-          <circle class="ev-plus" cx="180" cy="214" r="25"/>
-          <path class="ev-croix" d="M171 214h18M180 205v18"/>
-        </svg>
-        <figcaption class="ev-compte" data-fr="2 / 6 forgées aujourd'hui" data-en="2 / 6 forged today">2 / 6 forgées aujourd'hui</figcaption>
-      </figure>
+      <figure class="tel">
+          <div class="tel-ecran" style="--fond:url(/monde/automne/jour.webp)">
+            <img src="/captures/eventail.webp" loading="lazy" onerror="this.remove()"
+                 alt="L'éventail des runes : les six compétences en arc au-dessus du +, la Sagesse déjà forgée aujourd'hui"
+                 data-fr-alt="L'éventail des runes : les six compétences en arc au-dessus du +, la Sagesse déjà forgée aujourd'hui"
+                 data-en-alt="The fan of runes: the six skills arched above the +, Wisdom already forged today">
+            <div class="tel-ile"></div>
+            <div class="tel-statut" aria-hidden="true">9:41<svg viewBox="0 0 64 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 12 0l-1.3 1.6a8 8 0 0 0-9.4 0Zm2.2 2.8a6.5 6.5 0 0 1 7.6 0l-1.3 1.6a4.4 4.4 0 0 0-5 0ZM36 12l-2-2.4a3 3 0 0 1 4 0Z"/><rect x="46.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="48" y="2" width="11" height="8" rx="1.6"/><rect x="62.5" y="4" width="1.5" height="4" rx=".7" opacity=".5"/></svg></div>
+          </div>
+        </figure>
     </div>
     <div>
       <div class="kicker rv" style="color:#8fb6d8" data-fr="La forge rapide" data-en="Quick forge">La forge rapide</div>
-      <h2 class="rv" data-fr="Le + n'ouvre pas un formulaire. Il ouvre un éventail de runes." data-en="The + doesn't open a form. It opens a fan of runes.">Le + n'ouvre pas un formulaire. Il ouvre un éventail de runes.</h2>
-      <p class="lead rv" data-fr="Tu as fait quelque chose de vrai ? Appuie sur le + et glisse jusqu'à sa compétence : tes deux gestes les plus pratiqués t'attendent, un toucher et le point est forgé. Autour du +, l'anneau du jour s'allume d'un arc par compétence nourrie — un compte, jamais une série : chaque matin il repart éteint, sans rien te reprendre."
-         data-en="Did something real? Press the + and slide to its skill: your two most practised moves are waiting, one tap and the point is forged. Around the +, the ring of the day lights an arc for each skill you fed — a count, never a streak: every morning it starts dark again, taking nothing from you.">Tu as fait quelque chose de vrai ? Appuie sur le + et glisse jusqu'à sa compétence : tes deux gestes les plus pratiqués t'attendent, un toucher et le point est forgé. Autour du +, l'anneau du jour s'allume d'un arc par compétence nourrie — un compte, jamais une série : chaque matin il repart éteint, sans rien te reprendre.</p>
-      <p class="lead rv" data-fr="Et sur la page de ton guerrier, la voûte : six constellations de neuf étoiles, qui s'allument au fil de tes points."
-         data-en="And on your warrior's page, the vault: six constellations of nine stars, lighting up point by point.">Et sur la page de ton guerrier, la voûte : six constellations de neuf étoiles, qui s'allument au fil de tes points.</p>
+      <h2 class="rv" data-fr="Un point en deux touchers." data-en="A point in two taps.">Un point en deux touchers.</h2>
+      <p class="lead rv" data-fr="Tu viens de faire quelque chose de concret ? Touche le + : les six compétences s'ouvrent en éventail. Choisis celle que tu as travaillée, puis l'un de tes gestes habituels, et le point est ajouté." data-en="Just did something concrete? Tap the +: the six skills fan out. Pick the one you worked on, then one of your usual actions, and the point is added.">Tu viens de faire quelque chose de concret ? Touche le + : les six compétences s'ouvrent en éventail. Choisis celle que tu as travaillée, puis l'un de tes gestes habituels, et le point est ajouté.</p>
+      <p class="lead rv" data-fr="Autour du +, l'anneau du jour compte les compétences travaillées aujourd'hui. C'est un simple compteur, pas une série : il repart à zéro chaque matin, sans rien te retirer. Et sur la page de ton guerrier, chaque compétence a sa constellation de neuf étoiles, qui s'allument à mesure que tes points s'accumulent." data-en="Around the +, the ring of the day counts the skills you've worked on today. It's a simple counter, not a streak: it resets every morning without taking anything away. And on your warrior's page, each skill has its own constellation of nine stars, lighting up as your points add up.">Autour du +, l'anneau du jour compte les compétences travaillées aujourd'hui. C'est un simple compteur, pas une série : il repart à zéro chaque matin, sans rien te retirer. Et sur la page de ton guerrier, chaque compétence a sa constellation de neuf étoiles, qui s'allument à mesure que tes points s'accumulent.</p>
       <svg class="constellation rv" id="constellation" viewBox="0 0 340 170" aria-hidden="true">
         <line x1="40" y1="120" x2="96" y2="70"/><line x1="96" y1="70" x2="150" y2="96"/><line x1="150" y1="96" x2="206" y2="40"/>
         <line x1="206" y1="40" x2="262" y2="62"/><line x1="262" y1="62" x2="300" y2="128"/><line x1="150" y1="96" x2="176" y2="150"/>
@@ -641,10 +630,10 @@
         <circle cx="120" cy="22" r="3"/><circle cx="20" cy="40" r="3"/>
       </svg>
       <div class="faits">
-        <div class="fait rv"><b>54</b><span data-fr="étoiles à allumer, six ciels de neuf" data-en="stars to light, six skies of nine">étoiles à allumer, six ciels de neuf</span></div>
-        <div class="fait rv"><b>3 · 6 · 9</b><span data-fr="des paliers d'étoiles qui font fructifier la compétence" data-en="star thresholds that make the skill pay off">des paliers d'étoiles qui font fructifier la compétence</span></div>
-        <div class="fait rv"><b data-fr="Chemins" data-en="Paths">Chemins</b><span data-fr="célestes, qui relient deux constellations" data-en="celestial, linking two constellations">célestes, qui relient deux constellations</span></div>
-        <div class="fait rv"><b data-fr="Légende" data-en="Legend">Légende</b><span data-fr="un titre légendaire à la neuvième étoile" data-en="a legendary title at the ninth star">un titre légendaire à la neuvième étoile</span></div>
+        <div class="fait rv"><b>54</b><span data-fr="étoiles à allumer : six constellations de neuf" data-en="stars to light: six constellations of nine">étoiles à allumer : six constellations de neuf</span></div>
+        <div class="fait rv"><b>3 · 6 · 9</b><span data-fr="des paliers d'étoiles qui augmentent l'XP gagnée dans la compétence" data-en="star thresholds that raise the XP earned in that skill">des paliers d'étoiles qui augmentent l'XP gagnée dans la compétence</span></div>
+        <div class="fait rv"><b data-fr="Chemins" data-en="Paths">Chemins</b><span data-fr="célestes, qui relient deux constellations" data-en="celestial links between two constellations">célestes, qui relient deux constellations</span></div>
+        <div class="fait rv"><b data-fr="Titres" data-en="Titles">Titres</b><span data-fr="à gagner au fil des étoiles, jusqu'au titre légendaire de la neuvième" data-en="earned star by star, up to a legendary title at the ninth">à gagner au fil des étoiles, jusqu'au titre légendaire de la neuvième</span></div>
       </div>
     </div>
   </div>
@@ -679,19 +668,15 @@
     </div>
     <div>
       <div class="kicker rv" style="color:#8fb6d8" data-fr="La Traversée" data-en="The Crossing">La Traversée</div>
-      <h2 class="rv" data-fr="Chaque monde est une expédition. Tu la mènes en vivant." data-en="Every world is an expedition. You lead it by living.">Chaque monde est une expédition. Tu la mènes en vivant.</h2>
-      <p class="lead rv" data-fr="Six runes à éveiller, trois lieux à franchir, un gardien au bout du chemin. Et chaque rune ne s'éveille que d'une seule façon : par une action réelle."
-         data-en="Six runes to awaken, three places to cross, a guardian at the end of the path. And each rune awakens only one way: through a real action.">Six runes à éveiller, trois lieux à franchir, un gardien au bout du chemin. Et chaque rune ne s'éveille que d'une seule façon : par une action réelle.</p>
+      <h2 class="rv" data-fr="Chaque monde est une expédition, menée par tes actions réelles." data-en="Every world is an expedition, driven by your real actions.">Chaque monde est une expédition, menée par tes actions réelles.</h2>
+      <p class="lead rv" data-fr="Dans chaque monde : six runes à éveiller, trois lieux à franchir et un gardien à vaincre. Une rune ne s'éveille que d'une seule façon : par une action concrète." data-en="In every world: six runes to awaken, three places to cross and a guardian to defeat. A rune awakens only one way: through a concrete action.">Dans chaque monde : six runes à éveiller, trois lieux à franchir et un gardien à vaincre. Une rune ne s'éveille que d'une seule façon : par une action concrète.</p>
       <ol class="etapes">
         <li class="rv"><span class="num">ᛖ</span><div><h3 data-fr="Six runes" data-en="Six runes">Six runes</h3>
-          <p data-fr="Une par compétence. « Marcher dans la brume » s'éveille par tes sorties — marche, course ou vélo. Même lente, elle compte."
-             data-en="One per skill. “Walk through the mist” awakens with your outings — walking, running or cycling. Even slow, it counts.">Une par compétence. « Marcher dans la brume » s'éveille par tes sorties — marche, course ou vélo. Même lente, elle compte.</p></div></li>
+          <p data-fr="Une par compétence. Par exemple, « Marcher dans la brume » s'éveille grâce à tes sorties à pied, en course ou à vélo : même au pas, elles comptent." data-en="One per skill. For example, “Walk through the mist” awakens with your outings on foot, running or cycling: even at a slow pace, they count.">Une par compétence. Par exemple, « Marcher dans la brume » s'éveille grâce à tes sorties à pied, en course ou à vélo : même au pas, elles comptent.</p></div></li>
         <li class="rv"><span class="num">ᚱ</span><div><h3 data-fr="Trois lieux" data-en="Three places">Trois lieux</h3>
-          <p data-fr="Le passage oublié, les ruines gelées, la source de Hvergelmir. Chaque lieu franchi révèle un fragment du récit, et Brokkr te dit ce qu'il veut dire dans ta vie."
-             data-en="The forgotten pass, the frozen ruins, the spring of Hvergelmir. Each place you cross reveals a fragment of the tale, and Brokkr tells you what it means in your life.">Le passage oublié, les ruines gelées, la source de Hvergelmir. Chaque lieu franchi révèle un fragment du récit, et Brokkr te dit ce qu'il veut dire dans ta vie.</p></div></li>
+          <p data-fr="Le passage oublié, les ruines gelées, la source de Hvergelmir : chaque lieu franchi dévoile une part du récit, et Brokkr t'explique ce qu'elle signifie dans ta vie." data-en="The forgotten pass, the frozen ruins, the spring of Hvergelmir: each place you cross reveals part of the story, and Brokkr explains what it means in your life.">Le passage oublié, les ruines gelées, la source de Hvergelmir : chaque lieu franchi dévoile une part du récit, et Brokkr t'explique ce qu'elle signifie dans ta vie.</p></div></li>
         <li class="rv"><span class="num">ᚷ</span><div><h3 data-fr="Un gardien" data-en="A guardian">Un gardien</h3>
-          <p data-fr="Il tombe en trois temps, sans limite de temps. Face à Níðhöggr et à Surtr, chaque acte pose une situation et c'est toi qui choisis la rune qui y répond ; plus loin, chaque temps demande un exploit réel. Tu en rapportes une relique et le souvenir du monde traversé — jamais un bonus de puissance."
-             data-en="It falls in three stages, with no time limit. Against Níðhöggr and Surtr, each act sets a scene and you choose the rune that answers it; further on, each stage asks for a real feat. You bring back a relic and the memory of the world you crossed — never a power bonus.">Il tombe en trois temps, sans limite de temps. Face à Níðhöggr et à Surtr, chaque acte pose une situation et c'est toi qui choisis la rune qui y répond ; plus loin, chaque temps demande un exploit réel. Tu en rapportes une relique et le souvenir du monde traversé — jamais un bonus de puissance.</p></div></li>
+          <p data-fr="Il tombe en trois temps, sans compte à rebours. Face à Níðhöggr et à Surtr, chaque acte décrit une situation et tu choisis la rune qui y répond ; dans les mondes suivants, chaque temps exige un véritable exploit. Tu en rapportes une relique et le souvenir du monde traversé, jamais un bonus de puissance." data-en="It falls in three stages, with no countdown. Against Níðhöggr and Surtr, each act describes a situation and you choose the rune that answers it; in later worlds, each stage calls for a genuine feat. You bring back a relic and the memory of the world you crossed — never a power bonus.">Il tombe en trois temps, sans compte à rebours. Face à Níðhöggr et à Surtr, chaque acte décrit une situation et tu choisis la rune qui y répond ; dans les mondes suivants, chaque temps exige un véritable exploit. Tu en rapportes une relique et le souvenir du monde traversé, jamais un bonus de puissance.</p></div></li>
       </ol>
       <div class="gardiens">
         <div class="gardien rv"><img src="/traversee/nidhogg-combat.webp" alt="" loading="lazy" style="object-position:40% 40%"><div><b>Níðhöggr</b><span data-fr="ronge les racines · Niflheim" data-en="gnaws at the roots · Niflheim">ronge les racines · Niflheim</span></div></div>
@@ -724,23 +709,21 @@
   <div class="cadre">
     <div class="kicker rv" data-fr="Les disciplines" data-en="The disciplines">Les disciplines</div>
     <h2 class="rv" data-fr="Sous l'armure, de vrais outils." data-en="Under the armour, real tools.">Sous l'armure, de vrais outils.</h2>
-    <p class="lead rv" data-fr="Le jeu ne vaudrait rien si l'outil était faible. Quatre disciplines ont chacune leur atelier — et ce que tu y fais nourrit ton guerrier sans double saisie."
-       data-en="The game would be worthless if the tool were weak. Four disciplines each have their own workshop — and what you do there feeds your warrior with no double entry.">Le jeu ne vaudrait rien si l'outil était faible. Quatre disciplines ont chacune leur atelier — et ce que tu y fais nourrit ton guerrier sans double saisie.</p>
+    <p class="lead rv" data-fr="Un jeu ne vaut que par la qualité de ses outils. Chacune des quatre disciplines a son espace complet, et tout ce que tu y fais compte pour ton guerrier, sans rien saisir deux fois." data-en="A game is only as good as its tools. Each of the four disciplines has its own complete space, and everything you do there counts for your warrior — nothing to enter twice.">Un jeu ne vaut que par la qualité de ses outils. Chacune des quatre disciplines a son espace complet, et tout ce que tu y fais compte pour ton guerrier, sans rien saisir deux fois.</p>
     <div class="disciplines">
       <article class="disc rv"><img src="/disciplines/meditation.webp" alt="" loading="lazy"><div><h3 data-fr="Méditation" data-en="Meditation">Méditation</h3>
-        <p data-fr="Minuteur, séances guidées, et le suivi de ta pratique semaine après semaine." data-en="Timer, guided sessions, and your practice tracked week after week.">Minuteur, séances guidées, et le suivi de ta pratique semaine après semaine.</p></div></article>
+        <p data-fr="Minuteur, séances guidées et suivi de ta pratique, semaine après semaine." data-en="Timer, guided sessions and a record of your practice, week after week.">Minuteur, séances guidées et suivi de ta pratique, semaine après semaine.</p></div></article>
       <article class="disc rv" style="--i:1"><img src="/disciplines/course.webp" alt="" loading="lazy"><div><h3 data-fr="Course" data-en="Running">Course</h3>
-        <p data-fr="Distance, allure, fréquence cardiaque, tracé. En deux touchers, ou tout seul avec Apple Santé." data-en="Distance, pace, heart rate, route. In two taps, or on its own with Apple Health.">Distance, allure, fréquence cardiaque, tracé. En deux touchers, ou tout seul avec Apple Santé.</p></div></article>
+        <p data-fr="Distance, allure, fréquence cardiaque et tracé. Saisis une course en deux touchers, ou laisse Apple Santé l'importer." data-en="Distance, pace, heart rate and route. Log a run in two taps, or let Apple Health bring it in.">Distance, allure, fréquence cardiaque et tracé. Saisis une course en deux touchers, ou laisse Apple Santé l'importer.</p></div></article>
       <article class="disc rv" style="--i:2"><img src="/disciplines/musculation.webp" alt="" loading="lazy"><div><h3 data-fr="Musculation" data-en="Strength">Musculation</h3>
-        <p data-fr="Séances, exercices, charges et records — ta surcharge progressive, lisible." data-en="Sessions, exercises, loads and records — your progressive overload, readable.">Séances, exercices, charges et records — ta surcharge progressive, lisible.</p></div></article>
+        <p data-fr="Séances, exercices, charges et records, pour suivre clairement ta progression." data-en="Sessions, exercises, loads and records, so your progress is easy to follow.">Séances, exercices, charges et records, pour suivre clairement ta progression.</p></div></article>
       <article class="disc rv" style="--i:3"><img src="/disciplines/lecture.webp" alt="" loading="lazy"><div><h3 data-fr="Lecture" data-en="Reading">Lecture</h3>
-        <p data-fr="Un vrai lecteur de livres : lecture à voix haute même écran verrouillé, dictionnaire au toucher, notes." data-en="A real book reader: read aloud even with the screen locked, dictionary at a touch, notes.">Un vrai lecteur de livres : lecture à voix haute même écran verrouillé, dictionnaire au toucher, notes.</p></div></article>
+        <p data-fr="Un véritable lecteur de livres : lecture à voix haute même écran verrouillé, dictionnaire d'un toucher et prise de notes." data-en="A real book reader: read-aloud even with the screen locked, a dictionary at a tap, and notes.">Un véritable lecteur de livres : lecture à voix haute même écran verrouillé, dictionnaire d'un toucher et prise de notes.</p></div></article>
     </div>
     <div class="carnet rv">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z"/><path d="M8 13l3-3 2 2 4-4"/></svg>
-      <div><h3 data-fr="Chaque discipline lit ta progression comme un entraîneur" data-en="Each discipline reads your progress like a coach">Chaque discipline lit ta progression comme un entraîneur</h3>
-        <p data-fr="Huit semaines pour la trajectoire, quatre pour le moment présent. Ta semaine se mesure à ta propre normale — jamais à celle d'un inconnu."
-           data-en="Eight weeks for the trajectory, four for the present moment. Your week is measured against your own normal — never a stranger's.">Huit semaines pour la trajectoire, quatre pour le moment présent. Ta semaine se mesure à ta propre normale — jamais à celle d'un inconnu.</p></div>
+      <div><h3 data-fr="Chaque discipline analyse ta progression, comme le ferait un entraîneur" data-en="Each discipline analyses your progress, the way a coach would">Chaque discipline analyse ta progression, comme le ferait un entraîneur</h3>
+        <p data-fr="Huit semaines pour dégager la tendance, quatre pour le moment présent. Ta semaine est comparée à tes propres habitudes, jamais à celles des autres." data-en="Eight weeks to show the trend, four for the present moment. Your week is compared with your own habits, never with anyone else's.">Huit semaines pour dégager la tendance, quatre pour le moment présent. Ta semaine est comparée à tes propres habitudes, jamais à celles des autres.</p></div>
     </div>
   </div>
 </section>
@@ -751,8 +734,7 @@
     <div>
       <div class="kicker rv" data-fr="Ton mentor" data-en="Your mentor">Ton mentor</div>
       <h2 class="rv" data-fr="Brokkr lit ta forge. Tu choisis sa voix." data-en="Brokkr reads your forge. You choose his voice.">Brokkr lit ta forge. Tu choisis sa voix.</h2>
-      <p class="lead rv" data-fr="Le forgeron des nains te parle de ce que tu as vraiment fait, jamais d'un script. Six caractères, une même exigence : te faire revenir sans jamais te culpabiliser."
-         data-en="The dwarf smith talks about what you actually did, never from a script. Six characters, one demand: bring you back without ever guilting you.">Le forgeron des nains te parle de ce que tu as vraiment fait, jamais d'un script. Six caractères, une même exigence : te faire revenir sans jamais te culpabiliser.</p>
+      <p class="lead rv" data-fr="Brokkr, le forgeron nain, commente ce que tu as réellement fait, sans réplique toute faite. Six personnalités au choix, un même principe : t'encourager à revenir, sans jamais te culpabiliser. Le Mentor est inclus ; les cinq autres s'obtiennent avec la Forge Éternelle ou à l'unité." data-en="Brokkr, the dwarf smith, comments on what you've actually done, never from a script. Six personalities to choose from, one principle: encourage you to come back, without ever making you feel guilty. The Mentor is included; the other five come with the Eternal Forge or one at a time.">Brokkr, le forgeron nain, commente ce que tu as réellement fait, sans réplique toute faite. Six personnalités au choix, un même principe : t'encourager à revenir, sans jamais te culpabiliser. Le Mentor est inclus ; les cinq autres s'obtiennent avec la Forge Éternelle ou à l'unité.</p>
       <div id="onglets" role="tablist" aria-label="Les six visages de Brokkr">
         <button role="tab" type="button" id="v-0" aria-controls="visage" aria-selected="true">Le Mentor</button>
         <button role="tab" type="button" id="v-1" aria-controls="visage" aria-selected="false" tabindex="-1">Le Maître d'armes</button>
@@ -768,7 +750,7 @@
       <p class="visage-desc" id="vDesc"></p>
       <p class="visage-dit" id="vDit"></p>
       <div class="visage-sig">— BROKKR</div>
-      <p class="visage-ctx" data-fr="Même situation pour les six : cinq jours sans venir à la forge." data-en="Same situation for all six: five days away from the forge.">Même situation pour les six : cinq jours sans venir à la forge.</p>
+      <p class="visage-ctx" data-fr="La même situation pour les six : cinq jours d'absence." data-en="The same situation for all six: five days away.">La même situation pour les six : cinq jours d'absence.</p>
     </div>
   </div>
 </section>
@@ -780,13 +762,13 @@
     <h2 class="rv" data-fr="Tu forges seul. Tu ne t'élèves pas seul." data-en="You forge alone. You don't rise alone.">Tu forges seul. Tu ne t'élèves pas seul.</h2>
     <ul class="ensemble">
       <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg>
-        <h3 data-fr="Alliés" data-en="Allies">Alliés</h3><p data-fr="Ajoute un allié par son code. Suis ses chroniques — un niveau, un monde franchi — et encourage-le d'un geste." data-en="Add an ally by their code. Follow their chronicles — a level, a world crossed — and cheer them on with one gesture.">Ajoute un allié par son code. Suis ses chroniques — un niveau, un monde franchi — et encourage-le d'un geste.</p></li>
+        <h3 data-fr="Alliés" data-en="Allies">Alliés</h3><p data-fr="Ajoute un allié grâce à son code. Suis ses progrès — un niveau gagné, un monde franchi — et encourage-le d'un geste." data-en="Add an ally with their code. Follow their progress — a level gained, a world crossed — and cheer them on with a single tap.">Ajoute un allié grâce à son code. Suis ses progrès — un niveau gagné, un monde franchi — et encourage-le d'un geste.</p></li>
       <li class="rv" style="--i:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12h8M12 3v18"/><path d="M5 7l-3 5 3 5M19 7l3 5-3 5"/></svg>
-        <h3 data-fr="Pactes &amp; défis" data-en="Pacts &amp; challenges">Pactes &amp; défis</h3><p data-fr="Invite un allié à un pacte ou à un défi : vos quêtes communes vivent dans le volet Alliance de l'Aventure." data-en="Invite an ally to a pact or a challenge: your shared quests live in the Alliance tab of the Adventure.">Invite un allié à un pacte ou à un défi : vos quêtes communes vivent dans le volet Alliance de l'Aventure.</p></li>
+        <h3 data-fr="Pactes &amp; défis" data-en="Pacts &amp; challenges">Pactes &amp; défis</h3><p data-fr="Propose un pacte ou un défi à un allié : vos quêtes communes se suivent dans la Compagnie, sur la page Social." data-en="Offer an ally a pact or a challenge: your shared quests are tracked in the Company, on the Social page.">Propose un pacte ou un défi à un allié : vos quêtes communes se suivent dans la Compagnie, sur la page Social.</p></li>
       <li class="rv" style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 4 6v6c0 4.5 3.4 8.3 8 9.5 4.6-1.2 8-5 8-9.5V6Z"/><path d="M9 12l2 2 4-4"/></svg>
-        <h3 data-fr="Guilde" data-en="Guild">Guilde</h3><p data-fr="Un blason, une salle commune, des quêtes collectives dont le total devient le record à battre au tirage suivant." data-en="A crest, a common hall, collective quests whose total becomes the record to beat at the next draw.">Un blason, une salle commune, des quêtes collectives dont le total devient le record à battre au tirage suivant.</p></li>
+        <h3 data-fr="Guilde" data-en="Guild">Guilde</h3><p data-fr="Un blason, un espace commun et des quêtes collectives : le total de la guilde devient le record à battre au tirage suivant." data-en="A crest, a shared space and collective quests: the guild's total becomes the record to beat at the next draw.">Un blason, un espace commun et des quêtes collectives : le total de la guilde devient le record à battre au tirage suivant.</p></li>
       <li class="rv" style="--i:3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
-        <h3 data-fr="Classement" data-en="Leaderboard">Classement</h3><p data-fr="Vois où tu te tiens parmi les guerriers — ou retire-t'en d'un interrupteur, dans Confidentialité." data-en="See where you stand among the warriors — or step out with one switch, in Privacy.">Vois où tu te tiens parmi les guerriers — ou retire-t'en d'un interrupteur, dans Confidentialité.</p></li>
+        <h3 data-fr="Classement" data-en="Leaderboard">Classement</h3><p data-fr="Découvre ta place parmi les autres guerriers, ou retire-toi du classement d'un simple interrupteur, dans les réglages de confidentialité." data-en="See where you stand among other warriors, or leave the leaderboard with a single switch in the privacy settings.">Découvre ta place parmi les autres guerriers, ou retire-toi du classement d'un simple interrupteur, dans les réglages de confidentialité.</p></li>
     </ul>
   </div>
 </section>
@@ -795,20 +777,20 @@
 <section id="regles" style="padding-top:0">
   <div class="cadre">
     <div class="kicker rv" data-fr="Les règles de la forge" data-en="The rules of the forge">Les règles de la forge</div>
-    <h2 class="rv" style="max-width:22ch" data-fr="Un jeu de discipline peut mentir de mille façons. Celui-ci s'y refuse." data-en="A discipline game can lie in a thousand ways. This one refuses to.">Un jeu de discipline peut mentir de mille façons. Celui-ci s'y refuse.</h2>
+    <h2 class="rv" style="max-width:22ch" data-fr="Bien des applications de discipline jouent contre toi. Celle-ci suit six règles." data-en="Many discipline apps work against you. This one follows six rules.">Bien des applications de discipline jouent contre toi. Celle-ci suit six règles.</h2>
     <div class="regles">
       <div class="regle rv"><i>I</i><h3 data-fr="Des actions, jamais du temps" data-en="Actions, never time">Des actions, jamais du temps</h3>
-        <p data-fr="Ouvrir l'app ne prouve rien. Aucune épreuve ne compte les jours qui passent : ce qui se mesure, c'est ce qui a été fait." data-en="Opening the app proves nothing. No trial counts the days going by: what's measured is what was done.">Ouvrir l'app ne prouve rien. Aucune épreuve ne compte les jours qui passent : ce qui se mesure, c'est ce qui a été fait.</p></div>
+        <p data-fr="Ouvrir l'app ne prouve rien. Aucune épreuve ne se gagne en laissant passer les jours : seul compte ce que tu as fait." data-en="Opening the app proves nothing. No trial is won by letting the days go by: only what you've done counts.">Ouvrir l'app ne prouve rien. Aucune épreuve ne se gagne en laissant passer les jours : seul compte ce que tu as fait.</p></div>
       <div class="regle rv" style="--i:1"><i>II</i><h3 data-fr="Aucune obligation quotidienne" data-en="No daily obligation">Aucune obligation quotidienne</h3>
-        <p data-fr="Pas de série punitive, pas de culpabilité. Cinq jours d'absence ? Brokkr dit « reviens doucement », jamais « tu as tout perdu »." data-en="No punishing streak, no guilt. Five days away? Brokkr says “come back gently”, never “you've lost everything”.">Pas de série punitive, pas de culpabilité. Cinq jours d'absence ? Brokkr dit « reviens doucement », jamais « tu as tout perdu ».</p></div>
+        <p data-fr="Pas de série à préserver, pas de culpabilité. Après cinq jours d'absence, Brokkr t'invite à reprendre doucement ; il ne te dit jamais que tu as tout perdu." data-en="No streak to protect, no guilt. After five days away, Brokkr invites you to ease back in; he never tells you you've lost everything.">Pas de série à préserver, pas de culpabilité. Après cinq jours d'absence, Brokkr t'invite à reprendre doucement ; il ne te dit jamais que tu as tout perdu.</p></div>
       <div class="regle rv" style="--i:2"><i>III</i><h3 data-fr="Mesuré à toi, jamais aux autres" data-en="Measured against you, never others">Mesuré à toi, jamais aux autres</h3>
-        <p data-fr="Ta semaine se lit contre tes semaines. Et aucune note ne te juge sur ce que tu ne peux pas renseigner." data-en="Your week is read against your weeks. And no score judges you on what you can't log.">Ta semaine se lit contre tes semaines. Et aucune note ne te juge sur ce que tu ne peux pas renseigner.</p></div>
+        <p data-fr="Ta semaine se compare à tes semaines précédentes. Et aucune note ne te juge sur ce que tu ne peux pas mesurer." data-en="Your week is compared with your previous weeks. And no score judges you on what you can't measure.">Ta semaine se compare à tes semaines précédentes. Et aucune note ne te juge sur ce que tu ne peux pas mesurer.</p></div>
       <div class="regle rv"><i>IV</i><h3 data-fr="Reconnaissance, jamais puissance" data-en="Recognition, never power">Reconnaissance, jamais puissance</h3>
-        <p data-fr="Mondes, reliques, titres, raretés : du prestige, pas des bonus. Récompenser l'ancienneté par de la puissance, ce serait punir celui qui commence." data-en="Worlds, relics, titles, rarities: prestige, not bonuses. Rewarding seniority with power would punish the one who's starting.">Mondes, reliques, titres, raretés : du prestige, pas des bonus. Récompenser l'ancienneté par de la puissance, ce serait punir celui qui commence.</p></div>
+        <p data-fr="Mondes, reliques, titres : du prestige, jamais d'avantage en jeu. Donner plus de puissance aux joueurs de longue date pénaliserait ceux qui débutent." data-en="Worlds, relics, titles: prestige, never an in-game advantage. Giving long-time players more power would penalize those just starting out.">Mondes, reliques, titres : du prestige, jamais d'avantage en jeu. Donner plus de puissance aux joueurs de longue date pénaliserait ceux qui débutent.</p></div>
       <div class="regle rv" style="--i:1"><i>V</i><h3 data-fr="Le dernier pas est celui qu'on évite" data-en="The last step is the one you avoid">Le dernier pas est celui qu'on évite</h3>
-        <p data-fr="Chaque monde demande ses six runes : négliger une compétence, c'est rester au pied de l'arbre. La Traversée exige exactement ce que tu repousses." data-en="Every world asks for its six runes: neglect one skill and you stay at the foot of the tree. The Crossing demands exactly what you put off.">Chaque monde demande ses six runes : négliger une compétence, c'est rester au pied de l'arbre. La Traversée exige exactement ce que tu repousses.</p></div>
+        <p data-fr="Chaque monde exige ses six runes : négliger une compétence, c'est rester bloqué. La Traversée te demande précisément ce que tu as tendance à repousser." data-en="Every world requires all six runes: neglect one skill and you stay stuck. The Crossing asks for exactly what you tend to put off.">Chaque monde exige ses six runes : négliger une compétence, c'est rester bloqué. La Traversée te demande précisément ce que tu as tendance à repousser.</p></div>
       <div class="regle rv" style="--i:2"><i>VI</i><h3 data-fr="Tes données sont à toi" data-en="Your data is yours">Tes données sont à toi</h3>
-        <p data-fr="Tes données de santé restent dans ta sauvegarde privée, jamais montrées aux autres. Aucune publicité, aucun pistage." data-en="Your health data stays in your private save, never shown to others. No ads, no tracking.">Tes données de santé restent dans ta sauvegarde privée, jamais montrées aux autres. Aucune publicité, aucun pistage.</p></div>
+        <p data-fr="Tes données de santé restent dans ta sauvegarde privée et ne sont jamais montrées aux autres joueurs. Aucune publicité, aucun pistage." data-en="Your health data stays in your private save and is never shown to other players. No ads, no tracking.">Tes données de santé restent dans ta sauvegarde privée et ne sont jamais montrées aux autres joueurs. Aucune publicité, aucun pistage.</p></div>
     </div>
   </div>
 </section>
@@ -819,20 +801,21 @@
     <div class="eternelle rv">
       <div>
         <div class="kicker" data-fr="Forge Éternelle" data-en="Eternal Forge">Forge Éternelle</div>
-        <h2 data-fr="Les deux premiers mondes sont gratuits. Entiers." data-en="The first two worlds are free. All of them.">Les deux premiers mondes sont gratuits. Entiers.</h2>
-        <p class="lead" data-fr="Ton monde, ton guerrier, la voûte, les disciplines, Brokkr, tes alliés, et la traversée entière de Niflheim et de Muspelheim, gardiens compris : tout cela se joue sans payer. La Forge Éternelle ouvre la suite de la Traversée — et y ajoute du confort et du prestige, jamais de puissance : ni or ni bonus d'XP. Un monde atteint reste à toi, même si l'abonnement prend fin."
-           data-en="Your world, your warrior, the vault, the disciplines, Brokkr, your allies, and the entire crossings of Niflheim and Muspelheim, guardians included: all of it plays for free. The Eternal Forge opens the rest of the Crossing — and adds comfort and prestige, never power: no gold, no XP boost. A world you've reached stays yours, even if the subscription ends.">Ton monde, ton guerrier, la voûte, les disciplines, Brokkr, tes alliés, et la traversée entière de Niflheim et de Muspelheim, gardiens compris : tout cela se joue sans payer. La Forge Éternelle ouvre la suite de la Traversée — et y ajoute du confort et du prestige, jamais de puissance : ni or ni bonus d'XP. Un monde atteint reste à toi, même si l'abonnement prend fin.</p>
-        <p class="petit" data-fr="Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store." data-en="Monthly or yearly, auto-renewing, cancel any time from your App Store account.">Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store.</p>
+        <h2 data-fr="Les deux premiers mondes sont gratuits, en entier." data-en="The first two worlds are free, in full.">Les deux premiers mondes sont gratuits, en entier.</h2>
+        <p class="lead" data-fr="Ton monde, ton guerrier, les constellations, les disciplines, Brokkr, tes alliés et la traversée complète de Niflheim et de Muspelheim, gardiens compris : tout cela est gratuit. La Forge Éternelle ouvre la suite de la Traversée et inclut tout le Marché, dont la plupart des éléments s'achètent aussi à l'unité. Elle apporte du confort et du prestige, jamais de puissance : ni or, ni bonus d'XP. Un monde atteint reste acquis, même si l'abonnement prend fin." data-en="Your world, your warrior, the constellations, the disciplines, Brokkr, your allies and the full crossing of Niflheim and Muspelheim, guardians included: all of it is free. The Eternal Forge opens the rest of the Crossing and includes the whole Market, most of which can also be bought one item at a time. It adds comfort and prestige, never power: no gold, no XP boost. A world you've reached stays yours, even if the subscription ends.">Ton monde, ton guerrier, les constellations, les disciplines, Brokkr, tes alliés et la traversée complète de Niflheim et de Muspelheim, gardiens compris : tout cela est gratuit. La Forge Éternelle ouvre la suite de la Traversée et inclut tout le Marché, dont la plupart des éléments s'achètent aussi à l'unité. Elle apporte du confort et du prestige, jamais de puissance : ni or, ni bonus d'XP. Un monde atteint reste acquis, même si l'abonnement prend fin.</p>
+        <p class="petit" data-fr="Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store." data-en="Monthly or yearly, renews automatically, cancel any time from your App Store account.">Mensuel ou annuel, renouvelé automatiquement, résiliable en tout temps depuis ton compte App Store.</p>
       </div>
       <ul class="avantages">
+        <li data-fr="Tout le Marché inclus, sans rien acheter à l'unité" data-en="The whole Market included, nothing to buy separately">Tout le Marché inclus, sans rien acheter à l'unité</li>
         <li data-fr="La Traversée au-delà de Muspelheim, monde après monde jusqu'à Asgard" data-en="The Crossing beyond Muspelheim, world after world up to Asgard">La Traversée au-delà de Muspelheim, monde après monde jusqu'à Asgard</li>
-        <li data-fr="Tes séances comptent toutes seules, synchronisées avec Apple Santé" data-en="Your workouts count on their own, synced with Apple Health">Tes séances comptent toutes seules, synchronisées avec Apple Santé</li>
-        <li data-fr="Les six personnages de Brokkr, du Mentor au Silencieux" data-en="Brokkr's six characters, from the Mentor to the Silent One">Les six personnages de Brokkr, du Mentor au Silencieux</li>
-        <li data-fr="Thèmes de couleur et mode clair" data-en="Color themes and light mode">Thèmes de couleur et mode clair</li>
-        <li data-fr="L'accueil figé sur ton moment et ta saison" data-en="Your home screen set to your moment and season">L'accueil figé sur ton moment et ta saison</li>
-        <li data-fr="Le premier échange de quête offert chaque jour" data-en="The first quest swap free every day">Le premier échange de quête offert chaque jour</li>
-        <li data-fr="Un écusson au classement et un titre réservé" data-en="A crest on the leaderboard and a reserved title">Un écusson au classement et un titre réservé</li>
-        <li data-fr="La Refonte : recommencer à zéro sans rien perdre" data-en="The Reforging: start over without losing anything">La Refonte : recommencer à zéro sans rien perdre</li>
+        <li data-fr="Les épreuves sans limite, et les quêtes annexes" data-en="Unlimited trials, plus side quests">Les épreuves sans limite, et les quêtes annexes</li>
+        <li data-fr="Les six personnalités de Brokkr, du Mentor au Silencieux" data-en="All six of Brokkr's personalities, from the Mentor to the Silent One">Les six personnalités de Brokkr, du Mentor au Silencieux</li>
+        <li data-fr="La scène d'accueil des membres, figée si tu le souhaites sur ton moment et ta saison préférés" data-en="The members' home scene, fixed if you like on your favourite moment and season">La scène d'accueil des membres, figée si tu le souhaites sur ton moment et ta saison préférés</li>
+        <li data-fr="Le thème clair, sur papier parchemin, ivoire ou brume" data-en="The light theme, on parchment, ivory or mist paper">Le thème clair, sur papier parchemin, ivoire ou brume</li>
+        <li data-fr="Tes séances comptées automatiquement grâce à Apple Santé" data-en="Your workouts counted automatically through Apple Health">Tes séances comptées automatiquement grâce à Apple Santé</li>
+        <li data-fr="Le premier échange de quête offert chaque jour" data-en="Your first quest swap free every day">Le premier échange de quête offert chaque jour</li>
+        <li data-fr="Un écusson au classement et un titre réservé aux membres" data-en="A crest on the leaderboard and a members-only title">Un écusson au classement et un titre réservé aux membres</li>
+        <li data-fr="La Refonte : recommencer à zéro sans rien perdre" data-en="The Reforging: start over from scratch without losing anything">La Refonte : recommencer à zéro sans rien perdre</li>
       </ul>
     </div>
   </div>
@@ -846,12 +829,9 @@
       <blockquote data-fr="Dans les jeux de rôle, monter un personnage est irrésistible. Dans la vraie vie, monter le sien ne l'est pas." data-en="In role-playing games, levelling up a character is irresistible. In real life, levelling up your own isn't.">Dans les jeux de rôle, monter un personnage est irrésistible. Dans la vraie vie, monter le sien ne l'est pas.</blockquote>
     </div>
     <div class="texte rv" style="--i:1">
-      <p data-fr="Forge &amp; Quêtes est née de cette frustration-là : il manquait la boucle. Agir, être reconnu, voir le chemin parcouru — et avoir envie de revenir."
-         data-en="Forge &amp; Quests was born of that frustration: the loop was missing. Act, be recognized, see how far you've come — and want to come back.">Forge &amp; Quêtes est née de cette frustration-là : il manquait la boucle. Agir, être reconnu, voir le chemin parcouru — et avoir envie de revenir.</p>
-      <p data-fr="Chaque système a été forgé, essayé sur le terrain, puis reforgé — des dizaines de fois. Celui qui ne rendait pas le retour à l'effort plus désirable a été retiré, aussi joli soit-il."
-         data-en="Every system was forged, field-tested, then reforged — dozens of times. One that didn't make returning to effort more desirable was removed, however pretty it was.">Chaque système a été forgé, essayé sur le terrain, puis reforgé — des dizaines de fois. Celui qui ne rendait pas le retour à l'effort plus désirable a été retiré, aussi joli soit-il.</p>
-      <p data-fr="Ce qui en sort est un outil honnête sous l'habit d'un jeu : sa seule monnaie d'entrée, c'est ta vie réelle."
-         data-en="What came out is an honest tool dressed as a game: its only currency is your real life.">Ce qui en sort est un outil honnête sous l'habit d'un jeu : sa seule monnaie d'entrée, c'est ta vie réelle.</p>
+      <p data-fr="Forge &amp; Quêtes est née de cette frustration : il manquait une boucle. Agir, être reconnu, mesurer le chemin parcouru, et avoir envie de recommencer." data-en="Forge &amp; Quests was born of that frustration: a loop was missing. Act, be recognized, see how far you've come, and want to do it again.">Forge &amp; Quêtes est née de cette frustration : il manquait une boucle. Agir, être reconnu, mesurer le chemin parcouru, et avoir envie de recommencer.</p>
+      <p data-fr="Chaque système a été conçu, éprouvé au quotidien, puis retravaillé des dizaines de fois. Tout ce qui ne donnait pas davantage envie de se remettre à l'effort a été retiré, aussi réussi soit-il." data-en="Every system was designed, tested in daily life, then reworked dozens of times. Anything that didn't make getting back to the effort more appealing was removed, however well made it was.">Chaque système a été conçu, éprouvé au quotidien, puis retravaillé des dizaines de fois. Tout ce qui ne donnait pas davantage envie de se remettre à l'effort a été retiré, aussi réussi soit-il.</p>
+      <p data-fr="Le résultat : un outil honnête sous les traits d'un jeu, dont la seule monnaie est ta vie réelle." data-en="The result: an honest tool in the guise of a game, whose only currency is your real life.">Le résultat : un outil honnête sous les traits d'un jeu, dont la seule monnaie est ta vie réelle.</p>
       <div class="signature" data-fr="— Le forgeron de la forge" data-en="— The smith of the forge">— Le forgeron de la forge</div>
     </div>
   </div>
@@ -980,9 +960,10 @@
   }
   document.querySelectorAll('#moments button').forEach(b => b.addEventListener('click', () => { monde.moment = b.dataset.moment; monde.auto = false; appliquerMonde(); }));
   document.querySelectorAll('#saisons button').forEach(b => b.addEventListener('click', () => { monde.saison = b.dataset.saison; monde.auto = false; appliquerMonde(); }));
-  // Les seize images du fjord, chargées en silence une fois la page posée.
+  // Les quatre lumières de la saison affichée, chargées en silence une fois la page posée
+  // (les autres saisons se chargent au choix : images en haute résolution).
   window.addEventListener('load', () => setTimeout(() => {
-    ['printemps','ete','automne','hiver'].forEach(s => ['aube','jour','crepuscule','nuit'].forEach(m => { new Image().src = `/monde/${s}/${m}.webp`; }));
+    ['aube','jour','crepuscule','nuit'].forEach(m => { new Image().src = `/monde/${monde.saison}/${m}.webp`; });
   }, 1500));
 
   // ─── Le geste : exemples tirés des raisons de l'app (utils/geste.js) ───
@@ -1157,7 +1138,7 @@
     traduits.forEach(el => { el.innerHTML = lg === 'en' ? el.dataset.en : el.dataset.fr; });
     document.querySelectorAll('[data-fr-alt]').forEach(el => { el.alt = lg === 'en' ? el.dataset.enAlt : el.dataset.frAlt; });
     document.querySelectorAll('[data-fr-aria]').forEach(el => el.setAttribute('aria-label', lg === 'en' ? el.dataset.enAria : el.dataset.frAria));
-    // Les captures de l'accueil existent dans les deux langues.
+    // La capture de l'accueil en plein jour existe dans les deux langues.
     document.querySelectorAll('img[data-capture-en]').forEach(img => {
       if (!img.dataset.captureFr) img.dataset.captureFr = img.getAttribute('src');
       img.src = lg === 'en' ? img.dataset.captureEn : img.dataset.captureFr;
